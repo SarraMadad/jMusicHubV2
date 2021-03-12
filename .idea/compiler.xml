@@ -11,8 +11,5 @@
         <module name="jMusicHubV2 (2)" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="jMusicHubV2 (2)" target="11" />
-    </bytecodeTargetLevel>
   </component>
 </project>
