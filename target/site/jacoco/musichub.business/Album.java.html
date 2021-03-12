@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Album.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jMusicHubV2</a> &gt; <a href="index.source.html" class="el_package">musichub.business</a> &gt; <span class="el_source">Album.java</span></div><h1>Album.java</h1><pre class="source lang-java linenums">package musichub.business;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Collection;
+import java.util.Date;
+
+/**
+ * classe publique Album qui hérite de la classe abstraite AbstractOeuvre et implémente l'interface Comparable qui permet de trier des albums.
+ * @param id privé, identifiant unique de l'oeuvre (hérité de la classe abstraite)
+ * @param titre privé, titre de l'oeuvre (hérité de la classe abstraite)
+ * @param duree privé, durée en seconde de l'oeuvre (hérité de la classe abstraite)
+ * @param chanson privé, collection/liste de chanson
+ * @param artiste privé, nom de l'artiste
+ * @param date privé, date de sortie de l'album
+ *
+ * les premières methodes sont publiques et sont des getteurs et setteurs basiques pour chacun des attributs.
+ * les méthodes toString, compareTo et addChanson sont précisées plus tard.
+ * @author Sarra MADAD, Nour El-Houda LOUATY.
+ */
+
+public class Album extends AbstractOeuvre implements Comparable&lt;Album&gt; {
+
+    private Collection&lt;Chanson&gt; chanson;
+    private String artiste;
+    private String date;
+
+    public Album(int id, String titre, int duree, Collection&lt;Chanson&gt; chanson, String artiste, String date) {
+<span class="fc" id="L29">        super(id, titre, duree);</span>
+<span class="fc" id="L30">        this.chanson = chanson;</span>
+<span class="fc" id="L31">        this.artiste = artiste;</span>
+<span class="fc" id="L32">        this.date = date;</span>
+<span class="fc" id="L33">    }</span>
+
+    public Collection&lt;Chanson&gt; getChanson() {
+<span class="nc" id="L36">        return chanson;</span>
+    }
+
+    public void setChanson(Collection&lt;Chanson&gt; chanson) {
+<span class="nc" id="L40">        this.chanson = chanson;</span>
+<span class="nc" id="L41">    }</span>
+
+    public String getArtiste() {
+<span class="nc" id="L44">        return artiste;</span>
+    }
+
+    public void setArtiste(String artiste) {
+<span class="nc" id="L48">        this.artiste = artiste;</span>
+<span class="nc" id="L49">    }</span>
+
+    public String getDate() {
+<span class="nc" id="L52">        return date;</span>
+    }
+
+    public void setDate(String date) {
+<span class="nc" id="L56">        this.date = date;</span>
+<span class="nc" id="L57">    }</span>
+
+  
+/**
+ *  méthode toString qui transforme un album en chaîne de caractère.
+ */
+@Override //on surcharge cette méthode qui existe déjà
+    public String toString() {
+<span class="nc" id="L65">        return &quot;Album :\n&quot; + &quot;id = &quot; + this.getId() + &quot;\n&quot; + &quot;titre = &quot; + this.getTitre() + &quot;\n&quot; + &quot;duree = &quot;</span>
+<span class="nc" id="L66">                + this.getDuree() + &quot;\n&quot; + &quot;chanson = &quot; + this.getChanson() + &quot;\n&quot; + &quot;artiste = &quot; + this.getArtiste()</span>
+<span class="nc" id="L67">                + &quot;\n&quot; + &quot;date = &quot; + this.getDate() + &quot;\n\n&quot;;</span>
+    }
+
+/**
+ *  méthode compareTo qui trie deux albums entre eux selon leur date de sortie et retourne une position dans la liste.
+ */
+@Override //on surcharge cette méthode qui existe déjà
+    public int compareTo(Album album) {
+<span class="nc" id="L75">        int diff = 0;</span>
+<span class="nc" id="L76">        Date date1 = null;</span>
+<span class="nc" id="L77">        Date date2 = null;</span>
+<span class="nc" id="L78">        SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);</span>
+
+        try {
+<span class="nc" id="L81">            date1 = sdf.parse(this.getDate());</span>
+<span class="nc" id="L82">        } catch (ParseException e) {</span>
+<span class="nc" id="L83">            return 1;</span>
+<span class="nc" id="L84">        }</span>
+
+        try {
+<span class="nc" id="L87">            date2 = sdf.parse(album.getDate());</span>
+<span class="nc" id="L88">        } catch (ParseException e) {</span>
+<span class="nc" id="L89">            return -1; //on met le mauvais en bas de la liste </span>
+<span class="nc" id="L90">        }</span>
+
+<span class="nc" id="L92">        diff = date2.compareTo(date1);</span>
+
+<span class="nc" id="L94">        return diff;</span>
+    }
+
+/**
+ * méthode addChanson qui ajoute une chanson à notre collection de chansons.
+ * elle prend en paramètre la chanson que l'on souhaite ajouter à notre liste.
+ */
+    public void addChanson (Chanson chanson) {
+<span class="fc" id="L102">        this.chanson.add(chanson);</span>
+<span class="fc" id="L103">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

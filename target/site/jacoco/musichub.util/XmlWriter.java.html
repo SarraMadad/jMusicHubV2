@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>XmlWriter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jMusicHubV2</a> &gt; <a href="index.source.html" class="el_package">musichub.util</a> &gt; <span class="el_source">XmlWriter.java</span></div><h1>XmlWriter.java</h1><pre class="source lang-java linenums">package musichub.util;
+
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+import musichub.business.Album;
+import musichub.business.Chanson;
+import musichub.business.IJouable;
+import musichub.business.LivreAudio;
+import musichub.business.Playlist;
+
+/**
+ * classe publique XmlWriter qui écrit dans les fichiers XML.
+ * 
+ * @param dBuilder créateur de document
+ * @param elementsFile information des éléments
+ * @param albumsFile information des albums
+ * @param playlistsFile information des playlists
+ *
+ *
+ * les methodes sont expliquées plus tard dans le code.
+ * 
+ * @author Sarra MADAD, Nour El-Houda LOUATY.
+ */
+
+public class XmlWriter {
+
+    DocumentBuilder dBuilder;
+    String elementsFile;
+    String albumsFile;
+    String playlistsFile;
+
+ /**
+ * méthode publique XmlWriter fait le lien entre les fichiers xml et les attributs de la classe.
+ * constructeur de la classe XmlWriter
+ */      
+<span class="nc" id="L49">    public XmlWriter() throws Exception {</span>
+<span class="nc" id="L50">        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();</span>
+<span class="nc" id="L51">        this.dBuilder = dbFactory.newDocumentBuilder();</span>
+<span class="nc" id="L52">        this.elementsFile = &quot;files/elements.xml&quot;;</span>
+<span class="nc" id="L53">        this.albumsFile = &quot;files/albums.xml&quot;;</span>
+<span class="nc" id="L54">        this.playlistsFile = &quot;files/playlists.xml&quot;;</span>
+<span class="nc" id="L55">    }</span>
+
+ /**
+ * méthode privée saveChansons qui sauvegarde les chansons saisies dans un fichier XML
+ * 
+ */     
+    private void saveChansons(List&lt;Chanson&gt; chansons, Document document, Element elements) {
+        Element echanson, eid, etitre, eduree, eartiste, econtenu, egenre, edate;
+
+<span class="nc bnc" id="L64" title="All 2 branches missed.">        for (Chanson chanson : chansons) {</span>
+            // chanson element
+<span class="nc" id="L66">            echanson = document.createElement(&quot;Chanson&quot;);</span>
+<span class="nc" id="L67">            elements.appendChild(echanson);</span>
+
+            // id chanson element
+<span class="nc" id="L70">            eid = document.createElement(&quot;id&quot;);</span>
+<span class="nc" id="L71">            eid.appendChild(document.createTextNode(Integer.toString(chanson.getId())));</span>
+<span class="nc" id="L72">            echanson.appendChild(eid);</span>
+
+            // titre chanson element
+<span class="nc" id="L75">            etitre = document.createElement(&quot;titre&quot;);</span>
+<span class="nc" id="L76">            etitre.appendChild(document.createTextNode(chanson.getTitre()));</span>
+<span class="nc" id="L77">            echanson.appendChild(etitre);</span>
+
+            // duree chanson element
+<span class="nc" id="L80">            eduree = document.createElement(&quot;duree&quot;);</span>
+<span class="nc" id="L81">            eduree.appendChild(document.createTextNode(Integer.toString(chanson.getDuree())));</span>
+<span class="nc" id="L82">            echanson.appendChild(eduree);</span>
+
+            // artiste chanson element
+<span class="nc" id="L85">            eartiste = document.createElement(&quot;artiste&quot;);</span>
+<span class="nc" id="L86">            eartiste.appendChild(document.createTextNode(chanson.getArtiste()));</span>
+<span class="nc" id="L87">            echanson.appendChild(eartiste);</span>
+
+            // contenu chanson element
+<span class="nc" id="L90">            econtenu = document.createElement(&quot;contenu&quot;);</span>
+<span class="nc" id="L91">            econtenu.appendChild(document.createTextNode(chanson.getContenu()));</span>
+<span class="nc" id="L92">            echanson.appendChild(econtenu);</span>
+
+            // genre chanson element
+<span class="nc" id="L95">            egenre = document.createElement(&quot;genre&quot;);</span>
+<span class="nc" id="L96">            egenre.appendChild(document.createTextNode(chanson.getGenre().name()));</span>
+<span class="nc" id="L97">            echanson.appendChild(egenre);</span>
+
+            // date chanson element
+<span class="nc" id="L100">            edate = document.createElement(&quot;date&quot;);</span>
+<span class="nc" id="L101">            edate.appendChild(document.createTextNode(chanson.getDate()));</span>
+<span class="nc" id="L102">            echanson.appendChild(edate);</span>
+<span class="nc" id="L103">        }</span>
+<span class="nc" id="L104">    }</span>
+
+ /**
+ * méthode privée saveLivresAudios qui sauvegarde les livres audio saisis dans un fichier XML
+ * 
+ */  
+    private void saveLivresAudios(List&lt;LivreAudio&gt; livresaudios, Document document, Element elements) {
+        Element elivreaudio, eid, etitre, eduree, eartiste, econtenu, egenre, edate;
+
+<span class="nc bnc" id="L113" title="All 2 branches missed.">        for (LivreAudio livreaudio : livresaudios) {</span>
+            // livreaudio element
+<span class="nc" id="L115">            elivreaudio = document.createElement(&quot;LivreAudio&quot;);</span>
+<span class="nc" id="L116">            elements.appendChild(elivreaudio);</span>
+
+            // id livreaudio element
+<span class="nc" id="L119">            eid = document.createElement(&quot;id&quot;);</span>
+<span class="nc" id="L120">            eid.appendChild(document.createTextNode(Integer.toString(livreaudio.getId())));</span>
+<span class="nc" id="L121">            elivreaudio.appendChild(eid);</span>
+
+            // titre livreaudio element
+<span class="nc" id="L124">            etitre = document.createElement(&quot;titre&quot;);</span>
+<span class="nc" id="L125">            etitre.appendChild(document.createTextNode(livreaudio.getTitre()));</span>
+<span class="nc" id="L126">            elivreaudio.appendChild(etitre);</span>
+
+            // duree livreaudio element
+<span class="nc" id="L129">            eduree = document.createElement(&quot;duree&quot;);</span>
+<span class="nc" id="L130">            eduree.appendChild(document.createTextNode(Integer.toString(livreaudio.getDuree())));</span>
+<span class="nc" id="L131">            elivreaudio.appendChild(eduree);</span>
+
+            // auteur livreaudio element
+<span class="nc" id="L134">            eartiste = document.createElement(&quot;auteur&quot;);</span>
+<span class="nc" id="L135">            eartiste.appendChild(document.createTextNode(livreaudio.getAuteur()));</span>
+<span class="nc" id="L136">            elivreaudio.appendChild(eartiste);</span>
+
+            // contenu livreaudio element
+<span class="nc" id="L139">            econtenu = document.createElement(&quot;contenu&quot;);</span>
+<span class="nc" id="L140">            econtenu.appendChild(document.createTextNode(livreaudio.getContenu()));</span>
+<span class="nc" id="L141">            elivreaudio.appendChild(econtenu);</span>
+
+            // langue livreaudio element
+<span class="nc" id="L144">            egenre = document.createElement(&quot;langue&quot;);</span>
+<span class="nc" id="L145">            egenre.appendChild(document.createTextNode(livreaudio.getLangue().name()));</span>
+<span class="nc" id="L146">            elivreaudio.appendChild(egenre);</span>
+
+            // categorie livreaudio element
+<span class="nc" id="L149">            edate = document.createElement(&quot;categorie&quot;);</span>
+<span class="nc" id="L150">            edate.appendChild(document.createTextNode(livreaudio.getCategorie().name()));</span>
+<span class="nc" id="L151">            elivreaudio.appendChild(edate);</span>
+<span class="nc" id="L152">        }</span>
+<span class="nc" id="L153">    }</span>
+
+ /**
+ * méthode privée saveElements qui sauvegarde les éléments (livres audio et chansons) saisis dans un fichier XML
+ * 
+ */      
+    private void saveElements(List&lt;Chanson&gt; chansons, List&lt;LivreAudio&gt; livresaudios) throws Exception {
+<span class="nc" id="L160">        Collections.sort(chansons);</span>
+<span class="nc" id="L161">        Collections.sort(livresaudios);</span>
+
+<span class="nc" id="L163">        Document document = dBuilder.newDocument();</span>
+<span class="nc" id="L164">        Element elements = document.createElement(&quot;Elements&quot;);</span>
+<span class="nc" id="L165">        document.appendChild(elements);</span>
+
+<span class="nc" id="L167">        this.saveChansons(chansons, document, elements);</span>
+<span class="nc" id="L168">        this.saveLivresAudios(livresaudios, document, elements);</span>
+
+        //configuration du fichier pour le bon format XML
+<span class="nc" id="L171">        TransformerFactory transformerFactory = TransformerFactory.newInstance();</span>
+<span class="nc" id="L172">        Transformer transformer = transformerFactory.newTransformer();</span>
+<span class="nc" id="L173">        DOMSource domSource = new DOMSource(document);</span>
+<span class="nc" id="L174">        StreamResult result = new StreamResult(this.elementsFile);</span>
+
+<span class="nc" id="L176">        transformer.setOutputProperty(OutputKeys.INDENT, &quot;yes&quot;);</span>
+<span class="nc" id="L177">        transformer.setOutputProperty(&quot;{http://xml.apache.org/xslt}indent-amount&quot;, &quot;4&quot;);</span>
+<span class="nc" id="L178">        transformer.transform(domSource, result);</span>
+<span class="nc" id="L179">    }</span>
+
+ /**
+ * méthode privée saveAlbums qui sauvegarde les albums saisie dans un fichier XML
+ * 
+ */  
+    private void saveAlbums(List&lt;Album&gt; albums) throws Exception {
+<span class="nc" id="L186">        Collections.sort(albums);</span>
+
+        Element ealbum, eid, etitre, eduree, eartiste, edate;
+
+<span class="nc" id="L190">        Document document = dBuilder.newDocument();</span>
+<span class="nc" id="L191">        Element elements = document.createElement(&quot;Albums&quot;);</span>
+<span class="nc" id="L192">        document.appendChild(elements);</span>
+
+<span class="nc bnc" id="L194" title="All 2 branches missed.">        for (Album album : albums) {</span>
+            // album element
+<span class="nc" id="L196">            ealbum = document.createElement(&quot;Album&quot;);</span>
+<span class="nc" id="L197">            elements.appendChild(ealbum);</span>
+
+            // id album element
+<span class="nc" id="L200">            eid = document.createElement(&quot;id&quot;);</span>
+<span class="nc" id="L201">            eid.appendChild(document.createTextNode(Integer.toString(album.getId())));</span>
+<span class="nc" id="L202">            ealbum.appendChild(eid);</span>
+
+            // titre album element
+<span class="nc" id="L205">            etitre = document.createElement(&quot;titre&quot;);</span>
+<span class="nc" id="L206">            etitre.appendChild(document.createTextNode(album.getTitre()));</span>
+<span class="nc" id="L207">            ealbum.appendChild(etitre);</span>
+
+            // duree album element
+<span class="nc" id="L210">            eduree = document.createElement(&quot;duree&quot;);</span>
+<span class="nc" id="L211">            eduree.appendChild(document.createTextNode(Integer.toString(album.getDuree())));</span>
+<span class="nc" id="L212">            ealbum.appendChild(eduree);</span>
+
+            // artiste album element
+<span class="nc" id="L215">            eartiste = document.createElement(&quot;artiste&quot;);</span>
+<span class="nc" id="L216">            eartiste.appendChild(document.createTextNode(album.getArtiste()));</span>
+<span class="nc" id="L217">            ealbum.appendChild(eartiste);</span>
+
+            // date album element
+<span class="nc" id="L220">            edate = document.createElement(&quot;date&quot;);</span>
+<span class="nc" id="L221">            edate.appendChild(document.createTextNode(album.getDate()));</span>
+<span class="nc" id="L222">            ealbum.appendChild(edate);</span>
+
+            // chanson album element
+<span class="nc" id="L225">            this.saveChansons((List&lt;Chanson&gt;)album.getChanson(), document, ealbum);</span>
+<span class="nc" id="L226">        }</span>
+
+        //configuration du fichier pour le bon format XML
+<span class="nc" id="L229">        TransformerFactory transformerFactory = TransformerFactory.newInstance();</span>
+<span class="nc" id="L230">        Transformer transformer = transformerFactory.newTransformer();</span>
+<span class="nc" id="L231">        DOMSource domSource = new DOMSource(document);</span>
+<span class="nc" id="L232">        StreamResult result = new StreamResult(this.albumsFile);</span>
+
+<span class="nc" id="L234">        transformer.setOutputProperty(OutputKeys.INDENT, &quot;yes&quot;);</span>
+<span class="nc" id="L235">        transformer.setOutputProperty(&quot;{http://xml.apache.org/xslt}indent-amount&quot;, &quot;4&quot;);</span>
+<span class="nc" id="L236">        transformer.transform(domSource, result);</span>
+<span class="nc" id="L237">    }</span>
+
+ /**
+ * méthode privée savePlaylists qui sauvegarde les playlists saisie dans un fichier XML
+ * 
+ */      
+    private void savePlaylists(List&lt;Playlist&gt; playlists) throws Exception {
+<span class="nc" id="L244">        Collections.sort(playlists);</span>
+
+        Element eplaylist, eid, enom;
+
+<span class="nc" id="L248">        Document document = dBuilder.newDocument();</span>
+<span class="nc" id="L249">        Element elements = document.createElement(&quot;Playlists&quot;);</span>
+<span class="nc" id="L250">        document.appendChild(elements);</span>
+
+<span class="nc bnc" id="L252" title="All 2 branches missed.">        for (Playlist playlist : playlists) {</span>
+            // playlist element
+<span class="nc" id="L254">            eplaylist = document.createElement(&quot;Playlist&quot;);</span>
+<span class="nc" id="L255">            elements.appendChild(eplaylist);</span>
+
+            // id playlist element
+<span class="nc" id="L258">            eid = document.createElement(&quot;id&quot;);</span>
+<span class="nc" id="L259">            eid.appendChild(document.createTextNode(Integer.toString(playlist.getId())));</span>
+<span class="nc" id="L260">            eplaylist.appendChild(eid);</span>
+
+            // titre playlist element
+<span class="nc" id="L263">            enom = document.createElement(&quot;nom&quot;);</span>
+<span class="nc" id="L264">            enom.appendChild(document.createTextNode(playlist.getNom()));</span>
+<span class="nc" id="L265">            eplaylist.appendChild(enom);</span>
+
+<span class="nc" id="L267">            List&lt;Chanson&gt; chansons = new LinkedList&lt;Chanson&gt; ();</span>
+<span class="nc bnc" id="L268" title="All 2 branches missed.">            for (IJouable jouable : playlist.getListe()) {</span>
+<span class="nc bnc" id="L269" title="All 2 branches missed.">                if (jouable instanceof Chanson) {</span>
+<span class="nc" id="L270">                    chansons.add((Chanson)jouable);</span>
+                }
+<span class="nc" id="L272">            }</span>
+
+<span class="nc" id="L274">            List&lt;LivreAudio&gt; livresaudios = new LinkedList&lt;LivreAudio&gt; ();</span>
+<span class="nc bnc" id="L275" title="All 2 branches missed.">            for (IJouable jouable : playlist.getListe()) {</span>
+<span class="nc bnc" id="L276" title="All 2 branches missed.">                if (jouable instanceof LivreAudio) {</span>
+<span class="nc" id="L277">                    livresaudios.add((LivreAudio)jouable);</span>
+                }
+<span class="nc" id="L279">            }</span>
+
+            // chansons playlist element
+<span class="nc" id="L282">            this.saveChansons(chansons, document, eplaylist);</span>
+
+            // livresaudios playlist element
+<span class="nc" id="L285">            this.saveLivresAudios(livresaudios, document, eplaylist);</span>
+<span class="nc" id="L286">        }</span>
+
+        //configuration du fichier pour le bon format XML
+<span class="nc" id="L289">        TransformerFactory transformerFactory = TransformerFactory.newInstance();</span>
+<span class="nc" id="L290">        Transformer transformer = transformerFactory.newTransformer();</span>
+<span class="nc" id="L291">        DOMSource domSource = new DOMSource(document);</span>
+<span class="nc" id="L292">        StreamResult result = new StreamResult(this.playlistsFile);</span>
+
+<span class="nc" id="L294">        transformer.setOutputProperty(OutputKeys.INDENT, &quot;yes&quot;);</span>
+<span class="nc" id="L295">        transformer.setOutputProperty(&quot;{http://xml.apache.org/xslt}indent-amount&quot;, &quot;4&quot;);</span>
+<span class="nc" id="L296">        transformer.transform(domSource, result);</span>
+<span class="nc" id="L297">    }</span>
+
+ /**
+ * méthode publique save qui sauvegarde tous les différents éléments de l'application (chansons, livres audio, albums et playlists) dans des listes de chaque élément correspondant
+ * 
+ */      
+    public void save (List&lt;Chanson&gt; chansons, List&lt;LivreAudio&gt; livresaudios, List&lt;Album&gt; albums, List&lt;Playlist&gt; playlists)
+    throws Exception {
+<span class="nc" id="L305">        this.saveElements(chansons, livresaudios);</span>
+<span class="nc" id="L306">        this.saveAlbums(albums);</span>
+<span class="nc" id="L307">        this.savePlaylists(playlists);</span>
+<span class="nc" id="L308">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

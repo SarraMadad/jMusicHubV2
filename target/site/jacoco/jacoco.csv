@@ -1,0 +1,12 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+jMusicHubV2,musichub.util,XmlReader,459,0,14,0,97,0,14,0,7,0
+jMusicHubV2,musichub.util,XmlWriter,638,0,16,0,144,0,15,0,7,0
+jMusicHubV2,musichub.business,AbstractOeuvre,14,15,0,0,6,6,4,2,4,2
+jMusicHubV2,musichub.business,LivreAudio,68,0,0,0,27,0,11,0,11,0
+jMusicHubV2,musichub.business,Playlist,59,0,0,0,23,0,11,0,11,0
+jMusicHubV2,musichub.business,Album,70,21,0,0,26,7,8,2,8,2
+jMusicHubV2,musichub.business,Categorie,54,0,0,0,2,0,1,0,1,0
+jMusicHubV2,musichub.business,Chanson,50,18,0,0,21,6,10,1,10,1
+jMusicHubV2,musichub.business,Langue,54,0,0,0,2,0,1,0,1,0
+jMusicHubV2,musichub.business,Genre,0,64,0,0,0,2,0,1,0,1
+jMusicHubV2,musichub.main,Main,804,0,43,0,240,0,41,0,13,0
