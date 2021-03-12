@@ -6,9 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="jMusicHubV2 (1)" />
         <module name="jMusicHubV2" />
-        <module name="jMusicHubV2 (2)" />
+        <module name="jMusicHubV2 (1)" />
       </profile>
     </annotationProcessing>
   </component>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="musichub.business.TestAlbum" time="0.016" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="musichub.business.TestAlbum" time="0.026" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="windows"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -17,7 +17,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="FR"/>
     <property name="sun.boot.library.path" value="C:\Program Files\AdoptOpenJDK\jdk-11.0.10.9-hotspot\bin"/>
-    <property name="sun.java.command" value="C:\Users\lecle\AppData\Local\Temp\surefire14876832344147148441\surefirebooter16076518789239059634.jar C:\Users\lecle\AppData\Local\Temp\surefire14876832344147148441 2021-03-12T19-52-43_018-jvmRun1 surefire15958218170072206146tmp surefire_016055920320974683179tmp"/>
+    <property name="sun.java.command" value="C:\Users\lecle\AppData\Local\Temp\surefire8926168338409760675\surefirebooter7563137205535570444.jar C:\Users\lecle\AppData\Local\Temp\surefire8926168338409760675 2021-03-12T20-13-41_313-jvmRun1 surefire15014744995646424984tmp surefire_05864665406110486845tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\lecle\IdeaProjects\GLPOO\jMusicHubV2\target\test-classes;C:\Users\lecle\IdeaProjects\GLPOO\jMusicHubV2\target\classes;C:\Users\lecle\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.0.2\junit-jupiter-api-5.0.2.jar;C:\Users\lecle\.m2\repository\org\opentest4j\opentest4j\1.0.0\opentest4j-1.0.0.jar;C:\Users\lecle\.m2\repository\org\junit\platform\junit-platform-commons\1.0.2\junit-platform-commons-1.0.2.jar;C:\Users\lecle\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.0.2\junit-jupiter-engine-5.0.2.jar;C:\Users\lecle\.m2\repository\org\junit\platform\junit-platform-engine\1.0.2\junit-platform-engine-1.0.2.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -33,7 +33,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="C:\Users\lecle\AppData\Local\Temp\surefire14876832344147148441\surefirebooter16076518789239059634.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\lecle\AppData\Local\Temp\surefire8926168338409760675\surefirebooter7563137205535570444.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="11.0.10+9"/>
@@ -61,5 +61,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="55.0"/>
   </properties>
-  <testcase name="AlbumConstructor" classname="musichub.business.TestAlbum" time="0.013"/>
+  <testcase name="AlbumConstructor" classname="musichub.business.TestAlbum" time="0.005"/>
 </testsuite>
