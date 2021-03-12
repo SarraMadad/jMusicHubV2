@@ -4,20 +4,20 @@
 'UTF-8'
 -private
 -sourcepath
-'C:/Users/lecle/IdeaProjects/jMusicHubV2/src/main/java'
+'C:/Users/lecle/IdeaProjects/GLPOO/jMusicHubV2/src/main/java'
 -author
 -bottom
 'Copyright &#169; 2021. All rights reserved.'
 -charset
 'UTF-8'
 -d
-'C:/Users/lecle/IdeaProjects/jMusicHubV2/target/site/apidocs'
+'C:/Users/lecle/IdeaProjects/GLPOO/jMusicHubV2/target/site/apidocs'
 -docencoding
 'UTF-8'
 -doctitle
 'jMusicHubV2 1.0-SNAPSHOT API'
 -linkoffline
-'https://docs.oracle.com/en/java/javase/11/docs/api' 'C:/Users/lecle/IdeaProjects/jMusicHubV2/target/javadoc-bundle-options'
+'https://docs.oracle.com/en/java/javase/11/docs/api' 'C:/Users/lecle/IdeaProjects/GLPOO/jMusicHubV2/target/javadoc-bundle-options'
 -nohelp
 -use
 -version
