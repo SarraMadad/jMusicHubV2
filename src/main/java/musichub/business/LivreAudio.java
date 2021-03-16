@@ -1,93 +1,136 @@
 package musichub.business;
 
 /**
- * classe publique LivreAudio qui hérite de la classe abstraite AbstractOeuvre et implémente l'interface IJouable et Comparable qui permet de trier des livres audio.
- * @param id identifiant unique de l'oeuvre (hérité de la classe abstraite)
- * @param titre titre de l'oeuvre (hérité de la classe abstraite)
- * @param duree durée en seconde de l'oeuvre (hérité de la classe abstraite)
- * @param auteur privé, nom de l'auteur
- * @param contenu privé, contenu de la chanson
- * @param langue privé, langue du livre audio 
- * @see Langue
- * @param categorie privé, catégorie du livre audio
- * @see Categorie
- *
- * les premières methodes sont publiques et sont des getteurs et setteurs basiques pour chacun des attributs.
- * les méthodes toString et compareTo sont précisées plus tard.
- * @author Sarra MADAD, Nour El-Houda LOUATY.
+ * LivreAudio is an audio book object in the librairy.
+ * <p>
+ * An audio book can be added and removed from the librairy 
+ * or a Playlist object.
+ * 
+ * @author FERNANDES Mickael and LECLERC Maxence
+ * @version 1.0
+ * @see Element
+ * @see ElementList
+ * @see Playlist
  */
+public class LivreAudio extends Element {
+	/** Writter of the audio book. */
+	private String auteur;
+	/**
+	 * Language of the audio book.
+	 * @see Langues
+	 */
+	private Langues langue;
+	/**
+	 * Category of the audio book.
+	 * @see Categories
+	 */
+	private Categories categorie;
 
-public class LivreAudio extends AbstractOeuvre implements IJouable, Comparable<LivreAudio> {
-    
-    private String auteur;
+	/**
+	 * Sole constructor. (For invocation by subclass 
+	 * constructors, typically implicit.)
+	 */
+	public LivreAudio() {
+		this.id = compteurId++;
+	}
 
-    private String contenu;
+	/**
+	 * Complete constructor for an audio book.
+	 * 
+	 * @param titre title of this new audio book
+	 * @param auteur writter of this new audio book
+	 * @param duree length of this new audio book
+	 * @param contenu location of this new audio book
+	 * @param langue language of this new audio book
+	 * @param categorie category of this new audio book
+	 */
+	public LivreAudio(String titre, String auteur, int duree, String contenu, Langues langue, Categories categorie) {
+		this.id = compteurId++;
+		this.titre = titre;
+		this.auteur = auteur;
+		this.duree = duree;
+		this.contenu = contenu;
+		this.langue = langue;
+		this.categorie = categorie;
+	}
 
-    private Langue langue;
+	/**
+	 * Overrides the standard toString method.
+	 * <p>
+	 * Used by Playlist objects.
+	 * 
+	 * @return all informations about this audio book
+	 * @see #getAuteur()
+	 * @see #getLangue()
+	 * @see #getCategorie()
+	 * @see Element#getTitre()
+	 * @see Element#getDuree()
+	 * @see Element#getContenu()
+	 * @see Album#getList()
+	 * @see Playlist#getList()
+	 */
+	public String toString() {
+		return "Titre : "+getTitre()+" - Auteur : "+getAuteur()+" - Duree : "+getDuree()+"s - Contenu : "+getContenu()+" - Langue : "+getLangue()+" - Catégorie : "+getCategorie();
+	}
 
-    private Categorie categorie;
+	/** 
+	 * Returns the writter of this audio book.
+	 * <p>
+	 * The writter of this element is displayed in the librairy.
+	 * 
+	 * @return the writter of this audio book
+	 */
+	public String getAuteur() {
+		return auteur;
+	}
 
-    public LivreAudio (int id, String titre, int duree, String auteur, String contenu, Langue langue, Categorie categorie) {
-        super(id, titre, duree);
-        this.auteur = auteur;
-        this.contenu = contenu;
-        this.langue = langue;
-        this.categorie = categorie;
-    }
+	/** 
+	 * Registers the writter of this audio book when deserialized.
+	 * 
+	 * @param auteur the writter of this serialized object
+	 */
+	public void setAuteur(String auteur) {
+		this.auteur = auteur;
+	}
 
-    public String getAuteur () {
-        return auteur;
-    }
+	/** 
+	 * Returns the language of this audio book.
+	 * <p>
+	 * The language of this element is displayed in the librairy.
+	 * 
+	 * @return the language of this audio book
+	 */
+	public Langues getLangue() {
+		return langue;
+	}
 
-    public void setAuteur (String auteur) {
-        this.auteur = auteur;
-    }  
+	/** 
+	 * Registers the language of this audio book when deserialized.
+	 * 
+	 * @param langue the language of this serialized object
+	 */
+	public void setLangue(Langues langue) {
+		this.langue = langue;
+	}
 
-    public String getContenu () {
-        return contenu;
-    }
+	/** 
+	 * Returns the category of this audio book.
+	 * <p>
+	 * The category of this element is displayed in the librairy.
+	 * 
+	 * @return the category of this audio book
+	 */
+	public Categories getCategorie() {
+		return categorie;
+	}
 
-    public void setContenu (String contenu) {
-        this.contenu = contenu;
-    }
+	/** 
+	 * Registers the category of this audio book when deserialized.
+	 * 
+	 * @param categorie the category of this serialized object
+	 */
+	public void setCategorie(Categories categorie) {
+		this.categorie = categorie;
+	}
 
-    public Langue getLangue () {
-        return langue;
-    }
-
-    public void setLangue (Langue langue) {
-        this.langue = langue;
-    }
-
-    public Categorie getCategorie () {
-        return categorie;
-    }
-
-    public void setCategorie (Categorie categorie) {
-        this.categorie = categorie;
-    } 
-
-/**
- *  méthode toString qui transforme un livre audio en chaîne de caractère.
- */
-@Override //on surcharge cette méthode qui existe déjà
-    public String toString() {
-        return "---------\n"
-        + "LivreAudio :\n"
-        + "id = " + this.getId() + "\n"
-        + "titre = " + this.getTitre() + "\n"
-        + "duree = " + this.getDuree() + "\n"
-        + "auteur = " + this.getAuteur() + "\n"
-        + "contenu = " + this.getContenu() + "\n"
-        + "langue = " + this.getLangue() + "\n"
-        + "categorie = " + this.getCategorie() + "\n";
-        }
-        
-/**
- *  méthode compareTo qui trie deux livres audio entre eux selon l'auteur et retourne une position dans la liste.
- */
-@Override //on surcharge cette méthode qui existe déjà
-    public int compareTo(LivreAudio livreaudio) {
-        return this.getAuteur().compareTo(livreaudio.getAuteur()); //comparer String = ordre alphabétique
-    }
 }

@@ -1,258 +1,292 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Albums>
-    <Album>
-        <id>3</id>
-        <titre>Vrealite</titre>
-        <duree>2183</duree>
-        <artiste>Kekra</artiste>
-        <date>2019-06-21</date>
-        <Chanson>
-            <id>24</id>
-            <titre>Kohhkra</titre>
-            <duree>142</duree>
-            <artiste>Kekra</artiste>
-            <contenu>xxxx</contenu>
-            <genre>HIPHOP</genre>
-            <date>2019-06-21</date>
-        </Chanson>
-        <Chanson>
-            <id>25</id>
-            <titre>Vrealite</titre>
-            <duree>458</duree>
-            <artiste>Kekra</artiste>
-            <contenu>xxxx</contenu>
-            <genre>HIPHOP</genre>
-            <date>2019-06-21</date>
-        </Chanson>
-        <Chanson>
-            <id>26</id>
-            <titre>COD</titre>
-            <duree>360</duree>
-            <artiste>Kekra</artiste>
-            <contenu>xxxx</contenu>
-            <genre>HIPHOP</genre>
-            <date>2019-06-21</date>
-        </Chanson>
-        <Chanson>
-            <id>30</id>
-            <titre>Dore</titre>
-            <duree>240</duree>
-            <artiste>Kekra</artiste>
-            <contenu>xxxx</contenu>
-            <genre>HIPHOP</genre>
-            <date>2019-06-21</date>
-        </Chanson>
-        <Chanson>
-            <id>27</id>
-            <titre>Lights Out</titre>
-            <duree>195</duree>
-            <artiste>Kekra</artiste>
-            <contenu>xxxx</contenu>
-            <genre>ROCK</genre>
-            <date>2019-06-21</date>
-        </Chanson>
-        <Chanson>
-            <id>28</id>
-            <titre>CLS</titre>
-            <duree>70</duree>
-            <artiste>Kekra</artiste>
-            <contenu>xxxx</contenu>
-            <genre>ROCK</genre>
-            <date>2019-06-21</date>
-        </Chanson>
-        <Chanson>
-            <id>29</id>
-            <titre>Chut</titre>
-            <duree>300</duree>
-            <artiste>Kekra</artiste>
-            <contenu>xxxx</contenu>
-            <genre>ROCK</genre>
-            <date>2019-06-21</date>
-        </Chanson>
-    </Album>
-    <Album>
-        <id>1</id>
-        <titre>Without Warning</titre>
-        <duree>2543</duree>
-        <artiste>21 Savage</artiste>
-        <date>2017-10-30</date>
-        <Chanson>
-            <id>3</id>
-            <titre>Ghostface Killers</titre>
-            <duree>270</duree>
-            <artiste>21 Savage</artiste>
-            <contenu>xxxx</contenu>
-            <genre>RAP</genre>
-            <date>2017-10-30</date>
-        </Chanson>
-        <Chanson>
-            <id>4</id>
-            <titre>Rap Saved Me</titre>
-            <duree>260</duree>
-            <artiste>21 Savage</artiste>
-            <contenu>xxxx</contenu>
-            <genre>RAP</genre>
-            <date>2017-10-30</date>
-        </Chanson>
-        <Chanson>
-            <id>5</id>
-            <titre>Ric Flair Drip</titre>
-            <duree>200</duree>
-            <artiste>21 Savage</artiste>
-            <contenu>xxxx</contenu>
-            <genre>RAP</genre>
-            <date>2017-10-30</date>
-        </Chanson>
-        <Chanson>
-            <id>6</id>
-            <titre>My Choppa Hate Niggas</titre>
-            <duree>263</duree>
-            <artiste>21 Savage</artiste>
-            <contenu>xxxx</contenu>
-            <genre>RAP</genre>
-            <date>2017-10-30</date>
-        </Chanson>
-        <Chanson>
-            <id>7</id>
-            <titre>Nightmare</titre>
-            <duree>254</duree>
-            <artiste>21 Savage</artiste>
-            <contenu>xxxx</contenu>
-            <genre>RAP</genre>
-            <date>2017-10-30</date>
-        </Chanson>
-        <Chanson>
-            <id>8</id>
-            <titre>Mad Stalkers</titre>
-            <duree>261</duree>
-            <artiste>21 Savage</artiste>
-            <contenu>xxxx</contenu>
-            <genre>RAP</genre>
-            <date>2017-10-30</date>
-        </Chanson>
-        <Chanson>
-            <id>9</id>
-            <titre>Disrespectful</titre>
-            <duree>263</duree>
-            <artiste>21 Savage</artiste>
-            <contenu>xxxx</contenu>
-            <genre>RAP</genre>
-            <date>2017-10-30</date>
-        </Chanson>
-        <Chanson>
-            <id>10</id>
-            <titre>Run Up the Racks</titre>
-            <duree>265</duree>
-            <artiste>21 Savage</artiste>
-            <contenu>xxxx</contenu>
-            <genre>RAP</genre>
-            <date>2017-10-30</date>
-        </Chanson>
-        <Chanson>
-            <id>11</id>
-            <titre>Still Serving</titre>
-            <duree>247</duree>
-            <artiste>21 Savage</artiste>
-            <contenu>xxxx</contenu>
-            <genre>RAP</genre>
-            <date>2017-10-30</date>
-        </Chanson>
-        <Chanson>
-            <id>12</id>
-            <titre>Darth Vader</titre>
-            <duree>260</duree>
-            <artiste>21 Savage</artiste>
-            <contenu>xxxx</contenu>
-            <genre>RAP</genre>
-            <date>2017-10-30</date>
-        </Chanson>
-    </Album>
-    <Album>
-        <id>2</id>
-        <titre>Runaljod</titre>
-        <duree>2181</duree>
-        <artiste>Wardruna</artiste>
-        <date>2008-05-20</date>
-        <Chanson>
-            <id>16</id>
-            <titre>Ar var alda</titre>
-            <duree>140</duree>
-            <artiste>Wardruna</artiste>
-            <contenu>xxxx</contenu>
-            <genre>ROCK</genre>
-            <date>2009-01-19</date>
-        </Chanson>
-        <Chanson>
-            <id>17</id>
-            <titre>Hagall</titre>
-            <duree>458</duree>
-            <artiste>Wardruna</artiste>
-            <contenu>xxxx</contenu>
-            <genre>ROCK</genre>
-            <date>2009-01-19</date>
-        </Chanson>
-        <Chanson>
-            <id>18</id>
-            <titre>Bjarkan</titre>
-            <duree>360</duree>
-            <artiste>Wardruna</artiste>
-            <contenu>xxxx</contenu>
-            <genre>ROCK</genre>
-            <date>2009-01-19</date>
-        </Chanson>
-        <Chanson>
-            <id>19</id>
-            <titre>Loyndomsriss</titre>
-            <duree>195</duree>
-            <artiste>Wardruna</artiste>
-            <contenu>xxxx</contenu>
-            <genre>ROCK</genre>
-            <date>2009-01-19</date>
-        </Chanson>
-        <Chanson>
-            <id>20</id>
-            <titre>Thurs</titre>
-            <duree>70</duree>
-            <artiste>Wardruna</artiste>
-            <contenu>xxxx</contenu>
-            <genre>ROCK</genre>
-            <date>2009-01-19</date>
-        </Chanson>
-        <Chanson>
-            <id>21</id>
-            <titre>Jara</titre>
-            <duree>300</duree>
-            <artiste>Wardruna</artiste>
-            <contenu>xxxx</contenu>
-            <genre>ROCK</genre>
-            <date>2009-01-19</date>
-        </Chanson>
-        <Chanson>
-            <id>22</id>
-            <titre>Laukr</titre>
-            <duree>240</duree>
-            <artiste>Wardruna</artiste>
-            <contenu>xxxx</contenu>
-            <genre>ROCK</genre>
-            <date>2009-01-19</date>
-        </Chanson>
-        <Chanson>
-            <id>23</id>
-            <titre>Kauna</titre>
-            <duree>150</duree>
-            <artiste>Wardruna</artiste>
-            <contenu>xxxx</contenu>
-            <genre>ROCK</genre>
-            <date>2009-01-19</date>
-        </Chanson>
-        <Chanson>
-            <id>13</id>
-            <titre>Heimta Thurs</titre>
-            <duree>268</duree>
-            <artiste>Wardruna</artiste>
-            <contenu>xxxx</contenu>
-            <genre>ROCK</genre>
-            <date>2009-01-19</date>
-        </Chanson>
-    </Album>
-</Albums>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.1" class="java.beans.XMLDecoder">
+ <object class="musichub.business.AlbumList" id="AlbumList0">
+  <void property="list">
+   <void method="add">
+    <object class="musichub.business.Album" id="Album0">
+     <void property="artiste">
+      <string>Michael Jackson</string>
+     </void>
+     <void property="dateSortie">
+      <string>1982-11-30</string>
+     </void>
+     <void property="duree">
+      <int>615</int>
+     </void>
+     <void property="id">
+      <int>0</int>
+     </void>
+     <void property="songList">
+      <void method="add">
+       <object class="musichub.business.Chanson" id="Chanson0">
+        <void property="artiste">
+         <string>Michael Jackson</string>
+        </void>
+        <void property="contenu">
+         <string>thriller.mp3</string>
+        </void>
+        <void property="duree">
+         <int>357</int>
+        </void>
+        <void property="genre">
+         <object class="java.lang.Enum" id="Genres0" method="valueOf">
+          <class>musichub.business.Genres</class>
+          <string>POP</string>
+         </object>
+        </void>
+        <void property="id">
+         <int>0</int>
+        </void>
+        <void property="titre">
+         <string>Thriller</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="musichub.business.Chanson">
+        <void property="artiste">
+         <string>Michael Jackson</string>
+        </void>
+        <void property="contenu">
+         <string>beat_it.mp3</string>
+        </void>
+        <void property="duree">
+         <int>258</int>
+        </void>
+        <void property="genre">
+         <object idref="Genres0"/>
+        </void>
+        <void property="id">
+         <int>1</int>
+        </void>
+        <void property="titre">
+         <string>Beat It</string>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="titre">
+      <string>Thriller</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="musichub.business.Album" id="Album1">
+     <void property="artiste">
+      <string>The Rolling Stones</string>
+     </void>
+     <void property="dateSortie">
+      <string>1968-01-01</string>
+     </void>
+     <void property="duree">
+      <int>443</int>
+     </void>
+     <void property="id">
+      <int>1</int>
+     </void>
+     <void property="songList">
+      <void method="add">
+       <object class="musichub.business.Chanson">
+        <void property="artiste">
+         <string>The Rolling Stones</string>
+        </void>
+        <void property="contenu">
+         <string>bye_bye_johnny.mp3</string>
+        </void>
+        <void property="duree">
+         <int>130</int>
+        </void>
+        <void property="genre">
+         <object class="java.lang.Enum" id="Genres1" method="valueOf">
+          <class>musichub.business.Genres</class>
+          <string>ROCK</string>
+         </object>
+        </void>
+        <void property="id">
+         <int>2</int>
+        </void>
+        <void property="titre">
+         <string>Bye Bye Johnny</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="musichub.business.Chanson" id="Chanson1">
+        <void property="artiste">
+         <string>The Rolling Stones</string>
+        </void>
+        <void property="contenu">
+         <string>money.mp3</string>
+        </void>
+        <void property="duree">
+         <int>152</int>
+        </void>
+        <void property="genre">
+         <object idref="Genres1"/>
+        </void>
+        <void property="id">
+         <int>3</int>
+        </void>
+        <void property="titre">
+         <string>Money</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="musichub.business.Chanson">
+        <void property="artiste">
+         <string>The Rolling Stones</string>
+        </void>
+        <void property="contenu">
+         <string>you_better_move_on.mp3</string>
+        </void>
+        <void property="duree">
+         <int>161</int>
+        </void>
+        <void property="genre">
+         <object idref="Genres1"/>
+        </void>
+        <void property="id">
+         <int>4</int>
+        </void>
+        <void property="titre">
+         <string>You Better Move On</string>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="titre">
+      <string>The Rolling Stones 1963-1971</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="musichub.business.Album" id="Album2">
+     <void property="artiste">
+      <string>Me</string>
+     </void>
+     <void property="dateSortie">
+      <string>2021-01-01</string>
+     </void>
+     <void property="duree">
+      <int>3499</int>
+     </void>
+     <void property="id">
+      <int>6</int>
+     </void>
+     <void property="songList">
+      <void method="add">
+       <object idref="Chanson0"/>
+      </void>
+      <void method="add">
+       <object idref="Chanson1"/>
+      </void>
+      <void method="add">
+       <object class="musichub.business.Chanson">
+        <void property="artiste">
+         <string>Louis Prima</string>
+        </void>
+        <void property="contenu">
+         <string>just_a_gigolo.mp3</string>
+        </void>
+        <void property="duree">
+         <int>286</int>
+        </void>
+        <void property="genre">
+         <object class="java.lang.Enum" method="valueOf">
+          <class>musichub.business.Genres</class>
+          <string>JAZZ</string>
+         </object>
+        </void>
+        <void property="id">
+         <int>7</int>
+        </void>
+        <void property="titre">
+         <string>Just a Gigolo</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="musichub.business.Chanson">
+        <void property="artiste">
+         <string>Vivaldi</string>
+        </void>
+        <void property="contenu">
+         <string>4_saisons.wav</string>
+        </void>
+        <void property="duree">
+         <int>2418</int>
+        </void>
+        <void property="genre">
+         <object class="java.lang.Enum" method="valueOf">
+          <class>musichub.business.Genres</class>
+          <string>CLASSIQUE</string>
+         </object>
+        </void>
+        <void property="id">
+         <int>27</int>
+        </void>
+        <void property="titre">
+         <string>Les Quatre Saisons</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="musichub.business.Chanson">
+        <void property="artiste">
+         <string>Lo-Fi Beats</string>
+        </void>
+        <void property="contenu">
+         <string>sun_kiss.mp3</string>
+        </void>
+        <void property="duree">
+         <int>129</int>
+        </void>
+        <void property="genre">
+         <object class="java.lang.Enum" method="valueOf">
+          <class>musichub.business.Genres</class>
+          <string>HIP_HOP</string>
+         </object>
+        </void>
+        <void property="id">
+         <int>105</int>
+        </void>
+        <void property="titre">
+         <string>Sun Kiss (feat. Beats De Rap)</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="musichub.business.Chanson">
+        <void property="artiste">
+         <string>Ninho</string>
+        </void>
+        <void property="contenu">
+         <string>sans_peine.mp3</string>
+        </void>
+        <void property="duree">
+         <int>157</int>
+        </void>
+        <void property="genre">
+         <object class="java.lang.Enum" method="valueOf">
+          <class>musichub.business.Genres</class>
+          <string>RAP</string>
+         </object>
+        </void>
+        <void property="id">
+         <int>204</int>
+        </void>
+        <void property="titre">
+         <string>Sans peine</string>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="titre">
+      <string>Custom Album</string>
+     </void>
+    </object>
+   </void>
+  </void>
+ </object>
+</java>

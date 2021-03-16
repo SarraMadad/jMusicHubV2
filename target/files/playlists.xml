@@ -1,87 +1,203 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Playlists>
-    <Playlist>
-        <id>1</id>
-        <nom>Playlist2020</nom>
-        <Chanson>
-            <id>1</id>
-            <titre>Vertigo</titre>
-            <duree>138</duree>
-            <artiste>BONES</artiste>
-            <contenu>xxxx</contenu>
-            <genre>ROCK</genre>
-            <date>2020-02-25</date>
-        </Chanson>
-        <LivreAudio>
-            <id>1</id>
-            <titre>Le Comte de Monte Cristo Séquence 1</titre>
-            <duree>780</duree>
-            <auteur>Francis Perrin</auteur>
-            <contenu>xxxxx</contenu>
-            <langue>FRANCAIS</langue>
-            <categorie>ROMAN</categorie>
-        </LivreAudio>
-    </Playlist>
-    <Playlist>
-        <id>2</id>
-        <nom>PlaylistMoyenAge</nom>
-        <Chanson>
-            <id>2</id>
-            <titre>A Celtic Lore</titre>
-            <duree>200</duree>
-            <artiste>Adrian Von Ziegler</artiste>
-            <contenu>xxxx</contenu>
-            <genre>CLASSIQUE</genre>
-            <date>2012-12-12</date>
-        </Chanson>
-        <LivreAudio>
-            <id>2</id>
-            <titre>Les anciens de Saint Loup - Intro</titre>
-            <duree>190</duree>
-            <auteur>Pierre Very</auteur>
-            <contenu>xxxxx</contenu>
-            <langue>FRANCAIS</langue>
-            <categorie>ROMAN</categorie>
-        </LivreAudio>
-    </Playlist>
-    <Playlist>
-        <id>6</id>
-        <nom>testp</nom>
-        <Chanson>
-            <id>12</id>
-            <titre>Darth Vader</titre>
-            <duree>260</duree>
-            <artiste>21 Savage</artiste>
-            <contenu>xxxx</contenu>
-            <genre>RAP</genre>
-            <date>2017-10-30</date>
-        </Chanson>
-        <Chanson>
-            <id>11</id>
-            <titre>Still Serving</titre>
-            <duree>247</duree>
-            <artiste>21 Savage</artiste>
-            <contenu>xxxx</contenu>
-            <genre>RAP</genre>
-            <date>2017-10-30</date>
-        </Chanson>
-        <LivreAudio>
-            <id>6</id>
-            <titre>Valhalla and the Viking Afterlife w/ Tom Shippey</titre>
-            <duree>1500</duree>
-            <auteur>The History of Vikings</auteur>
-            <contenu>xxxxx</contenu>
-            <langue>ANGLAIS</langue>
-            <categorie>DOCUMENTAIRE</categorie>
-        </LivreAudio>
-        <LivreAudio>
-            <id>7</id>
-            <titre>Le Capitaine Fracasse</titre>
-            <duree>1680</duree>
-            <auteur>Théophile Gautier</auteur>
-            <contenu>xxxxx</contenu>
-            <langue>FRANCAIS</langue>
-            <categorie>THEATRE</categorie>
-        </LivreAudio>
-    </Playlist>
-</Playlists>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.1" class="java.beans.XMLDecoder">
+ <object class="musichub.business.PlaylistList" id="PlaylistList0">
+  <void property="list">
+   <void method="add">
+    <object class="musichub.business.Playlist" id="Playlist0">
+     <void property="elementList">
+      <void method="add">
+       <object class="musichub.business.Chanson">
+        <void property="artiste">
+         <string>Ray Charles</string>
+        </void>
+        <void property="contenu">
+         <string>hit_the_road_jack.mp3</string>
+        </void>
+        <void property="duree">
+         <int>118</int>
+        </void>
+        <void property="genre">
+         <object class="java.lang.Enum" id="Genres0" method="valueOf">
+          <class>musichub.business.Genres</class>
+          <string>JAZZ</string>
+         </object>
+        </void>
+        <void property="id">
+         <int>5</int>
+        </void>
+        <void property="titre">
+         <string>Hit the Road Jack</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="musichub.business.Chanson">
+        <void property="artiste">
+         <string>Frank Sinatra</string>
+        </void>
+        <void property="contenu">
+         <string>sinatra_jazz.wav</string>
+        </void>
+        <void property="duree">
+         <int>227</int>
+        </void>
+        <void property="genre">
+         <object idref="Genres0"/>
+        </void>
+        <void property="id">
+         <int>6</int>
+        </void>
+        <void property="titre">
+         <string>I&apos;ve Got You Under My Skin</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="musichub.business.Chanson">
+        <void property="artiste">
+         <string>Louis Prima</string>
+        </void>
+        <void property="contenu">
+         <string>just_a_gigolo.mp3</string>
+        </void>
+        <void property="duree">
+         <int>286</int>
+        </void>
+        <void property="genre">
+         <object idref="Genres0"/>
+        </void>
+        <void property="id">
+         <int>7</int>
+        </void>
+        <void property="titre">
+         <string>Just a Gigolo</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="musichub.business.Chanson">
+        <void property="artiste">
+         <string>Dean Martin</string>
+        </void>
+        <void property="contenu">
+         <string>sway.mp3</string>
+        </void>
+        <void property="duree">
+         <int>164</int>
+        </void>
+        <void property="genre">
+         <object idref="Genres0"/>
+        </void>
+        <void property="id">
+         <int>8</int>
+        </void>
+        <void property="titre">
+         <string>Sway</string>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="id">
+      <int>0</int>
+     </void>
+     <void property="nom">
+      <string>Jazz</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="musichub.business.Playlist" id="Playlist1">
+     <void property="elementList">
+      <void method="add">
+       <object class="musichub.business.LivreAudio">
+        <void property="auteur">
+         <string>J.K. Rowling</string>
+        </void>
+        <void property="categorie">
+         <object class="java.lang.Enum" id="Categories0" method="valueOf">
+          <class>musichub.business.Categories</class>
+          <string>ROMAN</string>
+         </object>
+        </void>
+        <void property="contenu">
+         <string>hp_1.wav</string>
+        </void>
+        <void property="duree">
+         <int>30060</int>
+        </void>
+        <void property="id">
+         <int>28</int>
+        </void>
+        <void property="langue">
+         <object class="java.lang.Enum" id="Langues0" method="valueOf">
+          <class>musichub.business.Langues</class>
+          <string>FRANCAIS</string>
+         </object>
+        </void>
+        <void property="titre">
+         <string>Harry Potter à L&apos;école des Sorciers</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="musichub.business.LivreAudio">
+        <void property="auteur">
+         <string>J.K. Rowling</string>
+        </void>
+        <void property="categorie">
+         <object idref="Categories0"/>
+        </void>
+        <void property="contenu">
+         <string>hp_2.wav</string>
+        </void>
+        <void property="duree">
+         <int>33730</int>
+        </void>
+        <void property="id">
+         <int>29</int>
+        </void>
+        <void property="langue">
+         <object idref="Langues0"/>
+        </void>
+        <void property="titre">
+         <string>Harry Potter et la Chambre des Secrets</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="musichub.business.LivreAudio">
+        <void property="auteur">
+         <string>J.K. Rowling</string>
+        </void>
+        <void property="categorie">
+         <object idref="Categories0"/>
+        </void>
+        <void property="contenu">
+         <string>hp_3.wav</string>
+        </void>
+        <void property="duree">
+         <int>41700</int>
+        </void>
+        <void property="id">
+         <int>30</int>
+        </void>
+        <void property="langue">
+         <object idref="Langues0"/>
+        </void>
+        <void property="titre">
+         <string>Harry Potter et le Prisonnier d&apos;Azkaban</string>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="id">
+      <int>4</int>
+     </void>
+     <void property="nom">
+      <string>Harry Potter</string>
+     </void>
+    </object>
+   </void>
+  </void>
+ </object>
+</java>

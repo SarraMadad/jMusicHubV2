@@ -1,94 +1,108 @@
 package musichub.business;
 
 /**
- * classe publique Chanson qui hérite de la classe abstraite AbstractOeuvre et implémente l'interface IJouable et Comparable qui permet de trier des albums.
- * @param id privé, identifiant unique de l'oeuvre (hérité de la classe abstraite)
- * @param titre privé, titre de l'oeuvre (hérité de la classe abstraite)
- * @param duree privé, durée en seconde de l'oeuvre (hérité de la classe abstraite)
- * @param artiste privé, nom de l'artiste
- * @param contenu privé, contenu de la chanson
- * @param genre privé, genre de la chanson 
- * @see Genre
- * @param date privé, date de sortie de l'album
- *
- * les premières methodes sont publiques et sont des getteurs et setteurs basiques pour chacun des attributs.
- * les méthodes toString et compareTo sont précisées plus tard.
- * @author Sarra MADAD, Nour El-Houda LOUATY.
+ * Chanson is a song object in the librairy.
+ * <p>
+ * A song can be added and removed from the librairy,
+ * an Album or a Playlist object.
+ * 
+ * @author FERNANDES Mickael and LECLERC Maxence
+ * @version 1.0
+ * @see Element
+ * @see ElementList
+ * @see Album
+ * @see Playlist
  */
+public class Chanson extends Element {
+	/** Artist of the song. */
+	private String artiste;
+	/**
+	 * Type of the song.
+	 * @see Genres
+	 */
+	private Genres genre;
 
-public class Chanson extends AbstractOeuvre implements IJouable, Comparable<Chanson>  {
-    
-    private String artiste;
+	/**
+	 * Sole constructor. (For invocation by subclass 
+	 * constructors, typically implicit.)
+	 */
+	public Chanson() {
+		this.id = compteurId++;
+	}
 
-    private String contenu;
+	/**
+	 * Complete constructor for a song.
+	 * 
+	 * @param titre title of this new song
+	 * @param artiste artist of this new song
+	 * @param duree length of this new song
+	 * @param contenu location of this new song
+	 * @param genre type of this new song
+	 */
+	public Chanson(String titre, String artiste, int duree, String contenu, Genres genre) {
+		this.id = compteurId++;
+		this.titre = titre;
+		this.artiste = artiste;
+		this.duree = duree;
+		this.contenu = contenu;
+		this.genre = genre;
+	}
 
-    private Genre genre;
+	/**
+	 * Overrides the standard toString method.
+	 * <p>
+	 * Used by Album and Playlist objects.
+	 * 
+	 * @return all informations about this song
+	 * @see #getArtiste()
+	 * @see #getGenre()
+	 * @see Element#getTitre()
+	 * @see Element#getDuree()
+	 * @see Element#getContenu()
+	 * @see Album#getList()
+	 * @see Playlist#getList()
+	 */
+	public String toString() {
+		return "Titre : "+getTitre()+" - Artiste : "+getArtiste()+" - Duree : "+getDuree()+"s - Contenu : "+getContenu()+" - Genre : "+getGenre();
+	}
 
-    private String date;
-  
-    public Chanson (int id, String titre, int duree, String artiste, String contenu, Genre genre, String date) {
-        super(id, titre, duree);
-        this.artiste = artiste;
-        this.contenu = contenu;
-        this.genre = genre;
-        this.date = date;
-    }
-    
-    public String getArtiste () {
-        return artiste;
-    }
+	/** 
+	 * Returns the artist of this song.
+	 * <p>
+	 * The artist of this element is displayed in the librairy.
+	 * 
+	 * @return the artist of this song
+	 */
+	public String getArtiste() {
+		return artiste;
+	}
 
-    public void setArtiste (String artiste) {
-        this.artiste = artiste;
-    }
+	/** 
+	 * Registers the artist of this song when deserialized.
+	 * 
+	 * @param artiste the artist of this serialized object
+	 */
+	public void setArtiste(String artiste) {
+		this.artiste = artiste;
+	}
 
-    public String getContenu () {
-        return contenu;
-    }
+	/** 
+	 * Returns the type of this song.
+	 * <p>
+	 * The type of this element is displayed in the librairy.
+	 * 
+	 * @return the type of this song
+	 */
+	public Genres getGenre() {
+		return genre;
+	}
 
-    public void setContenu (String contenu) {
-        this.contenu = contenu;
-    }
-
-    public String getDate () {
-        return date;
-    }
-
-    public void setDate (String date) {
-        this.date = date;
-    }
-
-    public Genre getGenre () {
-        return genre;
-    }
-
-    public void setGenre (Genre genre) {
-        this.genre = genre;
-    }
-
-/**
- *  méthode toString qui transforme une chanson en chaîne de caractère.
- */
-@Override //on surcharge cette méthode qui existe déjà
-    public String toString() {
-        return "Chanson :\n"
-        + "id = " + this.getId() + "\n"
-        + "titre = " + this.getTitre() + "\n"
-        + "duree = " + this.getDuree() + "\n"
-        + "artiste = " + this.getArtiste() + "\n"
-        + "contenu = " + this.getContenu() + "\n"
-        + "genre = " + this.getGenre() + "\n"
-        + "date = " + this.getDate() + "\n";
-        }
-
-/**
- *  méthode compareTo qui trie deux chansons entre elles selon le genre et retourne une position dans la liste.
- */
-@Override //on surcharge cette méthode qui existe déjà
-    public int compareTo(Chanson chanson) {
-        return this.getGenre().compareTo(chanson.getGenre()); //comparer String = ordre alphabétique
-                                                              //si on met return chanson.getGenre().compareTo(this.getGenre())->on a l'inverse du tri 
-    }    
-
+	/** 
+	 * Registers the type of this song when deserialized.
+	 * 
+	 * @param genre the type of this serialized object
+	 */
+	public void setGenre(Genres genre) {
+		this.genre = genre;
+	}
 }
-

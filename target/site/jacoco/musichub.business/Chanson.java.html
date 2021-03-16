@@ -1,95 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Chanson.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jMusicHubV2</a> &gt; <a href="index.source.html" class="el_package">musichub.business</a> &gt; <span class="el_source">Chanson.java</span></div><h1>Chanson.java</h1><pre class="source lang-java linenums">package musichub.business;
 
 /**
- * classe publique Chanson qui hérite de la classe abstraite AbstractOeuvre et implémente l'interface IJouable et Comparable qui permet de trier des albums.
- * @param id privé, identifiant unique de l'oeuvre (hérité de la classe abstraite)
- * @param titre privé, titre de l'oeuvre (hérité de la classe abstraite)
- * @param duree privé, durée en seconde de l'oeuvre (hérité de la classe abstraite)
- * @param artiste privé, nom de l'artiste
- * @param contenu privé, contenu de la chanson
- * @param genre privé, genre de la chanson 
- * @see Genre
- * @param date privé, date de sortie de l'album
- *
- * les premières methodes sont publiques et sont des getteurs et setteurs basiques pour chacun des attributs.
- * les méthodes toString et compareTo sont précisées plus tard.
- * @author Sarra MADAD, Nour El-Houda LOUATY.
+ * Chanson is a song object in the librairy.
+ * &lt;p&gt;
+ * A song can be added and removed from the librairy,
+ * an Album or a Playlist object.
+ * 
+ * @author FERNANDES Mickael and LECLERC Maxence
+ * @version 1.0
+ * @see Element
+ * @see ElementList
+ * @see Album
+ * @see Playlist
  */
+public class Chanson extends Element {
+	/** Artist of the song. */
+	private String artiste;
+	/**
+	 * Type of the song.
+	 * @see Genres
+	 */
+	private Genres genre;
 
-public class Chanson extends AbstractOeuvre implements IJouable, Comparable&lt;Chanson&gt;  {
-    
-    private String artiste;
+	/**
+	 * Sole constructor. (For invocation by subclass 
+	 * constructors, typically implicit.)
+	 */
+<span class="nc" id="L29">	public Chanson() {</span>
+<span class="nc" id="L30">		this.id = compteurId++;</span>
+<span class="nc" id="L31">	}</span>
 
-    private String contenu;
+	/**
+	 * Complete constructor for a song.
+	 * 
+	 * @param titre title of this new song
+	 * @param artiste artist of this new song
+	 * @param duree length of this new song
+	 * @param contenu location of this new song
+	 * @param genre type of this new song
+	 */
+<span class="fc" id="L42">	public Chanson(String titre, String artiste, int duree, String contenu, Genres genre) {</span>
+<span class="fc" id="L43">		this.id = compteurId++;</span>
+<span class="fc" id="L44">		this.titre = titre;</span>
+<span class="fc" id="L45">		this.artiste = artiste;</span>
+<span class="fc" id="L46">		this.duree = duree;</span>
+<span class="fc" id="L47">		this.contenu = contenu;</span>
+<span class="fc" id="L48">		this.genre = genre;</span>
+<span class="fc" id="L49">	}</span>
 
-    private Genre genre;
+	/**
+	 * Overrides the standard toString method.
+	 * &lt;p&gt;
+	 * Used by Album and Playlist objects.
+	 * 
+	 * @return all informations about this song
+	 * @see #getArtiste()
+	 * @see #getGenre()
+	 * @see Element#getTitre()
+	 * @see Element#getDuree()
+	 * @see Element#getContenu()
+	 * @see Album#getList()
+	 * @see Playlist#getList()
+	 */
+	public String toString() {
+<span class="nc" id="L66">		return &quot;Titre : &quot;+getTitre()+&quot; - Artiste : &quot;+getArtiste()+&quot; - Duree : &quot;+getDuree()+&quot;s - Contenu : &quot;+getContenu()+&quot; - Genre : &quot;+getGenre();</span>
+	}
 
-    private String date;
-  
-    public Chanson (int id, String titre, int duree, String artiste, String contenu, Genre genre, String date) {
-<span class="fc" id="L30">        super(id, titre, duree);</span>
-<span class="fc" id="L31">        this.artiste = artiste;</span>
-<span class="fc" id="L32">        this.contenu = contenu;</span>
-<span class="fc" id="L33">        this.genre = genre;</span>
-<span class="fc" id="L34">        this.date = date;</span>
-<span class="fc" id="L35">    }</span>
-    
-    public String getArtiste () {
-<span class="nc" id="L38">        return artiste;</span>
-    }
+	/** 
+	 * Returns the artist of this song.
+	 * &lt;p&gt;
+	 * The artist of this element is displayed in the librairy.
+	 * 
+	 * @return the artist of this song
+	 */
+	public String getArtiste() {
+<span class="nc" id="L77">		return artiste;</span>
+	}
 
-    public void setArtiste (String artiste) {
-<span class="nc" id="L42">        this.artiste = artiste;</span>
-<span class="nc" id="L43">    }</span>
+	/** 
+	 * Registers the artist of this song when deserialized.
+	 * 
+	 * @param artiste the artist of this serialized object
+	 */
+	public void setArtiste(String artiste) {
+<span class="nc" id="L86">		this.artiste = artiste;</span>
+<span class="nc" id="L87">	}</span>
 
-    public String getContenu () {
-<span class="nc" id="L46">        return contenu;</span>
-    }
+	/** 
+	 * Returns the type of this song.
+	 * &lt;p&gt;
+	 * The type of this element is displayed in the librairy.
+	 * 
+	 * @return the type of this song
+	 */
+	public Genres getGenre() {
+<span class="nc" id="L97">		return genre;</span>
+	}
 
-    public void setContenu (String contenu) {
-<span class="nc" id="L50">        this.contenu = contenu;</span>
-<span class="nc" id="L51">    }</span>
-
-    public String getDate () {
-<span class="nc" id="L54">        return date;</span>
-    }
-
-    public void setDate (String date) {
-<span class="nc" id="L58">        this.date = date;</span>
-<span class="nc" id="L59">    }</span>
-
-    public Genre getGenre () {
-<span class="nc" id="L62">        return genre;</span>
-    }
-
-    public void setGenre (Genre genre) {
-<span class="nc" id="L66">        this.genre = genre;</span>
-<span class="nc" id="L67">    }</span>
-
-/**
- *  méthode toString qui transforme une chanson en chaîne de caractère.
- */
-@Override //on surcharge cette méthode qui existe déjà
-    public String toString() {
-<span class="nc" id="L74">        return &quot;Chanson :\n&quot;</span>
-<span class="nc" id="L75">        + &quot;id = &quot; + this.getId() + &quot;\n&quot;</span>
-<span class="nc" id="L76">        + &quot;titre = &quot; + this.getTitre() + &quot;\n&quot;</span>
-<span class="nc" id="L77">        + &quot;duree = &quot; + this.getDuree() + &quot;\n&quot;</span>
-<span class="nc" id="L78">        + &quot;artiste = &quot; + this.getArtiste() + &quot;\n&quot;</span>
-<span class="nc" id="L79">        + &quot;contenu = &quot; + this.getContenu() + &quot;\n&quot;</span>
-<span class="nc" id="L80">        + &quot;genre = &quot; + this.getGenre() + &quot;\n&quot;</span>
-<span class="nc" id="L81">        + &quot;date = &quot; + this.getDate() + &quot;\n&quot;;</span>
-        }
-
-/**
- *  méthode compareTo qui trie deux chansons entre elles selon le genre et retourne une position dans la liste.
- */
-@Override //on surcharge cette méthode qui existe déjà
-    public int compareTo(Chanson chanson) {
-<span class="nc" id="L89">        return this.getGenre().compareTo(chanson.getGenre()); //comparer String = ordre alphabétique</span>
-                                                              //si on met return chanson.getGenre().compareTo(this.getGenre())-&gt;on a l'inverse du tri 
-    }    
-
+	/** 
+	 * Registers the type of this song when deserialized.
+	 * 
+	 * @param genre the type of this serialized object
+	 */
+	public void setGenre(Genres genre) {
+<span class="nc" id="L106">		this.genre = genre;</span>
+<span class="nc" id="L107">	}</span>
 }
-
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

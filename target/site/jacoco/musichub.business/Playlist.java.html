@@ -1,86 +1,195 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Playlist.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jMusicHubV2</a> &gt; <a href="index.source.html" class="el_package">musichub.business</a> &gt; <span class="el_source">Playlist.java</span></div><h1>Playlist.java</h1><pre class="source lang-java linenums">package musichub.business;
-import java.util.Collection;
+
+import java.util.*;
 
 /**
- * classe publique Playlist qui implémente Comparable qui permet de trier des livres audio.
- * @param id identifiant unique de la playlist
- * @param nom privé, nom de la playlist
- * @param liste privé, liste d'éléments jouables (chansons et livres audio)
- *
- * les premières methodes sont publiques et sont des getteurs et setteurs basiques pour chacun des attributs.
- * les méthodes toString, compareTo et addElement sont précisées plus tard.
- * @author Sarra MADAD, Nour El-Houda LOUATY.
+ * A Playlist object contains a list of songs and audio books from the librairy.
+ * &lt;p&gt;
+ * A playlist can be added and removed from the librairy,
+ * and can be edited to add or remove elements from its list.
+ * 
+ * @author FERNANDES Mickael and LECLERC Maxence
+ * @version 1.0
+ * @see PlaylistList
+ * @see Element
+ * @see Chanson
+ * @see LivreAudio
  */
+public class Playlist {
+	/** ID counter for all playlists. */
+<span class="nc" id="L20">	private static int compteurId = 0;</span>
+	/** ID of the playlist. */
+	private int id;
+	/** Name of the playlist. */
+	private String nom;
+	/** List of the elements in the playlist. */
+<span class="nc" id="L26">	private LinkedList&lt;Element&gt; elementList = new LinkedList&lt;Element&gt;();</span>
 
-public class Playlist implements Comparable&lt;Playlist&gt;  {
+	/**
+	 * Sole constructor. (For invocation by subclass 
+	 * constructors, typically implicit.)
+	 */
+<span class="nc" id="L32">	public Playlist() {</span>
+<span class="nc" id="L33">		this.id = compteurId++;</span>
+<span class="nc" id="L34">	}</span>
 
-    private int id;
+	/**
+	 * Complete constructor for a playlist.
+	 * 
+	 * @param nom name of this new playlist
+	 */
+<span class="nc" id="L41">	public Playlist(String nom) {</span>
+<span class="nc" id="L42">		this.id = compteurId++;</span>
+<span class="nc" id="L43">		this.nom = nom;</span>
+<span class="nc" id="L44">	}</span>
 
-    private String nom;
+	/**
+	 * Overrides the standard toString method.
+	 * &lt;p&gt;
+	 * Used for displaying the object.
+	 * 
+	 * @return all informations about this playlist
+	 * @see #getNom()
+	 */
+	public String toString() {
+<span class="nc" id="L55">		return &quot;Nom : &quot;+getNom();</span>
+	}
 
-    private Collection&lt;IJouable&gt; liste;
+	/** 
+	 * Returns the ID of this playlist.
+	 * 
+	 * @return the ID number of this album
+	 */
+	public int getId() {
+<span class="nc" id="L64">		return id;</span>
+	}
 
+	/** 
+	 * Registers the ID of this playlist when deserialized.
+	 * 
+	 * @param id the ID number of this serialized object
+	 */
+	public void setId(int id) {
+<span class="nc" id="L73">		this.id = id;</span>
+<span class="nc" id="L74">	}</span>
 
-<span class="nc" id="L24">public Playlist(int id, String nom, Collection&lt;IJouable&gt; liste) {</span>
-<span class="nc" id="L25">    this.id = id;</span>
-<span class="nc" id="L26">    this.nom = nom;</span>
-<span class="nc" id="L27">    this.liste = liste;</span>
-<span class="nc" id="L28">}</span>
+	/** 
+	 * Returns the name of this playlist.
+	 * &lt;p&gt;
+	 * The name of this element is displayed in the librairy.
+	 * 
+	 * @return the name of this element
+	 * @see #toString()
+	 */
+	public String getNom() {
+<span class="nc" id="L85">		return nom;</span>
+	}
 
-public int getId() {
-<span class="nc" id="L31">    return id;</span>
-}
+	/** 
+	 * Registers the name of this playlist when deserialized.
+	 * 
+	 * @param nom the name of this serialized object
+	 */
+	public void setNom(String nom) {
+<span class="nc" id="L94">		this.nom = nom;</span>
+<span class="nc" id="L95">	}</span>
 
-public void setId(int id) {
-<span class="nc" id="L35">    this.id = id;</span>
-<span class="nc" id="L36">}</span>
+	/** 
+	 * Returns the elements list of this playlist.
+	 * 
+	 * @return the elements list of this element
+	 * @see Element
+	 */
+	public LinkedList&lt;Element&gt; getElementList() {
+<span class="nc" id="L104">		return elementList;</span>
+	}
 
-public String getNom() {
-<span class="nc" id="L39">    return nom;</span>
-}
+	/** 
+	 * Registers the elements list of this playlist when deserialized.
+	 * 
+	 * @param elementList the elements list of this serialized object
+	 * @see Element
+	 */
+	public void setElementList(LinkedList&lt;Element&gt; elementList) {
+<span class="nc" id="L114">		this.elementList = elementList;</span>
+<span class="nc" id="L115">	}</span>
 
-public void setNom(String nom) {
-<span class="nc" id="L43">    this.nom = nom;</span>
-<span class="nc" id="L44">}</span>
+	/**
+	 * Adds a song or an audio book to its elements list.
+	 * 
+	 * @param e the element to add
+	 * @see Element
+	 */
+	public void add(Element e) {
+<span class="nc" id="L124">		elementList.add(e);</span>
+<span class="nc" id="L125">	}</span>
 
-public Collection&lt;IJouable&gt; getListe() {
-<span class="nc" id="L47">    return this.liste;</span>
-}
+	/**
+	 * Removes a song from its elements list.
+	 * 
+	 * @param c the song to remove
+	 * @see Chanson
+	 */
+	public void delChanson(Chanson c) {
+<span class="nc" id="L134">		elementList.remove(c);</span>
+<span class="nc" id="L135">	}</span>
 
-public void setListe(Collection&lt;IJouable&gt; liste) {
-<span class="nc" id="L51">    this.liste = liste;</span>
-<span class="nc" id="L52">}</span>
+	/**
+	 * Removes an audio book from its elements list.
+	 * 
+	 * @param l the audio book to remove
+	 * @see LivreAudio
+	 */
+	public void delLivreAudio(LivreAudio l) {
+<span class="nc" id="L144">		elementList.remove(l);</span>
+<span class="nc" id="L145">	}</span>
 
-public void add(IJouable element) {
-<span class="nc" id="L55">    this.liste.add(element);</span>
-<span class="nc" id="L56">}</span>
+	/**
+	 * Displays its elements list as a String without modifying the order.
+	 * 
+	 * @return the elements list as a String
+	 * @see Chanson#toString()
+	 * @see LivreAudio#toString()
+	 */
+	public String getList() {
+<span class="nc" id="L155">        String elements = &quot;\nElements dans la playlist :\n&quot;;</span>
+ 
+<span class="nc bnc" id="L157" title="All 2 branches missed.">        for(Element e:getElementList()) {</span>
+<span class="nc" id="L158">			elements += e.toString() + &quot;\n&quot;;</span>
+<span class="nc" id="L159">		}</span>
 
-/**
- *  méthode toString qui transforme une chanson en chaîne de caractère.
- */
-@Override //on surcharge cette méthode qui existe déjà
-public String toString() {
-<span class="nc" id="L63">    return &quot;---------\n&quot;</span>
-    + &quot;Playlist :\n&quot;
-<span class="nc" id="L65">    + &quot;id = &quot; + this.getId() + &quot;\n&quot;</span>
-<span class="nc" id="L66">    + &quot;nom = &quot; + this.getNom() + &quot;\n&quot;</span>
-<span class="nc" id="L67">    + &quot;liste = \n&quot; + this.getListe() + &quot;\n\n&quot;;</span>
-    }
+<span class="nc" id="L161">		return elements;</span>
+	}
 
-/**
- *  méthode compareTo qui trie deux playlists entre elles selon leur nom et retourne une position dans la liste.
- */
-@Override //on surcharge cette méthode qui existe déjà
-public int compareTo(Playlist playlist) {
-<span class="nc" id="L75">    return this.getNom().compareTo(playlist.getNom()); //comparer String = ordre alphabétique</span>
-}
+	/**
+	 * Displays the input elements list as a String.
+	 * &lt;p&gt;
+	 * Used for random lists.
+	 * 
+	 * @param aleaList the elements list to display
+	 * @return the input elements list as a String
+	 * @see Chanson#toString()
+	 * @see LivreAudio#toString()
+	 */
+	public String getList(LinkedList&lt;Element&gt; aleaList) {
+<span class="nc" id="L175">		String elements = &quot;\nElements dans la playlist - mode aléatoire :\n&quot;;</span>
+ 
+<span class="nc bnc" id="L177" title="All 2 branches missed.">        for(Element e:aleaList) {</span>
+<span class="nc" id="L178">			elements += e.toString() + &quot;\n&quot;;</span>
+<span class="nc" id="L179">		}</span>
 
-/**
- *  méthode addElement qui ajoute un élément de type IJouable -donc soit une chanson soit un livre audio- dans la liste.
- */
-public void addElement(IJouable element) {
-<span class="nc" id="L82">    this.liste.add(element);</span>
-<span class="nc" id="L83">}</span>
+<span class="nc" id="L181">		return elements;</span>
+	}
 
+	/**
+	 * Returns its element list in a random order.
+	 * 
+	 * @return the element list in a random order
+	 */
+	public LinkedList&lt;Element&gt; aleatoire() {
+<span class="nc" id="L190">		LinkedList&lt;Element&gt; aleaList = new LinkedList&lt;Element&gt;(elementList);</span>
+<span class="nc" id="L191">		Collections.shuffle(aleaList);</span>
+<span class="nc" id="L192">		return aleaList;</span>
+	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,94 +1,137 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LivreAudio.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jMusicHubV2</a> &gt; <a href="index.source.html" class="el_package">musichub.business</a> &gt; <span class="el_source">LivreAudio.java</span></div><h1>LivreAudio.java</h1><pre class="source lang-java linenums">package musichub.business;
 
 /**
- * classe publique LivreAudio qui hérite de la classe abstraite AbstractOeuvre et implémente l'interface IJouable et Comparable qui permet de trier des livres audio.
- * @param id identifiant unique de l'oeuvre (hérité de la classe abstraite)
- * @param titre titre de l'oeuvre (hérité de la classe abstraite)
- * @param duree durée en seconde de l'oeuvre (hérité de la classe abstraite)
- * @param auteur privé, nom de l'auteur
- * @param contenu privé, contenu de la chanson
- * @param langue privé, langue du livre audio 
- * @see Langue
- * @param categorie privé, catégorie du livre audio
- * @see Categorie
- *
- * les premières methodes sont publiques et sont des getteurs et setteurs basiques pour chacun des attributs.
- * les méthodes toString et compareTo sont précisées plus tard.
- * @author Sarra MADAD, Nour El-Houda LOUATY.
+ * LivreAudio is an audio book object in the librairy.
+ * &lt;p&gt;
+ * An audio book can be added and removed from the librairy 
+ * or a Playlist object.
+ * 
+ * @author FERNANDES Mickael and LECLERC Maxence
+ * @version 1.0
+ * @see Element
+ * @see ElementList
+ * @see Playlist
  */
+public class LivreAudio extends Element {
+	/** Writter of the audio book. */
+	private String auteur;
+	/**
+	 * Language of the audio book.
+	 * @see Langues
+	 */
+	private Langues langue;
+	/**
+	 * Category of the audio book.
+	 * @see Categories
+	 */
+	private Categories categorie;
 
-public class LivreAudio extends AbstractOeuvre implements IJouable, Comparable&lt;LivreAudio&gt; {
-    
-    private String auteur;
+	/**
+	 * Sole constructor. (For invocation by subclass 
+	 * constructors, typically implicit.)
+	 */
+<span class="nc" id="L33">	public LivreAudio() {</span>
+<span class="nc" id="L34">		this.id = compteurId++;</span>
+<span class="nc" id="L35">	}</span>
 
-    private String contenu;
+	/**
+	 * Complete constructor for an audio book.
+	 * 
+	 * @param titre title of this new audio book
+	 * @param auteur writter of this new audio book
+	 * @param duree length of this new audio book
+	 * @param contenu location of this new audio book
+	 * @param langue language of this new audio book
+	 * @param categorie category of this new audio book
+	 */
+<span class="nc" id="L47">	public LivreAudio(String titre, String auteur, int duree, String contenu, Langues langue, Categories categorie) {</span>
+<span class="nc" id="L48">		this.id = compteurId++;</span>
+<span class="nc" id="L49">		this.titre = titre;</span>
+<span class="nc" id="L50">		this.auteur = auteur;</span>
+<span class="nc" id="L51">		this.duree = duree;</span>
+<span class="nc" id="L52">		this.contenu = contenu;</span>
+<span class="nc" id="L53">		this.langue = langue;</span>
+<span class="nc" id="L54">		this.categorie = categorie;</span>
+<span class="nc" id="L55">	}</span>
 
-    private Langue langue;
+	/**
+	 * Overrides the standard toString method.
+	 * &lt;p&gt;
+	 * Used by Playlist objects.
+	 * 
+	 * @return all informations about this audio book
+	 * @see #getAuteur()
+	 * @see #getLangue()
+	 * @see #getCategorie()
+	 * @see Element#getTitre()
+	 * @see Element#getDuree()
+	 * @see Element#getContenu()
+	 * @see Album#getList()
+	 * @see Playlist#getList()
+	 */
+	public String toString() {
+<span class="nc" id="L73">		return &quot;Titre : &quot;+getTitre()+&quot; - Auteur : &quot;+getAuteur()+&quot; - Duree : &quot;+getDuree()+&quot;s - Contenu : &quot;+getContenu()+&quot; - Langue : &quot;+getLangue()+&quot; - Catégorie : &quot;+getCategorie();</span>
+	}
 
-    private Categorie categorie;
+	/** 
+	 * Returns the writter of this audio book.
+	 * &lt;p&gt;
+	 * The writter of this element is displayed in the librairy.
+	 * 
+	 * @return the writter of this audio book
+	 */
+	public String getAuteur() {
+<span class="nc" id="L84">		return auteur;</span>
+	}
 
-    public LivreAudio (int id, String titre, int duree, String auteur, String contenu, Langue langue, Categorie categorie) {
-<span class="nc" id="L31">        super(id, titre, duree);</span>
-<span class="nc" id="L32">        this.auteur = auteur;</span>
-<span class="nc" id="L33">        this.contenu = contenu;</span>
-<span class="nc" id="L34">        this.langue = langue;</span>
-<span class="nc" id="L35">        this.categorie = categorie;</span>
-<span class="nc" id="L36">    }</span>
+	/** 
+	 * Registers the writter of this audio book when deserialized.
+	 * 
+	 * @param auteur the writter of this serialized object
+	 */
+	public void setAuteur(String auteur) {
+<span class="nc" id="L93">		this.auteur = auteur;</span>
+<span class="nc" id="L94">	}</span>
 
-    public String getAuteur () {
-<span class="nc" id="L39">        return auteur;</span>
-    }
+	/** 
+	 * Returns the language of this audio book.
+	 * &lt;p&gt;
+	 * The language of this element is displayed in the librairy.
+	 * 
+	 * @return the language of this audio book
+	 */
+	public Langues getLangue() {
+<span class="nc" id="L104">		return langue;</span>
+	}
 
-    public void setAuteur (String auteur) {
-<span class="nc" id="L43">        this.auteur = auteur;</span>
-<span class="nc" id="L44">    }  </span>
+	/** 
+	 * Registers the language of this audio book when deserialized.
+	 * 
+	 * @param langue the language of this serialized object
+	 */
+	public void setLangue(Langues langue) {
+<span class="nc" id="L113">		this.langue = langue;</span>
+<span class="nc" id="L114">	}</span>
 
-    public String getContenu () {
-<span class="nc" id="L47">        return contenu;</span>
-    }
+	/** 
+	 * Returns the category of this audio book.
+	 * &lt;p&gt;
+	 * The category of this element is displayed in the librairy.
+	 * 
+	 * @return the category of this audio book
+	 */
+	public Categories getCategorie() {
+<span class="nc" id="L124">		return categorie;</span>
+	}
 
-    public void setContenu (String contenu) {
-<span class="nc" id="L51">        this.contenu = contenu;</span>
-<span class="nc" id="L52">    }</span>
+	/** 
+	 * Registers the category of this audio book when deserialized.
+	 * 
+	 * @param categorie the category of this serialized object
+	 */
+	public void setCategorie(Categories categorie) {
+<span class="nc" id="L133">		this.categorie = categorie;</span>
+<span class="nc" id="L134">	}</span>
 
-    public Langue getLangue () {
-<span class="nc" id="L55">        return langue;</span>
-    }
-
-    public void setLangue (Langue langue) {
-<span class="nc" id="L59">        this.langue = langue;</span>
-<span class="nc" id="L60">    }</span>
-
-    public Categorie getCategorie () {
-<span class="nc" id="L63">        return categorie;</span>
-    }
-
-    public void setCategorie (Categorie categorie) {
-<span class="nc" id="L67">        this.categorie = categorie;</span>
-<span class="nc" id="L68">    } </span>
-
-/**
- *  méthode toString qui transforme un livre audio en chaîne de caractère.
- */
-@Override //on surcharge cette méthode qui existe déjà
-    public String toString() {
-<span class="nc" id="L75">        return &quot;---------\n&quot;</span>
-        + &quot;LivreAudio :\n&quot;
-<span class="nc" id="L77">        + &quot;id = &quot; + this.getId() + &quot;\n&quot;</span>
-<span class="nc" id="L78">        + &quot;titre = &quot; + this.getTitre() + &quot;\n&quot;</span>
-<span class="nc" id="L79">        + &quot;duree = &quot; + this.getDuree() + &quot;\n&quot;</span>
-<span class="nc" id="L80">        + &quot;auteur = &quot; + this.getAuteur() + &quot;\n&quot;</span>
-<span class="nc" id="L81">        + &quot;contenu = &quot; + this.getContenu() + &quot;\n&quot;</span>
-<span class="nc" id="L82">        + &quot;langue = &quot; + this.getLangue() + &quot;\n&quot;</span>
-<span class="nc" id="L83">        + &quot;categorie = &quot; + this.getCategorie() + &quot;\n&quot;;</span>
-        }
-        
-/**
- *  méthode compareTo qui trie deux livres audio entre eux selon l'auteur et retourne une position dans la liste.
- */
-@Override //on surcharge cette méthode qui existe déjà
-    public int compareTo(LivreAudio livreaudio) {
-<span class="nc" id="L91">        return this.getAuteur().compareTo(livreaudio.getAuteur()); //comparer String = ordre alphabétique</span>
-    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

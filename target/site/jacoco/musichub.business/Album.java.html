@@ -1,105 +1,265 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Album.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jMusicHubV2</a> &gt; <a href="index.source.html" class="el_package">musichub.business</a> &gt; <span class="el_source">Album.java</span></div><h1>Album.java</h1><pre class="source lang-java linenums">package musichub.business;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Collection;
-import java.util.Date;
+import java.util.*;
 
 /**
- * classe publique Album qui hérite de la classe abstraite AbstractOeuvre et implémente l'interface Comparable qui permet de trier des albums.
- * @param id privé, identifiant unique de l'oeuvre (hérité de la classe abstraite)
- * @param titre privé, titre de l'oeuvre (hérité de la classe abstraite)
- * @param duree privé, durée en seconde de l'oeuvre (hérité de la classe abstraite)
- * @param chanson privé, collection/liste de chanson
- * @param artiste privé, nom de l'artiste
- * @param date privé, date de sortie de l'album
- *
- * les premières methodes sont publiques et sont des getteurs et setteurs basiques pour chacun des attributs.
- * les méthodes toString, compareTo et addChanson sont précisées plus tard.
- * @author Sarra MADAD, Nour El-Houda LOUATY.
+ * An Album object contains a list of songs from the librairy.
+ * &lt;p&gt;
+ * An album can be added and removed from the librairy,
+ * and can be edited to add or remove songs from its list.
+ * 
+ * @author FERNANDES Mickael and LECLERC Maxence
+ * @version 1.0
+ * @see AlbumList
+ * @see Element
+ * @see Chanson
  */
+public class Album {
+	/** ID counter for all albums. */
+<span class="nc" id="L19">	private static int compteurId = 0;</span>
+	/** ID of the album. */
+	private int id;
+	/** Title of the album. */
+	private String titre;
+	/** Artist of the album. */
+	private String artiste;
+	/** Release date of the album. */
+	private String dateSortie;
+	/** Length of all the songs in the album. */
+	private int duree;
+	/** List of the songs in the album. */
+<span class="nc" id="L31">	private LinkedList&lt;Chanson&gt; songList = new LinkedList&lt;Chanson&gt;();</span>
 
-public class Album extends AbstractOeuvre implements Comparable&lt;Album&gt; {
+	/**
+	 * Sole constructor. (For invocation by subclass 
+	 * constructors, typically implicit.)
+	 */
+<span class="nc" id="L37">	public Album() {</span>
+<span class="nc" id="L38">		this.id = compteurId++;</span>
+<span class="nc" id="L39">	}</span>
 
-    private Collection&lt;Chanson&gt; chanson;
-    private String artiste;
-    private String date;
+	/**
+	 * Complete constructor for an album.
+	 * 
+	 * @param titre title of this new album
+	 * @param artiste artist of this new album
+	 * @param dateSortie release date of this new album
+	 */
+<span class="nc" id="L48">	public Album(String titre, String artiste, String dateSortie) {</span>
+<span class="nc" id="L49">		this.id = compteurId++;</span>
+<span class="nc" id="L50">		this.titre = titre;</span>
+<span class="nc" id="L51">		this.artiste = artiste;</span>
+<span class="nc" id="L52">		this.dateSortie = dateSortie;</span>
+<span class="nc" id="L53">	}</span>
 
-    public Album(int id, String titre, int duree, Collection&lt;Chanson&gt; chanson, String artiste, String date) {
-<span class="fc" id="L29">        super(id, titre, duree);</span>
-<span class="fc" id="L30">        this.chanson = chanson;</span>
-<span class="fc" id="L31">        this.artiste = artiste;</span>
-<span class="fc" id="L32">        this.date = date;</span>
-<span class="fc" id="L33">    }</span>
+	/**
+	 * Overrides the standard toString method.
+	 * &lt;p&gt;
+	 * Used for displaying the object.
+	 * 
+	 * @return all informations about this album
+	 * @see #getTitre()
+	 * @see #getArtiste()
+	 * @see #getDuree()
+	 * @see #getDateSortie()
+	 */
+	public String toString() {
+<span class="nc" id="L67">		return &quot;Titre : &quot;+getTitre()+&quot; - Artiste : &quot;+getArtiste()+&quot; - Duree : &quot;+getDuree()+&quot;s - Date de sortie : &quot;+getDateSortie();</span>
+	}
 
-    public Collection&lt;Chanson&gt; getChanson() {
-<span class="nc" id="L36">        return chanson;</span>
-    }
+	/** 
+	 * Returns the ID of this album.
+	 * 
+	 * @return the ID number of this album
+	 */
+	public int getId() {
+<span class="nc" id="L76">		return id;</span>
+	}
 
-    public void setChanson(Collection&lt;Chanson&gt; chanson) {
-<span class="nc" id="L40">        this.chanson = chanson;</span>
-<span class="nc" id="L41">    }</span>
+	/** 
+	 * Registers the ID of this album when deserialized.
+	 * 
+	 * @param id the ID number of this serialized object
+	 */
+	public void setId(int id) {
+<span class="nc" id="L85">		this.id = id;</span>
+<span class="nc" id="L86">	}</span>
 
-    public String getArtiste() {
-<span class="nc" id="L44">        return artiste;</span>
-    }
+	/** 
+	 * Returns the title of this album.
+	 * &lt;p&gt;
+	 * The title of this element is displayed in the librairy.
+	 * 
+	 * @return the title of this element
+	 * @see toString()
+	 */
+	public String getTitre() {
+<span class="nc" id="L97">		return titre;</span>
+	}
 
-    public void setArtiste(String artiste) {
-<span class="nc" id="L48">        this.artiste = artiste;</span>
-<span class="nc" id="L49">    }</span>
+	/** 
+	 * Registers the title of this album when deserialized.
+	 * 
+	 * @param titre the title of this serialized object
+	 */
+	public void setTitre(String titre) {
+<span class="nc" id="L106">		this.titre = titre;</span>
+<span class="nc" id="L107">	}</span>
 
-    public String getDate() {
-<span class="nc" id="L52">        return date;</span>
-    }
+	/** 
+	 * Returns the artist of this album.
+	 * &lt;p&gt;
+	 * The artist of this element is displayed in the librairy.
+	 * 
+	 * @return the artist of this element
+	 * @see toString()
+	 */
+	public String getArtiste() {
+<span class="nc" id="L118">		return artiste;</span>
+	}
 
-    public void setDate(String date) {
-<span class="nc" id="L56">        this.date = date;</span>
-<span class="nc" id="L57">    }</span>
+	/** 
+	 * Registers the artist of this album when deserialized.
+	 * 
+	 * @param artiste the artist of this serialized object
+	 */
+	public void setArtiste(String artiste) {
+<span class="nc" id="L127">		this.artiste = artiste;</span>
+<span class="nc" id="L128">	}</span>
 
-  
-/**
- *  méthode toString qui transforme un album en chaîne de caractère.
- */
-@Override //on surcharge cette méthode qui existe déjà
-    public String toString() {
-<span class="nc" id="L65">        return &quot;Album :\n&quot; + &quot;id = &quot; + this.getId() + &quot;\n&quot; + &quot;titre = &quot; + this.getTitre() + &quot;\n&quot; + &quot;duree = &quot;</span>
-<span class="nc" id="L66">                + this.getDuree() + &quot;\n&quot; + &quot;chanson = &quot; + this.getChanson() + &quot;\n&quot; + &quot;artiste = &quot; + this.getArtiste()</span>
-<span class="nc" id="L67">                + &quot;\n&quot; + &quot;date = &quot; + this.getDate() + &quot;\n\n&quot;;</span>
-    }
+	/**
+	 * Retrieves the length of all songs in the album.
+	 *&lt;p&gt;
+	 * The length of this element is displayed in the librairy.
+	 * 
+	 * @return the length of this album
+	 * @see Chanson#getDuree()
+	 */
+	public int getDuree() {
+<span class="nc" id="L139">		duree = 0;</span>
 
-/**
- *  méthode compareTo qui trie deux albums entre eux selon leur date de sortie et retourne une position dans la liste.
- */
-@Override //on surcharge cette méthode qui existe déjà
-    public int compareTo(Album album) {
-<span class="nc" id="L75">        int diff = 0;</span>
-<span class="nc" id="L76">        Date date1 = null;</span>
-<span class="nc" id="L77">        Date date2 = null;</span>
-<span class="nc" id="L78">        SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);</span>
+<span class="nc bnc" id="L141" title="All 2 branches missed.">		for(Chanson c : this.songList) {</span>
+<span class="nc" id="L142">			duree += c.getDuree();</span>
+<span class="nc" id="L143">		}</span>
 
-        try {
-<span class="nc" id="L81">            date1 = sdf.parse(this.getDate());</span>
-<span class="nc" id="L82">        } catch (ParseException e) {</span>
-<span class="nc" id="L83">            return 1;</span>
-<span class="nc" id="L84">        }</span>
+<span class="nc" id="L145">		return duree;</span>
+	}
 
-        try {
-<span class="nc" id="L87">            date2 = sdf.parse(album.getDate());</span>
-<span class="nc" id="L88">        } catch (ParseException e) {</span>
-<span class="nc" id="L89">            return -1; //on met le mauvais en bas de la liste </span>
-<span class="nc" id="L90">        }</span>
+	/** 
+	 * Registers the length of this album when deserialized.
+	 * 
+	 * @param duree the length of this serialized object
+	 */
+	public void setDuree(int duree) {
+<span class="nc" id="L154">		this.duree = duree;</span>
+<span class="nc" id="L155">	}</span>
 
-<span class="nc" id="L92">        diff = date2.compareTo(date1);</span>
+	/** 
+	 * Returns the release date of this album.
+	 * &lt;p&gt;
+	 * The release date of this element is displayed in the librairy.
+	 * 
+	 * @return the release date of this element
+	 * @see toString()
+	 */
+	public String getDateSortie() {
+<span class="nc" id="L166">		return dateSortie;</span>
+	}
 
-<span class="nc" id="L94">        return diff;</span>
-    }
+	/** 
+	 * Registers the release date of this album when deserialized.
+	 * 
+	 * @param dateSortie the release date of this serialized object
+	 */
+	public void setDateSortie(String dateSortie) {
+<span class="nc" id="L175">		this.dateSortie = dateSortie;</span>
+<span class="nc" id="L176">	}</span>
 
-/**
- * méthode addChanson qui ajoute une chanson à notre collection de chansons.
- * elle prend en paramètre la chanson que l'on souhaite ajouter à notre liste.
- */
-    public void addChanson (Chanson chanson) {
-<span class="fc" id="L102">        this.chanson.add(chanson);</span>
-<span class="fc" id="L103">    }</span>
+	/** 
+	 * Returns the song list of this album.
+	 * 
+	 * @return the song list of this element
+	 * @see Chanson
+	 */
+	public LinkedList&lt;Chanson&gt; getSongList() {
+<span class="nc" id="L185">		return songList;</span>
+	}
+
+	/** 
+	 * Registers the song list of this album when deserialized.
+	 * 
+	 * @param songList the song list of this serialized object
+	 * @see Chanson
+	 */
+	public void setSongList(LinkedList&lt;Chanson&gt; songList) {
+<span class="nc" id="L195">		this.songList = songList;</span>
+<span class="nc" id="L196">	}</span>
+
+	/**
+	 * Adds a song to its song list.
+	 * 
+	 * @param c the song to add
+	 * @see Chanson
+	 */
+	public void add(Chanson c) {
+<span class="nc" id="L205">		songList.add(c);</span>
+<span class="nc" id="L206">	}</span>
+
+	/**
+	 * Removes a song from its song list.
+	 * 
+	 * @param c the song to remove
+	 * @see Chanson
+	 */
+	public void del(Chanson c) {
+<span class="nc" id="L215">		songList.remove(c);</span>
+<span class="nc" id="L216">	}</span>
+
+	/**
+	 * Displays its song list as a String without modifying the order.
+	 * 
+	 * @return the song list as a String
+	 * @see Chanson#toString()
+	 */
+	public String getList() {
+<span class="nc" id="L225">		String chansons = &quot;\nChansons dans l'album :\n&quot;;</span>
+ 
+<span class="nc bnc" id="L227" title="All 2 branches missed.">        for(Chanson c:getSongList()) {</span>
+<span class="nc" id="L228">			chansons += c.toString() + &quot;\n&quot;;</span>
+<span class="nc" id="L229">		}</span>
+
+<span class="nc" id="L231">		return chansons;</span>
+	}
+
+	/**
+	 * Displays the input song list as a String.
+	 * &lt;p&gt;
+	 * Used for random lists and sorted lists.
+	 * 
+	 * @param list the song list to display
+	 * @return the input song list as a String
+	 * @see Chanson#toString()
+	 */
+	public String getList(LinkedList&lt;Chanson&gt; list) {
+<span class="nc" id="L244">		String chansons = &quot;\nChansons dans l'album :\n&quot;;</span>
+ 
+<span class="nc bnc" id="L246" title="All 2 branches missed.">        for(Chanson c:list) {</span>
+<span class="nc" id="L247">			chansons += c.toString() + &quot;\n&quot;;</span>
+<span class="nc" id="L248">		}</span>
+
+<span class="nc" id="L250">		return chansons;</span>
+	}
+
+	/**
+	 * Returns its song list in a random order.
+	 * 
+	 * @return the song list in a random order
+	 */
+	public LinkedList&lt;Chanson&gt; aleatoire() {
+<span class="nc" id="L259">		LinkedList&lt;Chanson&gt; aleaList = new LinkedList&lt;Chanson&gt;(songList);</span>
+<span class="nc" id="L260">		Collections.shuffle(aleaList);</span>
+<span class="nc" id="L261">		return aleaList;</span>
+	}
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
