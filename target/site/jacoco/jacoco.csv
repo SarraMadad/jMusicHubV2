@@ -1,6 +1,9 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+jMusicHubV2,musichub.util,SingletonConsoleLogger,22,0,2,0,8,0,5,0,4,0
 jMusicHubV2,musichub.util,DeserializeFromXML,115,0,4,0,35,0,7,0,4,0
 jMusicHubV2,musichub.util,SerializeToXML,46,0,4,0,15,0,4,0,1,0
+jMusicHubV2,musichub.util,SingletonFileLogger,56,0,2,0,17,0,5,0,4,0
+jMusicHubV2,musichub.util,Levels,59,0,0,0,9,0,3,0,3,0
 jMusicHubV2,musichub.business,Playlist,130,0,4,0,38,0,18,0,16,0
 jMusicHubV2,musichub.business,Album,179,0,6,0,51,0,24,0,21,0
 jMusicHubV2,musichub.business,Categories,70,0,0,0,10,0,3,0,3,0

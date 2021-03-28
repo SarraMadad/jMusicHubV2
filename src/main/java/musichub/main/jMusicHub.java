@@ -112,7 +112,7 @@ public class jMusicHub implements interfaceJmusicHub {
 					playlists.randomDisplaySongsOfPlaylist(userInput);
 					break;
 
-				/* Nouvelles chanson. */
+				/* Nouvelle chanson. */
 				case "b":
 					addMusic(elements);
 					break;
@@ -131,7 +131,7 @@ public class jMusicHub implements interfaceJmusicHub {
 				case "c":
                     System.out.println(albums + "\nQuel album souhaitez-vous modifier ?");
                     String albumName = userInputObj.nextLine();
-                    System.out.println(elements.listeChanson() + "\nQuelle musique souhaitez-vous ajouter ?\nEntrez le titre de la musqiue suivi de son artiste : Titre - Artiste");
+                    System.out.println(elements.listeChanson() + "\nQuelle musique souhaitez-vous ajouter ?\nEntrez le titre de la musique suivi de son artiste : Titre - Artiste");
                     String musicName = userInputObj.nextLine();
                     albums.addMusic(albumName, musicName, elements);
                     break;
@@ -261,9 +261,9 @@ public class jMusicHub implements interfaceJmusicHub {
 	}
 	
 	/**
-	 * Returns the writter entered by the user.
+	 * Returns the writer entered by the user.
 	 * 
-	 * @return the writter as a String
+	 * @return the writer as a String
 	 */
 	public String newAuteur(){
 		System.out.print("\nAuteur : ");
@@ -305,7 +305,7 @@ public class jMusicHub implements interfaceJmusicHub {
 	 * the enum.
 	 * 
 	 * @return the category as a String
-	 * @throws WrongEnumValue if an input exception occured
+	 * @throws WrongEnumValue if an input exception occurred
 	 * @see musichub.business.WrongEnumValue
 	 */
 	public String newCategorie() throws WrongEnumValue {
@@ -355,7 +355,7 @@ public class jMusicHub implements interfaceJmusicHub {
 	 * the enum.
 	 * 
 	 * @return the language as a String
-	 * @throws WrongEnumValue if an input exception occured
+	 * @throws WrongEnumValue if an input exception occurred
 	 * @see musichub.business.WrongEnumValue
 	 */
 	public String newLangue() throws WrongEnumValue {
@@ -379,7 +379,7 @@ public class jMusicHub implements interfaceJmusicHub {
 	 * the enum.
 	 * 
 	 * @return the type as a String
-	 * @throws WrongEnumValue if an input exception occured
+	 * @throws WrongEnumValue if an input exception occurred
 	 * @see musichub.business.WrongEnumValue
 	 */
 	public String newGenre() throws WrongEnumValue {
@@ -735,7 +735,7 @@ public class jMusicHub implements interfaceJmusicHub {
 		System.out.println("	-m : suppression d'un élément d'une playlist.");
 
 		System.out.println("\n						Utilitaires");
-		System.out.println("	s  : sauvegarde des playlist, des albums, des chansons et des livres audio.");
+		System.out.println("	s  : sauvegarde des playlists, des albums, des chansons et des livres audio.");
 		System.out.println("	q  : quitter l'application.");
 	}
 
