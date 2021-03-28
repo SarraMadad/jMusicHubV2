@@ -2,8 +2,12 @@ package musichub.util;
 
 /* Exemple d'utilisation du Singleton */
 
+import org.junit.jupiter.api.Test;
+
 public class SingletonTest {
-    public static void main(String[] args) {
+
+    @Test
+    void TestSingleton() {
         /* Déroulement normal du programme */
         boolean var = false;
 
