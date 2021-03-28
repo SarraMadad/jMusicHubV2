@@ -284,6 +284,8 @@ public class jMusicHub implements interfaceJmusicHub {
 		 	try {
 			 	return Integer.parseInt(duree);
 		 	} catch (NumberFormatException nfe) {
+		 		IntLogger sfl = SingletonFileLogger.getInstance();
+		 		sfl.write(Levels.ERROR, "jMusicHub.newDuree() : user input is not a valid number.");
 		 		System.out.println("Veuillez entrer un nombre.");
 		 	}
 		}
@@ -345,6 +347,8 @@ public class jMusicHub implements interfaceJmusicHub {
 				LocalDate date = LocalDate.of(Integer.parseInt(annee), Integer.parseInt(mois), Integer.parseInt(jour));
 				return String.valueOf(date);
 			} catch(NumberFormatException nfs) {
+				IntLogger sfl = SingletonFileLogger.getInstance();
+				sfl.write(Levels.ERROR, "jMusicHub.newDate() : user input is not a valid number.");
 				System.out.println("Format incorrect, veuillez entrer une valeur correcte.");
 			}
 		}
@@ -453,11 +457,15 @@ public class jMusicHub implements interfaceJmusicHub {
 					return;
 				}
 			} catch(WrongEnumValue ex) {
+				IntLogger sfl = SingletonFileLogger.getInstance();
+				sfl.write(Levels.ERROR, "jMusicHub.addMusic() : user input is not a valid Genre");
 				System.err.println(ex.getMessage());
 			}
 		}
 
 		elements.add(new Chanson(titre, artiste, duree, contenu, Genres.valueOf(genre)));
+		IntLogger sfl = SingletonFileLogger.getInstance();
+		sfl.write(Levels.INFO, "jMusicHub.addMusic() : success");
 		System.out.println("Votre nouvelle musique a été ajoutée avec succès.\n" + elements.peekLast());
 		return;
 	}
@@ -485,6 +493,8 @@ public class jMusicHub implements interfaceJmusicHub {
 				String supp = chanson.getTitre() + " - " + chanson.getArtiste();
     			if(supp.equals(userInput)) {
     				elements.delChanson(chanson);
+					IntLogger sfl = SingletonFileLogger.getInstance();
+					sfl.write(Levels.INFO, "jMusicHub.delMusic() : " + userInput + " deleted form library");
     				System.out.println("Chanson supprimée avec succès de la bibliothèque.");
     			}
 			}
@@ -498,6 +508,8 @@ public class jMusicHub implements interfaceJmusicHub {
     			String supp = c.getTitre() + " - " + c.getArtiste();
     			if(supp.equals(userInput)) {
     				a.del(c);
+					IntLogger sfl = SingletonFileLogger.getInstance();
+					sfl.write(Levels.INFO, "jMusicHub.delMusic() : " + userInput + " deleted form album");
     				System.out.println("Chanson supprimée avec succès de l'album.");
     			}
     		}
@@ -513,6 +525,8 @@ public class jMusicHub implements interfaceJmusicHub {
         			String supp = ch.getTitre() + " - " + ch.getArtiste();
         			if(supp.equals(userInput)) {
         				p.delChanson(ch);
+						IntLogger sfl = SingletonFileLogger.getInstance();
+						sfl.write(Levels.INFO, "jMusicHub.delMusic() : " + userInput + " deleted form playlist");
         				System.out.println("Chanson supprimée avec succès de la playlist.");
         			}
         		}
@@ -559,6 +573,8 @@ public class jMusicHub implements interfaceJmusicHub {
 					return;
 				}
 			} catch(WrongEnumValue ex) {
+				IntLogger sfl = SingletonFileLogger.getInstance();
+				sfl.write(Levels.ERROR, "jMusicHub.addLivre() : user input is not a valid Langue");
 				System.err.println(ex.getMessage());
 			}
 		}
@@ -573,11 +589,15 @@ public class jMusicHub implements interfaceJmusicHub {
 					return;
 				}
 			} catch(WrongEnumValue ex) {
+				IntLogger sfl = SingletonFileLogger.getInstance();
+				sfl.write(Levels.ERROR, "jMusicHub.addLivre() : user input is not a valid Categorie");
 				System.err.println(ex.getMessage());
 			}
 		}
 
 		elements.add(new LivreAudio(titre, auteur, duree, contenu, Langues.valueOf(langue), Categories.valueOf(categorie)));
+		IntLogger sfl = SingletonFileLogger.getInstance();
+		sfl.write(Levels.INFO, "jMusicHub.addLivre() : success");
 		System.out.println("Votre nouveau livre audio a été ajouté avec succès.\n" + elements.peekLast());
 	}
 
@@ -603,6 +623,8 @@ public class jMusicHub implements interfaceJmusicHub {
         		String supp = livre.getTitre() + " - " + livre.getAuteur();
     			if(supp.equals(userInput)) {
     				elements.delLivreAudio(livre);
+					IntLogger sfl = SingletonFileLogger.getInstance();
+					sfl.write(Levels.INFO, "jMusicHub.delLivre() : " + userInput + " deleted form library");
     				System.out.println("Livre audio supprimé avec succès de la bibliothèque.");
     			}
     		}
@@ -618,6 +640,8 @@ public class jMusicHub implements interfaceJmusicHub {
         			String supp = livre.getTitre() + " - " + livre.getAuteur();
         			if(supp.equals(userInput)) {
         				p.delLivreAudio(livre);
+						IntLogger sfl = SingletonFileLogger.getInstance();
+						sfl.write(Levels.INFO, "jMusicHub.delLivre() : " + userInput + " deleted form playlist");
         				System.out.println("Livre audio supprimé avec succès de la playlist.");
         			}
         		}
@@ -651,6 +675,8 @@ public class jMusicHub implements interfaceJmusicHub {
 
 	
 		albums.add(new Album(titre, artiste, date));
+		IntLogger sfl = SingletonFileLogger.getInstance();
+		sfl.write(Levels.INFO, "jMusicHub.addAlbum() : success");
 		System.out.println("Votre nouvel album a été ajouté avec succès.\n" + albums.peekLast());
 		return;
 	}
@@ -666,6 +692,8 @@ public class jMusicHub implements interfaceJmusicHub {
 		for(Album a : albums.getList()) {
 			if(a.getTitre().equals(userInput)) {
 				albums.del(a);
+				IntLogger sfl = SingletonFileLogger.getInstance();
+				sfl.write(Levels.INFO, "jMusicHub.delAlbum() : " + userInput + " deleted");
 				System.out.println("Album supprimé avec succès de la bibliothèque.");
 			}
 		}
@@ -683,6 +711,8 @@ public class jMusicHub implements interfaceJmusicHub {
 			return;
 		}
 		playlists.add(new Playlist(nom));
+		IntLogger sfl = SingletonFileLogger.getInstance();
+		sfl.write(Levels.INFO, "jMusicHub.addPlaylist() : success");
 		System.out.println("Votre nouvelle playlist a été ajoutée avec succès.\n" + playlists.peekLast());
 		return;
 	}
@@ -698,6 +728,8 @@ public class jMusicHub implements interfaceJmusicHub {
 		for(Playlist p : playlists.getList()) {
 			if(p.getNom().equals(userInput)) {
 				playlists.del(p);
+				IntLogger sfl = SingletonFileLogger.getInstance();
+				sfl.write(Levels.INFO, "jMusicHub.delPlaylist() : " + userInput + " deleted");
 				System.out.println("Playlist supprimée avec succès de la bibliothèque.");
 			}
 		}
