@@ -6,7 +6,7 @@ import java.beans.XMLDecoder;
 import java.io.*;
 
 /**
- * DeserializeFromXML allow the deserialization of all objects of the librairy.
+ * DeserializeFromXML allow the deserialization of all objects of the library.
  * <p>
  * The objects to deserialize are ElementList, AlbumList and PlaylistList.
  * 
@@ -46,19 +46,23 @@ public class DeserializeFromXML {
 	/**
 	 * Used to deserialize the AlbumList object.
 	 * 
-	 * @return an AlbumList object containning all albums informations
+	 * @return an AlbumList object containing all albums informations
 	 */
 	public AlbumList decodeAlbums() {
 		XMLDecoder decoder = null;
 		AlbumList list = new AlbumList();
-		try {
 
+		try {
 			/* Decodes the object. */
 			decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream(SERIALIZED_FILE_NAME)));
 			list = (AlbumList) decoder.readObject();		
 			decoder.close();
 		} catch(FileNotFoundException fileNotFound) {
-			System.out.println("Erreur : fichier albums.xml introuvable. Aucune donnée n'a été importée.");
+			IntLogger sfl = SingletonFileLogger.getInstance();
+			sfl.write(Levels.WARNING, "DeserializeFromXML.decodeAlbums() : file " + SERIALIZED_FILE_NAME + " not found");
+
+			IntLogger scl = SingletonConsoleLogger.getInstance();
+			scl.write(Levels.INFO, "Fichier albums.xml introuvable. Aucune donnée n'a été importée.");
 		}
 
 		return list;
@@ -67,19 +71,23 @@ public class DeserializeFromXML {
 	/**
 	 * Used to deserialize the ElementList object.
 	 * 
-	 * @return an ElementList object containning all songs and audio books informations
+	 * @return an ElementList object containing all songs and audio books informations
 	 */
 	public ElementList decodeElements() {
 		XMLDecoder decoder = null;
 		ElementList list = new ElementList();
-		try {
 
+		try {
 			/* Decodes the object. */
 			decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream(SERIALIZED_FILE_NAME)));
 			list = (ElementList) decoder.readObject();		
 			decoder.close();
 		} catch(FileNotFoundException fileNotFound) {
-			System.out.println("Erreur : fichier elements.xml introuvable. Aucune donnée n'a été importée.");
+			IntLogger sfl = SingletonFileLogger.getInstance();
+			sfl.write(Levels.WARNING, "DeserializeFromXML.decodeElements() : file " + SERIALIZED_FILE_NAME + " not found");
+
+			IntLogger scl = SingletonConsoleLogger.getInstance();
+			scl.write(Levels.INFO, "Fichier elements.xml introuvable. Aucune donnée n'a été importée.");
 		}
 
 		return list;
@@ -88,19 +96,23 @@ public class DeserializeFromXML {
 	/**
 	 * Used to deserialize the PlaylistList object.
 	 * 
-	 * @return an PlaylistList object containning all playlists informations
+	 * @return an PlaylistList object containing all playlists informations
 	 */
 	public PlaylistList decodePlaylists() {
 		XMLDecoder decoder = null;
 		PlaylistList list = new PlaylistList();
-		try {
 
+		try {
 			/* Decodes the object. */
 			decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream(SERIALIZED_FILE_NAME)));
 			list = (PlaylistList) decoder.readObject();		
 			decoder.close();
 		} catch(FileNotFoundException fileNotFound) {
-			System.out.println("Erreur : fichier playlists.xml introuvable. Aucune donnée n'a été importée.");
+			IntLogger sfl = SingletonFileLogger.getInstance();
+			sfl.write(Levels.WARNING, "DeserializeFromXML.decodePlaylists() : file " + SERIALIZED_FILE_NAME + " not found");
+
+			IntLogger scl = SingletonConsoleLogger.getInstance();
+			scl.write(Levels.INFO, "Fichier playlists.xml introuvable. Aucune donnée n'a été importée.");
 		}
 
 		return list;

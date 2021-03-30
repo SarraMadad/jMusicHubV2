@@ -44,13 +44,16 @@ public class SerializeToXML {
 
 		XMLEncoder encoder = null;
 		try {
-
 			/* Writes the object in the file selected. */
 			encoder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(SERIALIZED_FILE_NAME)));
 			encoder.writeObject(list);
 			encoder.close();
 		} catch(FileNotFoundException fileNotFound) {
-			System.out.println("Erreur : fichier XML introuvable. Les modifications n'ont pas été enregistrées.");
+			IntLogger sfl = SingletonFileLogger.getInstance();
+			sfl.write(Levels.WARNING, "SerializeToXML() : file " + SERIALIZED_FILE_NAME + " not found");
+
+			IntLogger scl = SingletonConsoleLogger.getInstance();
+			scl.write(Levels.INFO, "Fichier XML introuvable. Les modifications n'ont pas été enregistrées.");
 		}
 	}
 }

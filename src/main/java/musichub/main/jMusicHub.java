@@ -698,6 +698,7 @@ public class jMusicHub implements interfaceJmusicHub {
 			}
 		}
 	}
+
 	/**
 	 * Adds a playlist to the PlaylistList and displays it.
 	 * 

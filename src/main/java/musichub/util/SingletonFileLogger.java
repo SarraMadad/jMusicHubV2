@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * Singleton class to write a message in the logfile.
  *
- * @author Sylvain BUI, Srikanth COLLATY, Maxence LECLERC, Sarra MADAD
+ * @author Sylvain BUI, Maxence LECLERC, Nour-El-Houda LOUATY, Sarra MADAD
  * @version 1.0
  * @see IntLogger
  * @see Levels
