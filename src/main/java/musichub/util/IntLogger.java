@@ -4,7 +4,7 @@ package musichub.util;
  * IntLogger contains the write() method for SingletonFileLogger
  * and SingletonConsoleLogger.
  *
- * @author Sylvain BUI, Srikanth COLLATY, Maxence LECLERC, Sarra MADAD
+ * @author Sylvain BUI, Maxence LECLERC, Nour-El-Houda LOUATY, Sarra MADAD
  * @version 1.0
  * @see SingletonFileLogger
  * @see SingletonConsoleLogger

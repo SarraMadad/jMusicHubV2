@@ -3,7 +3,7 @@ package musichub.util;
 /**
  * Levels is an enum used to attribute a type to a message in the logs.
  *
- * @author Sylvain BUI, Srikanth COLLATY, Maxence LECLERC, Sarra MADAD
+ * @author Sylvain BUI, Maxence LECLERC, Nour-El-Houda LOUATY, Sarra MADAD
  * @version 1.0
  * @see IntLogger
  * @see SingletonFileLogger
