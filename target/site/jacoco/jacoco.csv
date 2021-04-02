@@ -1,25 +1,27 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-jMusicHubV2,musichub.util,SingletonConsoleLogger,22,0,2,0,8,0,5,0,4,0
+jMusicHubV2,musichub.util,Server,54,0,0,0,18,0,2,0,2,0
 jMusicHubV2,musichub.util,DeserializeFromXML,115,0,4,0,35,0,7,0,4,0
 jMusicHubV2,musichub.util,SerializeToXML,46,0,4,0,15,0,4,0,1,0
-jMusicHubV2,musichub.util,SingletonFileLogger,56,0,2,0,17,0,5,0,4,0
-jMusicHubV2,musichub.util,Levels,59,0,0,0,9,0,3,0,3,0
+jMusicHubV2,musichub.util,SingletonFileLogger,3,53,0,2,2,15,0,5,0,4
+jMusicHubV2,musichub.util,Levels,3,56,0,0,1,8,1,2,1,2
+jMusicHubV2,musichub.util,SingletonConsoleLogger,0,22,1,1,0,8,1,4,0,4
+jMusicHubV2,musichub.util,Client,36,0,0,0,12,0,1,0,1,0
 jMusicHubV2,musichub.business,Playlist,130,0,4,0,38,0,18,0,16,0
 jMusicHubV2,musichub.business,Album,179,0,6,0,51,0,24,0,21,0
-jMusicHubV2,musichub.business,Categories,70,0,0,0,10,0,3,0,3,0
-jMusicHubV2,musichub.business,PlaylistList,273,0,36,0,67,0,29,0,11,0
 jMusicHubV2,musichub.business,ElementList,188,0,18,0,46,0,19,0,10,0
-jMusicHubV2,musichub.business,PlaylistList.new Comparator() {...},12,0,0,0,2,0,2,0,2,0
 jMusicHubV2,musichub.business,Chanson,36,25,0,0,10,8,6,1,6,1
-jMusicHubV2,musichub.business,WrongEnumValue,4,0,0,0,2,0,1,0,1,0
-jMusicHubV2,musichub.business,UserList,3,0,0,0,1,0,1,0,1,0
 jMusicHubV2,musichub.business,AlbumList.new Comparator() {...},23,0,2,0,4,0,3,0,2,0
 jMusicHubV2,musichub.business,ElementList.new Comparator() {...},23,0,2,0,4,0,3,0,2,0
-jMusicHubV2,musichub.business,LivreAudio,73,0,0,0,22,0,9,0,9,0
 jMusicHubV2,musichub.business,AlbumList.new Comparator() {...},34,0,4,0,6,0,4,0,2,0
-jMusicHubV2,musichub.business,Langues,70,0,0,0,10,0,3,0,3,0
 jMusicHubV2,musichub.business,Genres,3,78,0,0,1,10,1,2,1,2
 jMusicHubV2,musichub.business,AlbumList,262,0,34,0,60,0,29,0,12,0
-jMusicHubV2,musichub.business,Element,25,9,0,0,11,3,7,3,7,3
 jMusicHubV2,musichub.business,ElementList.new Comparator() {...},23,0,2,0,4,0,3,0,2,0
-jMusicHubV2,musichub.main,jMusicHub,1353,0,153,0,377,0,111,0,23,0
+jMusicHubV2,musichub.business,Categories,70,0,0,0,10,0,3,0,3,0
+jMusicHubV2,musichub.business,PlaylistList,273,0,36,0,67,0,29,0,11,0
+jMusicHubV2,musichub.business,PlaylistList.new Comparator() {...},12,0,0,0,2,0,2,0,2,0
+jMusicHubV2,musichub.business,WrongEnumValue,4,0,0,0,2,0,1,0,1,0
+jMusicHubV2,musichub.business,UserList,3,0,0,0,1,0,1,0,1,0
+jMusicHubV2,musichub.business,LivreAudio,73,0,0,0,22,0,9,0,9,0
+jMusicHubV2,musichub.business,Langues,70,0,0,0,10,0,3,0,3,0
+jMusicHubV2,musichub.business,Element,25,9,0,0,11,3,7,3,7,3
+jMusicHubV2,musichub.main,jMusicHub,1463,0,153,0,409,0,111,0,23,0
