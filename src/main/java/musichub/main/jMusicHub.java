@@ -44,7 +44,7 @@ public class jMusicHub implements interfaceJmusicHub {
 
 		Boolean run = true;
 
-		System.out.println("Bienvenue dans jMusicHub !");
+		System.out.println("Bienvenue client dans jMusicHub !");
 		System.out.println("Entrez la commande h si vous avez besoin d'aide sur les commandes disponibles.");
 
 		while(run) {

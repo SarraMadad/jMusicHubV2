@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.1" class="java.beans.XMLDecoder">
+ <object class="musichub.business.ElementList" id="ElementList0">
+  <void property="list">
+   <void method="add">
+    <object class="musichub.business.Chanson">
+     <void property="artiste">
+      <string>Michael Jackson</string>
+     </void>
+     <void property="contenu">
+      <string>thriller.mp3</string>
+     </void>
+     <void property="duree">
+      <int>357</int>
+     </void>
+     <void property="genre">
+      <object class="java.lang.Enum" id="Genres0" method="valueOf">
+       <class>musichub.business.Genres</class>
+       <string>POP</string>
+      </object>
+     </void>
+     <void property="id">
+      <int>0</int>
+     </void>
+     <void property="titre">
+      <string>Thriller</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="musichub.business.Chanson">
+     <void property="artiste">
+      <string>Michael Jackson</string>
+     </void>
+     <void property="contenu">
+      <string>beat_it.mp3</string>
+     </void>
+     <void property="duree">
+      <int>258</int>
+     </void>
+     <void property="genre">
+      <object idref="Genres0"/>
+     </void>
+     <void property="id">
+      <int>1</int>
+     </void>
+     <void property="titre">
+      <string>Beat It</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="musichub.business.Chanson">
+     <void property="artiste">
+      <string>The Rolling Stones</string>
+     </void>
+     <void property="contenu">
+      <string>bye_bye_johnny.mp3</string>
+     </void>
+     <void property="duree">
+      <int>130</int>
+     </void>
+     <void property="genre">
+      <object class="java.lang.Enum" id="Genres1" method="valueOf">
+       <class>musichub.business.Genres</class>
+       <string>ROCK</string>
+      </object>
+     </void>
+     <void property="id">
+      <int>2</int>
+     </void>
+     <void property="titre">
+      <string>Bye Bye Johnny</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="musichub.business.Chanson">
+     <void property="artiste">
+      <string>The Rolling Stones</string>
+     </void>
+     <void property="contenu">
+      <string>money.mp3</string>
+     </void>
+     <void property="duree">
+      <int>152</int>
+     </void>
+     <void property="genre">
+      <object idref="Genres1"/>
+     </void>
+     <void property="id">
+      <int>3</int>
+     </void>
+     <void property="titre">
+      <string>Money</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="musichub.business.Chanson">
+     <void property="artiste">
+      <string>The Rolling Stones</string>
+     </void>
+     <void property="contenu">
+      <string>you_better_move_on.mp3</string>
+     </void>
+     <void property="duree">
+      <int>161</int>
+     </void>
+     <void property="genre">
+      <object idref="Genres1"/>
+     </void>
+     <void property="id">
+      <int>4</int>
+     </void>
+     <void property="titre">
+      <string>You Better Move On</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="musichub.business.Chanson">
+     <void property="artiste">
+      <string>Ray Charles</string>
+     </void>
+     <void property="contenu">
+      <string>hit_the_road_jack.mp3</string>
+     </void>
+     <void property="duree">
+      <int>118</int>
+     </void>
+     <void property="genre">
+      <object class="java.lang.Enum" id="Genres2" method="valueOf">
+       <class>musichub.business.Genres</class>
+       <string>JAZZ</string>
+      </object>
+     </void>
+     <void property="id">
+      <int>5</int>
+     </void>
+     <void property="titre">
+      <string>Hit the Road Jack</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="musichub.business.Chanson">
+     <void property="artiste">
+      <string>Frank Sinatra</string>
+     </void>
+     <void property="contenu">
+      <string>sinatra_jazz.wav</string>
+     </void>
+     <void property="duree">
+      <int>227</int>
+     </void>
+     <void property="genre">
+      <object idref="Genres2"/>
+     </void>
+     <void property="id">
+      <int>6</int>
+     </void>
+     <void property="titre">
+      <string>I&apos;ve Got You Under My Skin</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="musichub.business.Chanson">
+     <void property="artiste">
+      <string>Louis Prima</string>
+     </void>
+     <void property="contenu">
+      <string>just_a_gigolo.mp3</string>
+     </void>
+     <void property="duree">
+      <int>286</int>
+     </void>
+     <void property="genre">
+      <object idref="Genres2"/>
+     </void>
+     <void property="id">
+      <int>7</int>
+     </void>
+     <void property="titre">
+      <string>Just a Gigolo</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="musichub.business.Chanson">
+     <void property="artiste">
+      <string>Dean Martin</string>
+     </void>
+     <void property="contenu">
+      <string>sway.mp3</string>
+     </void>
+     <void property="duree">
+      <int>164</int>
+     </void>
+     <void property="genre">
+      <object idref="Genres2"/>
+     </void>
+     <void property="id">
+      <int>8</int>
+     </void>
+     <void property="titre">
+      <string>Sway</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="musichub.business.Chanson">
+     <void property="artiste">
+      <string>Vivaldi</string>
+     </void>
+     <void property="contenu">
+      <string>4_saisons.wav</string>
+     </void>
+     <void property="duree">
+      <int>2418</int>
+     </void>
+     <void property="genre">
+      <object class="java.lang.Enum" method="valueOf">
+       <class>musichub.business.Genres</class>
+       <string>CLASSIQUE</string>
+      </object>
+     </void>
+     <void property="id">
+      <int>27</int>
+     </void>
+     <void property="titre">
+      <string>Les Quatre Saisons</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="musichub.business.LivreAudio">
+     <void property="auteur">
+      <string>J.K. Rowling</string>
+     </void>
+     <void property="categorie">
+      <object class="java.lang.Enum" id="Categories0" method="valueOf">
+       <class>musichub.business.Categories</class>
+       <string>ROMAN</string>
+      </object>
+     </void>
+     <void property="contenu">
+      <string>hp_1.wav</string>
+     </void>
+     <void property="duree">
+      <int>30060</int>
+     </void>
+     <void property="id">
+      <int>28</int>
+     </void>
+     <void property="langue">
+      <object class="java.lang.Enum" id="Langues0" method="valueOf">
+       <class>musichub.business.Langues</class>
+       <string>FRANCAIS</string>
+      </object>
+     </void>
+     <void property="titre">
+      <string>Harry Potter à L&apos;école des Sorciers</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="musichub.business.LivreAudio">
+     <void property="auteur">
+      <string>J.K. Rowling</string>
+     </void>
+     <void property="categorie">
+      <object idref="Categories0"/>
+     </void>
+     <void property="contenu">
+      <string>hp_2.wav</string>
+     </void>
+     <void property="duree">
+      <int>33730</int>
+     </void>
+     <void property="id">
+      <int>29</int>
+     </void>
+     <void property="langue">
+      <object idref="Langues0"/>
+     </void>
+     <void property="titre">
+      <string>Harry Potter et la Chambre des Secrets</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="musichub.business.LivreAudio">
+     <void property="auteur">
+      <string>J.K. Rowling</string>
+     </void>
+     <void property="categorie">
+      <object idref="Categories0"/>
+     </void>
+     <void property="contenu">
+      <string>hp_3.wav</string>
+     </void>
+     <void property="duree">
+      <int>41700</int>
+     </void>
+     <void property="id">
+      <int>30</int>
+     </void>
+     <void property="langue">
+      <object idref="Langues0"/>
+     </void>
+     <void property="titre">
+      <string>Harry Potter et le Prisonnier d&apos;Azkaban</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="musichub.business.Chanson">
+     <void property="artiste">
+      <string>Lo-Fi Beats</string>
+     </void>
+     <void property="contenu">
+      <string>chill_space.mp3</string>
+     </void>
+     <void property="duree">
+      <int>126</int>
+     </void>
+     <void property="genre">
+      <object class="java.lang.Enum" id="Genres3" method="valueOf">
+       <class>musichub.business.Genres</class>
+       <string>HIP_HOP</string>
+      </object>
+     </void>
+     <void property="id">
+      <int>104</int>
+     </void>
+     <void property="titre">
+      <string>Chill Space (feat. Beats De Rap)</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="musichub.business.Chanson">
+     <void property="artiste">
+      <string>Lo-Fi Beats</string>
+     </void>
+     <void property="contenu">
+      <string>sun_kiss.mp3</string>
+     </void>
+     <void property="duree">
+      <int>129</int>
+     </void>
+     <void property="genre">
+      <object idref="Genres3"/>
+     </void>
+     <void property="id">
+      <int>105</int>
+     </void>
+     <void property="titre">
+      <string>Sun Kiss (feat. Beats De Rap)</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="musichub.business.Chanson">
+     <void property="artiste">
+      <string>Lo-Fi Beats</string>
+     </void>
+     <void property="contenu">
+      <string>godly_dreams.mp3</string>
+     </void>
+     <void property="duree">
+      <int>165</int>
+     </void>
+     <void property="genre">
+      <object idref="Genres3"/>
+     </void>
+     <void property="id">
+      <int>106</int>
+     </void>
+     <void property="titre">
+      <string>Godly Dreams (feat. Beats De Rap)</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="musichub.business.Chanson">
+     <void property="artiste">
+      <string>Elvis Presley</string>
+     </void>
+     <void property="contenu">
+      <string>jailhouse_rock.mp3</string>
+     </void>
+     <void property="duree">
+      <int>155</int>
+     </void>
+     <void property="genre">
+      <object idref="Genres1"/>
+     </void>
+     <void property="id">
+      <int>169</int>
+     </void>
+     <void property="titre">
+      <string>Jailhouse Rock</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="musichub.business.Chanson">
+     <void property="artiste">
+      <string>Elvis Presley</string>
+     </void>
+     <void property="contenu">
+      <string>dont.mp3</string>
+     </void>
+     <void property="duree">
+      <int>168</int>
+     </void>
+     <void property="genre">
+      <object idref="Genres1"/>
+     </void>
+     <void property="id">
+      <int>170</int>
+     </void>
+     <void property="titre">
+      <string>Don&apos;t</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="musichub.business.Chanson">
+     <void property="artiste">
+      <string>Ninho</string>
+     </void>
+     <void property="contenu">
+      <string>sans_peine.mp3</string>
+     </void>
+     <void property="duree">
+      <int>157</int>
+     </void>
+     <void property="genre">
+      <object class="java.lang.Enum" id="Genres4" method="valueOf">
+       <class>musichub.business.Genres</class>
+       <string>RAP</string>
+      </object>
+     </void>
+     <void property="id">
+      <int>204</int>
+     </void>
+     <void property="titre">
+      <string>Sans peine</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="musichub.business.Chanson">
+     <void property="artiste">
+      <string>Ninho</string>
+     </void>
+     <void property="contenu">
+      <string>la_vie_qu_on_mene.mp3</string>
+     </void>
+     <void property="duree">
+      <int>193</int>
+     </void>
+     <void property="genre">
+      <object idref="Genres4"/>
+     </void>
+     <void property="id">
+      <int>205</int>
+     </void>
+     <void property="titre">
+      <string>La vie qu&apos;on mène</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="musichub.business.Chanson">
+     <void property="artiste">
+      <string>Ninho</string>
+     </void>
+     <void property="contenu">
+      <string>goutte_d_eau.mp3</string>
+     </void>
+     <void property="duree">
+      <int>157</int>
+     </void>
+     <void property="genre">
+      <object idref="Genres4"/>
+     </void>
+     <void property="id">
+      <int>206</int>
+     </void>
+     <void property="titre">
+      <string>Goutte d&apos;eau</string>
+     </void>
+    </object>
+   </void>
+  </void>
+ </object>
+</java>
