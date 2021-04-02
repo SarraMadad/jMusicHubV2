@@ -23,9 +23,10 @@ public class MainServer {
      * Default constructor. Initializes the lists and contains the main while.
      */
     public MainServer() {
+    }
 
-/*
-        *//* Lecture des fichiers XML. *//*
+    public void MAINTMP() {
+        /* Lecture des fichiers XML. */
         elements = new DeserializeFromXML("elements").decodeElements();
         albums = new DeserializeFromXML("albums").decodeAlbums();
         playlists = new DeserializeFromXML("playlists").decodePlaylists();
@@ -40,22 +41,22 @@ public class MainServer {
             userInput = userInputObj.nextLine();
             switch(userInput) {
 
-                *//* Affiche les chansons de la bibliothèque. *//*
+                /* Affiche les chansons de la bibliothèque. */
                 case "B":
                     System.out.println(elements.listeChanson());
                     break;
 
-                *//* Affiche les livres audio. *//*
+                /* Affiche les livres audio. */
                 case "L":
                     System.out.println(elements.listeLivreAudio());
                     break;
 
-                *//* Affiche les albums. *//*
+                /* Affiche les albums. */
                 case "A":
                     System.out.println(albums);
                     break;
 
-                *//* Affiche les chansons d'un album. *//*
+                /* Affiche les chansons d'un album. */
                 case "C":
                     System.out.println(albums + "\nQuel album souhaitez-vous afficher ?");
                     userInput = userInputObj.nextLine();
@@ -63,7 +64,7 @@ public class MainServer {
                     albums.displaySongsOfAlbum(userInput);
                     break;
 
-                *//* Affiche les chansons triées par genre d'un album. *//*
+                /* Affiche les chansons triées par genre d'un album. */
                 case "G":
                     System.out.println(albums + "\nQuel album souhaitez-vous afficher ?");
                     userInput = userInputObj.nextLine();
@@ -71,7 +72,7 @@ public class MainServer {
                     albums.displaySongsOfAlbumSorted(userInput);
                     break;
 
-                *//* Affiche les chansons en ordre aléatoire. *//*
+                /* Affiche les chansons en ordre aléatoire. */
                 case "GA":
                     System.out.println(albums + "\nQuel album souhaitez-vous afficher ?");
                     userInput = userInputObj.nextLine();
@@ -79,12 +80,12 @@ public class MainServer {
                     albums.randomDisplaySongsOfAlbum(userInput);
                     break;
 
-                *//* Affiche les playlists. *//*
+                /* Affiche les playlists. */
                 case "P":
                     System.out.println(playlists);
                     break;
 
-                *//* Affiche les éléments d'une playlist. *//*
+                /* Affiche les éléments d'une playlist. */
                 case "M":
                     System.out.println(playlists + "\nQuelle playlist souhaitez-vous afficher ?");
                     userInput = userInputObj.nextLine();
@@ -92,7 +93,7 @@ public class MainServer {
                     playlists.displaySongsOfPlaylist(userInput);
                     break;
 
-                *//* Affiche les éléments en ordre aléatoire. *//*
+                /* Affiche les éléments en ordre aléatoire. */
                 case "MA":
                     System.out.println(playlists + "\nQuelle playlist souhaitez-vous afficher ?");
                     userInput = userInputObj.nextLine();
@@ -100,22 +101,22 @@ public class MainServer {
                     playlists.randomDisplaySongsOfPlaylist(userInput);
                     break;
 
-                *//* Nouvelle chanson. *//*
+                /* Nouvelle chanson. */
                 case "b":
                     addMusic(elements);
                     break;
 
-                *//* Nouveau livre audio. *//*
+                /* Nouveau livre audio. */
                 case "l":
                     addLivre(elements);
                     break;
 
-                *//* Nouvel album. *//*
+                /* Nouvel album. */
                 case "a":
                     addAlbum(albums);
                     break;
 
-                *//* Rajout d'une chanson existante à un album. *//*
+                /* Rajout d'une chanson existante à un album. */
                 case "c":
                     System.out.println(albums + "\nQuel album souhaitez-vous modifier ?");
                     String albumName = userInputObj.nextLine();
@@ -124,12 +125,12 @@ public class MainServer {
                     albums.addMusic(albumName, musicName, elements);
                     break;
 
-                *//* Nouvelle playlist. *//*
+                /* Nouvelle playlist. */
                 case "p":
                     addPlaylist(playlists);
                     break;
 
-                *//* Rajout d'un élément existant à une playlist. *//*
+                /* Rajout d'un élément existant à une playlist. */
                 case "m":
                     System.out.println(playlists + "\nQuelle playlist souhaitez-vous modifier ?");
                     String playlistName = userInputObj.nextLine();
@@ -139,22 +140,22 @@ public class MainServer {
                     playlists.addElement(playlistName, elementName, elements);
                     break;
 
-                *//* Supprimer une chanson. *//*
+                /* Supprimer une chanson. */
                 case "-b":
                     delMusic(elements, albums, playlists);
                     break;
 
-                *//* Supprimer un livre audio. *//*
+                /* Supprimer un livre audio. */
                 case "-l":
                     delLivre(elements, playlists);
                     break;
 
-                *//* Supprimer un album. *//*
+                /* Supprimer un album. */
                 case "-a":
                     delAlbum(albums);
                     break;
 
-                *//* Supprimer une chanson d'un album. *//*
+                /* Supprimer une chanson d'un album. */
                 case "-c":
                     System.out.println(albums + "\nQuel album souhaitez-vous modifier ?");
                     albumName = userInputObj.nextLine();
@@ -165,12 +166,12 @@ public class MainServer {
                     albums.delSongOfAlbum(albumName, musicName, elements);
                     break;
 
-                *//* Supprimer une playlist. *//*
+                /* Supprimer une playlist. */
                 case "-p":
                     delPlaylist(playlists);
                     break;
 
-                *//* Supprimer un élément d'une playlist. *//*
+                /* Supprimer un élément d'une playlist. */
                 case "-m":
                     System.out.println(playlists + "\nQuelle playlist souhaitez-vous modifier ?");
                     playlistName = userInputObj.nextLine();
@@ -180,7 +181,7 @@ public class MainServer {
                     playlists.delSongOfPlaylist(playlistName,elementName,elements);
                     break;
 
-                *//* Ecriture dans les fichiers XML. *//*
+                /* Ecriture dans les fichiers XML. */
                 case "s":
                     System.out.println("Sauvegarde de la bibliothèque musicale...");
                     new SerializeToXML("elements", elements);
@@ -189,12 +190,12 @@ public class MainServer {
                     System.out.println("Sauvegarde terminée.");
                     break;
 
-                *//* Menu d'aide aux commandes. *//*
+                /* Menu d'aide aux commandes. */
                 case "h":
                     help();
                     break;
 
-                *//* Quitter. *//*
+                /* Quitter. */
                 case "q":
                     run = quit();
                     break;
@@ -203,7 +204,7 @@ public class MainServer {
                     System.out.println("Commande introuvable. Utilisez la commande h pour afficher les commandes disponibles.");
                     break;
             }
-        }*/
+        }
     }
 
     /**
@@ -778,7 +779,7 @@ public class MainServer {
     }
 
     public String runClient(String commande) {
-        String message;
+        String message = "";
 
         elements = new DeserializeFromXML("elements").decodeElements();
         albums = new DeserializeFromXML("albums").decodeAlbums();
@@ -790,16 +791,16 @@ public class MainServer {
             case "B":
                 //System.out.println(elements.listeChanson());
                 message = elements.listeChanson().toString();
-                return message;
+                break;
 
             /* Affiche les livres audio. */
             case "L":
-                System.out.println(elements.listeLivreAudio());
+                message = elements.listeLivreAudio().toString();
                 break;
 
             /* Affiche les albums. */
             case "A":
-                System.out.println(albums);
+                message = albums.toString();
                 break;
 
             /* Affiche les chansons d'un album. */
@@ -828,7 +829,7 @@ public class MainServer {
 
             /* Affiche les playlists. */
             case "P":
-                System.out.println(playlists);
+                message = playlists.toString();
                 break;
 
             /* Affiche les éléments d'une playlist. */
@@ -847,107 +848,21 @@ public class MainServer {
                 playlists.randomDisplaySongsOfPlaylist(userInput);
                 break;
 
-            /* Nouvelle chanson. */
-            case "b":
-                addMusic(elements);
-                break;
-
-            /* Nouveau livre audio. */
-            case "l":
-                addLivre(elements);
-                break;
-
-            /* Nouvel album. */
-            case "a":
-                addAlbum(albums);
-                break;
-
-            /* Rajout d'une chanson existante à un album. */
-            case "c":
-                System.out.println(albums + "\nQuel album souhaitez-vous modifier ?");
-                String albumName = userInputObj.nextLine();
-                System.out.println(elements.listeChanson() + "\nQuelle musique souhaitez-vous ajouter ?\nEntrez le titre de la musique suivi de son artiste : Titre - Artiste");
-                String musicName = userInputObj.nextLine();
-                albums.addMusic(albumName, musicName, elements);
-                break;
-
-            /* Nouvelle playlist. */
-            case "p":
-                addPlaylist(playlists);
-                break;
-
-            /* Rajout d'un élément existant à une playlist. */
-            case "m":
-                System.out.println(playlists + "\nQuelle playlist souhaitez-vous modifier ?");
-                String playlistName = userInputObj.nextLine();
-                System.out.println(elements.listeChanson() + "\n" + elements.listeLivreAudio());
-                System.out.println("Quel élément souhaitez-vous ajouter ?\nEntrez le titre de l'élément suivi de son artiste/auteur : Titre - Artiste");
-                String elementName = userInputObj.nextLine();
-                playlists.addElement(playlistName, elementName, elements);
-                break;
-
-            /* Supprimer une chanson. */
-            case "-b":
-                delMusic(elements, albums, playlists);
-                break;
-
-            /* Supprimer un livre audio. */
-            case "-l":
-                delLivre(elements, playlists);
-                break;
-
-            /* Supprimer un album. */
-            case "-a":
-                delAlbum(albums);
-                break;
-
-            /* Supprimer une chanson d'un album. */
-            case "-c":
-                System.out.println(albums + "\nQuel album souhaitez-vous modifier ?");
-                albumName = userInputObj.nextLine();
-                albums.displaySongsOfAlbum(albumName);
-                System.out.println("Quelle musique souhaitez-vous supprimer ?");
-                System.out.println("Entrez le titre de la musique suivi de son artiste : Titre - Artiste");
-                musicName = userInputObj.nextLine();
-                albums.delSongOfAlbum(albumName, musicName, elements);
-                break;
-
-            /* Supprimer une playlist. */
-            case "-p":
-                delPlaylist(playlists);
-                break;
-
-            /* Supprimer un élément d'une playlist. */
-            case "-m":
-                System.out.println(playlists + "\nQuelle playlist souhaitez-vous modifier ?");
-                playlistName = userInputObj.nextLine();
-                playlists.displaySongsOfPlaylist(playlistName);
-                System.out.println("Quel élément souhaitez-vous supprimer ?\nEntrez le titre de l'élément suivi de son artiste/auteur : Titre - Artiste");
-                elementName = userInputObj.nextLine();
-                playlists.delSongOfPlaylist(playlistName,elementName,elements);
-                break;
-
-            /* Ecriture dans les fichiers XML. */
-            case "s":
-                System.out.println("Sauvegarde de la bibliothèque musicale...");
-                new SerializeToXML("elements", elements);
-                new SerializeToXML("albums", albums);
-                new SerializeToXML("playlists", playlists);
-                System.out.println("Sauvegarde terminée.");
-                break;
-
             /* Menu d'aide aux commandes. */
             case "h":
-                help();
-                break;
 
-            /* Quitter. */
-            case "q":
+
+
+                help();
+
+
+
+
                 break;
 
             default:
-                return "VOILA";
+                message = "Commande introuvable. Utilisez la commande h pour afficher les commandes disponibles.";
         }
-        return "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+        return message;
     }
 }

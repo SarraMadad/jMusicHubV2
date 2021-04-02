@@ -32,8 +32,24 @@ public class Client {
                 String msg;
                 @Override
                 public void run() {
+
+                    System.out.println("Bienvenue sur la console client de jMusicHub !");
+                    System.out.println("Entrez la commande h si vous avez besoin d'aide sur les commandes disponibles.");
+
                     while(true){
+                        System.out.println("\nQue souhaitez-vous faire ?\n");
                         msg = sc.nextLine();
+
+                        if(msg.equals("q")) {
+                            System.out.println("Bye bye!");
+                            try {
+                                clientSocket.close();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            System.exit(0);
+                        }
+
                         out.println(msg);
                         out.flush();
                     }
@@ -48,7 +64,10 @@ public class Client {
                     try {
                         msg = in.readLine();
                         while(msg!=null){
-                            System.out.println("Serveur : "+msg);
+
+                            System.out.println(msg);
+                            //System.out.println("Serveur : "+msg);
+
                             msg = in.readLine();
                         }
                         System.out.println("Serveur déconecté");
