@@ -1,35 +1,68 @@
 package musichub.util;
 
-import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class Client {
 
-    private static final String SERVER_IP = "127.0.0.1";
-    private static final int SERVER_PORT = 9090;
+    public static void main(String[] args) {
 
+        final Socket clientSocket;
+        final BufferedReader in;
+        final PrintWriter out;
+        final Scanner sc = new Scanner(System.in);//pour lire à partir du clavier
 
-    public static void main(String[] args) throws IOException {
-        Socket socket = new Socket(SERVER_IP, SERVER_PORT);
+        try {
+            /*
+             * les informations du serveur ( port et adresse IP ou nom d'hote
+             * 127.0.0.1 est l'adresse local de la machine
+             */
+            clientSocket = new Socket("127.0.0.1",5000);
 
-        BufferedReader input = new BufferedReader(new InputStreamReader( socket.getInputStream()));
-        String serverResponse = input.readLine();
+            //flux pour envoyer
+            out = new PrintWriter(clientSocket.getOutputStream());
+            //flux pour recevoir
+            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-        JOptionPane.showMessageDialog(null, serverResponse);
+            Thread envoyer = new Thread(new Runnable() {
+                String msg;
+                @Override
+                public void run() {
+                    while(true){
+                        msg = sc.nextLine();
+                        out.println(msg);
+                        out.flush();
+                    }
+                }
+            });
+            envoyer.start();
 
-        socket.close();
-        System.exit(0);
+            Thread recevoir = new Thread(new Runnable() {
+                String msg;
+                @Override
+                public void run() {
+                    try {
+                        msg = in.readLine();
+                        while(msg!=null){
+                            System.out.println("Serveur : "+msg);
+                            msg = in.readLine();
+                        }
+                        System.out.println("Serveur déconecté");
+                        out.close();
+                        clientSocket.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            recevoir.start();
 
-
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
-//////////
-
-
-
-
-
-
