@@ -1,0 +1,26 @@
+[2021-03-28 16:19:03.632] - WARNING - Valeur inattendue dans SingletonTest ! 
+[2021-03-28 16:19:03.698] - ERROR - SingletonTest.main() : Impossible de convertir le String en Integer
+[2021-03-28 16:19:28.776] - WARNING - Valeur inattendue dans SingletonTest ! 
+[2021-03-28 16:19:28.806] - ERROR - SingletonTest.main() : Impossible de convertir le String en Integer
+[2021-03-29 20:04:49.794] - WARNING - Valeur inattendue dans SingletonTest ! 
+[2021-03-29 20:04:49.841] - ERROR - SingletonTest.main() : Impossible de convertir le String en Integer
+[2021-03-29 20:05:20.233] - WARNING - Valeur inattendue dans SingletonTest ! 
+[2021-03-29 20:05:20.283] - ERROR - SingletonTest.main() : Impossible de convertir le String en Integer
+[2021-03-29 20:05:58.531] - WARNING - Valeur inattendue dans SingletonTest ! 
+[2021-03-29 20:05:58.588] - ERROR - SingletonTest.main() : Impossible de convertir le String en Integer
+[2021-03-29 20:08:01.945] - WARNING - Valeur inattendue dans SingletonTest ! 
+[2021-03-29 20:08:01.991] - ERROR - SingletonTest.main() : Impossible de convertir le String en Integer
+[2021-03-29 20:09:04.724] - WARNING - Valeur inattendue dans SingletonTest ! 
+[2021-03-29 20:09:04.776] - ERROR - SingletonTest.main() : Impossible de convertir le String en Integer
+[2021-03-29 20:11:18.849] - WARNING - Valeur inattendue dans SingletonTest ! 
+[2021-03-29 20:11:18.904] - ERROR - SingletonTest.main() : Impossible de convertir le String en Integer
+[2021-03-29 20:16:05.103] - WARNING - Valeur inattendue dans SingletonTest ! 
+[2021-03-29 20:16:05.147] - ERROR - SingletonTest.main() : Impossible de convertir le String en Integer
+[2021-03-29 20:42:32.008] - WARNING - Valeur inattendue dans SingletonTest ! 
+[2021-03-29 20:42:32.069] - ERROR - SingletonTest.main() : Impossible de convertir le String en Integer
+[2021-03-30 16:26:25.516] - WARNING - DeserializeFromXML.decodeElements() : file ./files/elements.xml not found
+[2021-03-30 16:26:25.555] - WARNING - DeserializeFromXML.decodeAlbums() : file ./files/albums.xml not found
+[2021-03-30 16:26:25.558] - WARNING - DeserializeFromXML.decodePlaylists() : file ./files/playlists.xml not found
+[2021-03-30 16:58:15.256] - WARNING - DeserializeFromXML.decodeElements() : file ./files/elements.xml not found
+[2021-03-30 16:58:15.298] - WARNING - DeserializeFromXML.decodeAlbums() : file ./files/albums.xml not found
+[2021-03-30 16:58:15.299] - WARNING - DeserializeFromXML.decodePlaylists() : file ./files/playlists.xml not found
