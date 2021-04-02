@@ -21,7 +21,7 @@ public class Client {
              * les informations du serveur ( port et adresse IP ou nom d'hote
              * 127.0.0.1 est l'adresse local de la machine
              */
-            clientSocket = new Socket("127.0.0.1",5000);
+            clientSocket = new Socket("127.0.0.1",9090);
 
             //flux pour envoyer
             out = new PrintWriter(clientSocket.getOutputStream());

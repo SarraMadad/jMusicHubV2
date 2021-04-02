@@ -20,7 +20,7 @@ public class Server {
         final Scanner sc=new Scanner(System.in);
 
         try {
-            serveurSocket = new ServerSocket(5000);
+            serveurSocket = new ServerSocket(9090);
             clientSocket = serveurSocket.accept();
             out = new PrintWriter(clientSocket.getOutputStream());
             in = new BufferedReader (new InputStreamReader (clientSocket.getInputStream()));
