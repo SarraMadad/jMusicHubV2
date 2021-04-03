@@ -1,26 +1,21 @@
-[2021-03-28 16:19:03.632] - WARNING - Valeur inattendue dans SingletonTest ! 
-[2021-03-28 16:19:03.698] - ERROR - SingletonTest.main() : Impossible de convertir le String en Integer
-[2021-03-28 16:19:28.776] - WARNING - Valeur inattendue dans SingletonTest ! 
-[2021-03-28 16:19:28.806] - ERROR - SingletonTest.main() : Impossible de convertir le String en Integer
-[2021-03-29 20:04:49.794] - WARNING - Valeur inattendue dans SingletonTest ! 
-[2021-03-29 20:04:49.841] - ERROR - SingletonTest.main() : Impossible de convertir le String en Integer
-[2021-03-29 20:05:20.233] - WARNING - Valeur inattendue dans SingletonTest ! 
-[2021-03-29 20:05:20.283] - ERROR - SingletonTest.main() : Impossible de convertir le String en Integer
-[2021-03-29 20:05:58.531] - WARNING - Valeur inattendue dans SingletonTest ! 
-[2021-03-29 20:05:58.588] - ERROR - SingletonTest.main() : Impossible de convertir le String en Integer
-[2021-03-29 20:08:01.945] - WARNING - Valeur inattendue dans SingletonTest ! 
-[2021-03-29 20:08:01.991] - ERROR - SingletonTest.main() : Impossible de convertir le String en Integer
-[2021-03-29 20:09:04.724] - WARNING - Valeur inattendue dans SingletonTest ! 
-[2021-03-29 20:09:04.776] - ERROR - SingletonTest.main() : Impossible de convertir le String en Integer
-[2021-03-29 20:11:18.849] - WARNING - Valeur inattendue dans SingletonTest ! 
-[2021-03-29 20:11:18.904] - ERROR - SingletonTest.main() : Impossible de convertir le String en Integer
-[2021-03-29 20:16:05.103] - WARNING - Valeur inattendue dans SingletonTest ! 
-[2021-03-29 20:16:05.147] - ERROR - SingletonTest.main() : Impossible de convertir le String en Integer
-[2021-03-29 20:42:32.008] - WARNING - Valeur inattendue dans SingletonTest ! 
-[2021-03-29 20:42:32.069] - ERROR - SingletonTest.main() : Impossible de convertir le String en Integer
-[2021-03-30 16:26:25.516] - WARNING - DeserializeFromXML.decodeElements() : file ./files/elements.xml not found
-[2021-03-30 16:26:25.555] - WARNING - DeserializeFromXML.decodeAlbums() : file ./files/albums.xml not found
-[2021-03-30 16:26:25.558] - WARNING - DeserializeFromXML.decodePlaylists() : file ./files/playlists.xml not found
-[2021-03-30 16:58:15.256] - WARNING - DeserializeFromXML.decodeElements() : file ./files/elements.xml not found
-[2021-03-30 16:58:15.298] - WARNING - DeserializeFromXML.decodeAlbums() : file ./files/albums.xml not found
-[2021-03-30 16:58:15.299] - WARNING - DeserializeFromXML.decodePlaylists() : file ./files/playlists.xml not found
+[2021-04-03 15:09:04.07] - WARNING - jMusicHub.newDate() : user input is not a valid date time.
+[2021-04-03 15:09:23.564] - WARNING - jMusicHub.newDate() : user input is not a valid date time.
+[2021-04-03 15:09:37.968] - INFO - jMusicHub.addAlbum() : success
+[2021-04-03 15:09:58.115] - INFO - Client connecté
+[2021-04-03 15:10:08.262] - INFO - Client déconnecté
+[2021-04-03 15:10:18.763] - INFO - Client connecté
+[2021-04-03 15:10:18.764] - INFO - Client déconnecté
+[2021-04-03 15:10:51.572] - INFO - Client connecté
+[2021-04-03 15:10:51.574] - INFO - Client déconnecté
+[2021-04-03 15:11:19.298] - ERROR - Server.Thread.recevoir : java.net.SocketException: Connection reset
+[2021-04-03 15:13:04.019] - ERROR - Server.main() : java.net.ConnectException: Connection refused: connect
+[2021-04-03 15:13:14.29] - INFO - Client connecté
+[2021-04-03 15:13:19.62] - INFO - Client déconnecté
+[2021-04-03 15:13:25.745] - INFO - Client connecté
+[2021-04-03 15:13:41.599] - INFO - Client déconnecté
+[2021-04-03 15:13:49.972] - INFO - Client connecté
+[2021-04-03 15:14:02.831] - INFO - Client déconnecté
+[2021-04-03 15:20:28.773] - INFO - Client connecté
+[2021-04-03 15:20:44.95] - INFO - jMusicHub.addAlbum() : success
+[2021-04-03 15:21:14.462] - INFO - jMusicHub.delAlbum() : te deleted
+[2021-04-03 15:21:37.645] - INFO - Client déconnecté

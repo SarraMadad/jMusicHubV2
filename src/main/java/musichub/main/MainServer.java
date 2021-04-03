@@ -3,33 +3,25 @@ package musichub.main;
 import musichub.business.*;
 import musichub.util.*;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class MainServer {
+public class MainServer extends MainNetwork {
     /** Retrieve user input. */
     Scanner userInputObj = new Scanner(System.in);
     /** Save user input. */
     String userInput = null;
-    /** List of all the elements. */
-    ElementList elements = null;
-    /** List of all the albums. */
-    AlbumList albums = null;
-    /** List of all the playlists. */
-    PlaylistList playlists = null;
+    /** Singleton File Logger accessible for the whole software. */
+    IntLogger sfl = SingletonFileLogger.getInstance();
 
     /**
      * Default constructor. Initializes the lists and contains the main while.
      */
     public MainServer() {
-    }
-
-    public void MAINTMP() {
         /* Lecture des fichiers XML. */
-        elements = new DeserializeFromXML("elements").decodeElements();
-        albums = new DeserializeFromXML("albums").decodeAlbums();
-        playlists = new DeserializeFromXML("playlists").decodePlaylists();
+        actualisation();
 
         Boolean run = true;
 
@@ -99,6 +91,11 @@ public class MainServer {
                     userInput = userInputObj.nextLine();
 
                     playlists.randomDisplaySongsOfPlaylist(userInput);
+                    break;
+
+                /* Jouer une musique. */
+                case "PLAY":
+                    //TODO
                     break;
 
                 /* Nouvelle chanson. */
@@ -205,6 +202,9 @@ public class MainServer {
                     break;
             }
         }
+
+        /* L'utilisateur est sorti de la boucle et a quitté l'application. */
+        System.exit(0);
     }
 
     /**
@@ -212,9 +212,12 @@ public class MainServer {
      *
      * @param args user arguments. Not used.
      */
+    /*
     public static void main(String[] args) {
         new jMusicHub();
     }
+
+     */
 
     /**
      * Returns the title entered by the user.
@@ -234,8 +237,7 @@ public class MainServer {
      */
     public String newNom() {
         System.out.print("\nNom : ");
-        String nom = userInputObj.nextLine();
-        return nom;
+        return userInputObj.nextLine();
     }
 
     /**
@@ -245,8 +247,7 @@ public class MainServer {
      */
     public String newArtiste(){
         System.out.print("\nArtiste : ");
-        String artiste = userInputObj.nextLine();
-        return artiste;
+        return userInputObj.nextLine();
     }
 
     /**
@@ -256,8 +257,7 @@ public class MainServer {
      */
     public String newAuteur(){
         System.out.print("\nAuteur : ");
-        String auteur = userInputObj.nextLine();
-        return auteur;
+        return userInputObj.nextLine();
     }
 
     /**
@@ -287,8 +287,7 @@ public class MainServer {
      */
     public String newContenu(){
         System.out.print("\nContenu (nom du fichier) : ");
-        String contenu = userInputObj.nextLine();
-        return contenu;
+        return userInputObj.nextLine();
     }
 
     /**
@@ -337,7 +336,11 @@ public class MainServer {
                 return String.valueOf(date);
             } catch(NumberFormatException nfs) {
                 IntLogger sfl = SingletonFileLogger.getInstance();
-                sfl.write(Levels.ERROR, "jMusicHub.newDate() : user input is not a valid number.");
+                sfl.write(Levels.WARNING, "jMusicHub.newDate() : user input is not a valid number.");
+                System.out.println("Format incorrect, veuillez entrer une valeur correcte.");
+            } catch (DateTimeException dte) {
+                IntLogger sfl = SingletonFileLogger.getInstance();
+                sfl.write(Levels.WARNING, "jMusicHub.newDate() : user input is not a valid date time.");
                 System.out.println("Format incorrect, veuillez entrer une valeur correcte.");
             }
         }
@@ -437,7 +440,7 @@ public class MainServer {
         }
 
         String genre = null;
-        Boolean wrongValue = true;
+        boolean wrongValue = true;
         while(wrongValue) {
             try {
                 genre = newGenre();
@@ -447,7 +450,7 @@ public class MainServer {
                 }
             } catch(WrongEnumValue ex) {
                 IntLogger sfl = SingletonFileLogger.getInstance();
-                sfl.write(Levels.ERROR, "jMusicHub.addMusic() : user input is not a valid Genre");
+                sfl.write(Levels.WARNING, "jMusicHub.addMusic() : user input is not a valid Genre");
                 System.err.println(ex.getMessage());
             }
         }
@@ -455,8 +458,7 @@ public class MainServer {
         elements.add(new Chanson(titre, artiste, duree, contenu, Genres.valueOf(genre)));
         IntLogger sfl = SingletonFileLogger.getInstance();
         sfl.write(Levels.INFO, "jMusicHub.addMusic() : success");
-        System.out.println("Votre nouvelle musique a été ajoutée avec succès.\n" + elements.peekLast());
-        return;
+        System.out.println("Votre nouvelle musique a été ajoutée avec succès.\nPensez à enregistrer vos modifications.\n" + elements.peekLast());
     }
 
     /**
@@ -497,7 +499,6 @@ public class MainServer {
                 String supp = c.getTitre() + " - " + c.getArtiste();
                 if(supp.equals(userInput)) {
                     a.del(c);
-                    IntLogger sfl = SingletonFileLogger.getInstance();
                     sfl.write(Levels.INFO, "jMusicHub.delMusic() : " + userInput + " deleted form album");
                     System.out.println("Chanson supprimée avec succès de l'album.");
                 }
@@ -514,7 +515,6 @@ public class MainServer {
                     String supp = ch.getTitre() + " - " + ch.getArtiste();
                     if(supp.equals(userInput)) {
                         p.delChanson(ch);
-                        IntLogger sfl = SingletonFileLogger.getInstance();
                         sfl.write(Levels.INFO, "jMusicHub.delMusic() : " + userInput + " deleted form playlist");
                         System.out.println("Chanson supprimée avec succès de la playlist.");
                     }
@@ -562,7 +562,6 @@ public class MainServer {
                     return;
                 }
             } catch(WrongEnumValue ex) {
-                IntLogger sfl = SingletonFileLogger.getInstance();
                 sfl.write(Levels.ERROR, "jMusicHub.addLivre() : user input is not a valid Langue");
                 System.err.println(ex.getMessage());
             }
@@ -578,16 +577,14 @@ public class MainServer {
                     return;
                 }
             } catch(WrongEnumValue ex) {
-                IntLogger sfl = SingletonFileLogger.getInstance();
                 sfl.write(Levels.ERROR, "jMusicHub.addLivre() : user input is not a valid Categorie");
                 System.err.println(ex.getMessage());
             }
         }
 
         elements.add(new LivreAudio(titre, auteur, duree, contenu, Langues.valueOf(langue), Categories.valueOf(categorie)));
-        IntLogger sfl = SingletonFileLogger.getInstance();
         sfl.write(Levels.INFO, "jMusicHub.addLivre() : success");
-        System.out.println("Votre nouveau livre audio a été ajouté avec succès.\n" + elements.peekLast());
+        System.out.println("Votre nouveau livre audio a été ajouté avec succès.\nPensez à enregistrer vos modifications.\n" + elements.peekLast());
     }
 
     /**
@@ -612,7 +609,6 @@ public class MainServer {
                 String supp = livre.getTitre() + " - " + livre.getAuteur();
                 if(supp.equals(userInput)) {
                     elements.delLivreAudio(livre);
-                    IntLogger sfl = SingletonFileLogger.getInstance();
                     sfl.write(Levels.INFO, "jMusicHub.delLivre() : " + userInput + " deleted form library");
                     System.out.println("Livre audio supprimé avec succès de la bibliothèque.");
                 }
@@ -629,7 +625,6 @@ public class MainServer {
                     String supp = livre.getTitre() + " - " + livre.getAuteur();
                     if(supp.equals(userInput)) {
                         p.delLivreAudio(livre);
-                        IntLogger sfl = SingletonFileLogger.getInstance();
                         sfl.write(Levels.INFO, "jMusicHub.delLivre() : " + userInput + " deleted form playlist");
                         System.out.println("Livre audio supprimé avec succès de la playlist.");
                     }
@@ -664,10 +659,8 @@ public class MainServer {
 
 
         albums.add(new Album(titre, artiste, date));
-        IntLogger sfl = SingletonFileLogger.getInstance();
         sfl.write(Levels.INFO, "jMusicHub.addAlbum() : success");
-        System.out.println("Votre nouvel album a été ajouté avec succès.\n" + albums.peekLast());
-        return;
+        System.out.println("Votre nouvel album a été ajouté avec succès.\nPensez à enregistrer vos modifications.\n" + albums.peekLast());
     }
 
     /**
@@ -681,7 +674,6 @@ public class MainServer {
         for(Album a : albums.getList()) {
             if(a.getTitre().equals(userInput)) {
                 albums.del(a);
-                IntLogger sfl = SingletonFileLogger.getInstance();
                 sfl.write(Levels.INFO, "jMusicHub.delAlbum() : " + userInput + " deleted");
                 System.out.println("Album supprimé avec succès de la bibliothèque.");
             }
@@ -701,10 +693,8 @@ public class MainServer {
             return;
         }
         playlists.add(new Playlist(nom));
-        IntLogger sfl = SingletonFileLogger.getInstance();
         sfl.write(Levels.INFO, "jMusicHub.addPlaylist() : success");
-        System.out.println("Votre nouvelle playlist a été ajoutée avec succès.\n" + playlists.peekLast());
-        return;
+        System.out.println("Votre nouvelle playlist a été ajoutée avec succès.\nPensez à enregistrer vos modifications.\n" + playlists.peekLast());
     }
 
     /**
@@ -718,7 +708,6 @@ public class MainServer {
         for(Playlist p : playlists.getList()) {
             if(p.getNom().equals(userInput)) {
                 playlists.del(p);
-                IntLogger sfl = SingletonFileLogger.getInstance();
                 sfl.write(Levels.INFO, "jMusicHub.delPlaylist() : " + userInput + " deleted");
                 System.out.println("Playlist supprimée avec succès de la bibliothèque.");
             }
@@ -731,34 +720,34 @@ public class MainServer {
     public void help() {
         System.out.println("L'application jMusicHub accepte les commandes suivantes :");
         System.out.println("\n					Contenu de la bibliothèque");
-        System.out.println("	B  : affiche la bibliothèque musicale.");
-        System.out.println("	L  : affiche les livres audio rangés par auteur.");
-        System.out.println("	A  : affiche les albums rangés par date de sortie.");
-        System.out.println("	C  : affiche les chansons d'un album.");
-        System.out.println("	G  : affiche les chansons rangées par genre d'un album.");
-        System.out.println("	GA : affiche les chansons en ordre aléatoire d'un album.");
-        System.out.println("	P  : affiche les playlists.");
-        System.out.println("	M  : affiche les éléments d'une playlist.");
-        System.out.println("	MA : affiche les éléments en ordre aléatoire d'une playlist.");
+        System.out.println("	B    : affiche la bibliothèque musicale.");
+        System.out.println("	L    : affiche les livres audio rangés par auteur.");
+        System.out.println("	A    : affiche les albums rangés par date de sortie.");
+        System.out.println("	C    : affiche les chansons d'un album.");
+        System.out.println("	G    : affiche les chansons rangées par genre d'un album.");
+        System.out.println("	GA   : affiche les chansons en ordre aléatoire d'un album.");
+        System.out.println("	P    : affiche les playlists.");
+        System.out.println("	M    : affiche les éléments d'une playlist.");
+        System.out.println("	MA   : affiche les éléments en ordre aléatoire d'une playlist.");
+        System.out.println("    PLAY : jouer une musique de la bibliothèque.");
 
         System.out.println("\n					Modification de la bibliothèque");
-        System.out.println("	b  : rajout d'une nouvelle chanson.");
-        System.out.println("	l  : rajout d'un nouveau livre audio.");
-        System.out.println("	a  : rajout d'un nouvel album.");
-        System.out.println("	c  : rajout d'une chanson existante à un album.");
-        System.out.println("	p  : rajout d'une nouvelle playlist.");
-        System.out.println("	m  : rajout d'un élément existant à une playlist.");
-        System.out.println();
-        System.out.println("	-b : suppression d'une chanson de la bibliothèque. Supprime aussi l'élément dans les albums et les playlists.");
-        System.out.println("	-l : suppression d'un livre audio. Supprime aussi l'élément dans les playlists.");
-        System.out.println("	-a : suppression d'un album.");
-        System.out.println("	-c : suppression d'une chanson d'un album.");
-        System.out.println("	-p : suppression d'une playlist.");
-        System.out.println("	-m : suppression d'un élément d'une playlist.");
+        System.out.println("	b    : rajout d'une nouvelle chanson.");
+        System.out.println("	l    : rajout d'un nouveau livre audio.");
+        System.out.println("	a    : rajout d'un nouvel album.");
+        System.out.println("	c    : rajout d'une chanson existante à un album.");
+        System.out.println("	p    : rajout d'une nouvelle playlist.");
+        System.out.println("	m    : rajout d'un élément existant à une playlist.");
+        System.out.println("\n	-b   : suppression d'une chanson de la bibliothèque. Supprime aussi l'élément dans les albums et les playlists.");
+        System.out.println("	-l   : suppression d'un livre audio. Supprime aussi l'élément dans les playlists.");
+        System.out.println("	-a   : suppression d'un album.");
+        System.out.println("	-c   : suppression d'une chanson d'un album.");
+        System.out.println("	-p   : suppression d'une playlist.");
+        System.out.println("    -m   : suppression d'un élément d'une playlist.");
 
         System.out.println("\n						Utilitaires");
-        System.out.println("	s  : sauvegarde des playlists, des albums, des chansons et des livres audio.");
-        System.out.println("	q  : quitter l'application.");
+        System.out.println("	s    : sauvegarde des playlists, des albums, des chansons et des livres audio.");
+        System.out.println("	q    : quitter l'application.");
     }
 
     /**
@@ -778,91 +767,4 @@ public class MainServer {
         return run;
     }
 
-    public String runClient(String commande) {
-        String message = "";
-
-        elements = new DeserializeFromXML("elements").decodeElements();
-        albums = new DeserializeFromXML("albums").decodeAlbums();
-        playlists = new DeserializeFromXML("playlists").decodePlaylists();
-
-        switch(commande) {
-
-            /* Affiche les chansons de la bibliothèque. */
-            case "B":
-                //System.out.println(elements.listeChanson());
-                message = elements.listeChanson().toString();
-                break;
-
-            /* Affiche les livres audio. */
-            case "L":
-                message = elements.listeLivreAudio().toString();
-                break;
-
-            /* Affiche les albums. */
-            case "A":
-                message = albums.toString();
-                break;
-
-            /* Affiche les chansons d'un album. */
-            case "C":
-                System.out.println(albums + "\nQuel album souhaitez-vous afficher ?");
-                userInput = userInputObj.nextLine();
-
-                albums.displaySongsOfAlbum(userInput);
-                break;
-
-            /* Affiche les chansons triées par genre d'un album. */
-            case "G":
-                System.out.println(albums + "\nQuel album souhaitez-vous afficher ?");
-                userInput = userInputObj.nextLine();
-
-                albums.displaySongsOfAlbumSorted(userInput);
-                break;
-
-            /* Affiche les chansons en ordre aléatoire. */
-            case "GA":
-                System.out.println(albums + "\nQuel album souhaitez-vous afficher ?");
-                userInput = userInputObj.nextLine();
-
-                albums.randomDisplaySongsOfAlbum(userInput);
-                break;
-
-            /* Affiche les playlists. */
-            case "P":
-                message = playlists.toString();
-                break;
-
-            /* Affiche les éléments d'une playlist. */
-            case "M":
-                System.out.println(playlists + "\nQuelle playlist souhaitez-vous afficher ?");
-                userInput = userInputObj.nextLine();
-
-                playlists.displaySongsOfPlaylist(userInput);
-                break;
-
-            /* Affiche les éléments en ordre aléatoire. */
-            case "MA":
-                System.out.println(playlists + "\nQuelle playlist souhaitez-vous afficher ?");
-                userInput = userInputObj.nextLine();
-
-                playlists.randomDisplaySongsOfPlaylist(userInput);
-                break;
-
-            /* Menu d'aide aux commandes. */
-            case "h":
-
-
-
-                help();
-
-
-
-
-                break;
-
-            default:
-                message = "Commande introuvable. Utilisez la commande h pour afficher les commandes disponibles.";
-        }
-        return message;
-    }
 }

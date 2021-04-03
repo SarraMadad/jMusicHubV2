@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class Client {
 
     public static void main(String[] args) {
+        IntLogger sfl = SingletonFileLogger.getInstance();
 
         final Socket clientSocket;
         final BufferedReader in;
@@ -43,15 +44,22 @@ public class Client {
                         if(msg.equals("q")) {
                             System.out.println("Bye bye!");
                             try {
+                                out.close();
                                 clientSocket.close();
                             } catch (IOException e) {
-                                e.printStackTrace();
+                                sfl.write(Levels.ERROR, "Client.Thread.envoyer : erreur à la fermeture de l'application\n" + e.toString());
                             }
                             System.exit(0);
                         }
 
                         out.println(msg);
                         out.flush();
+
+                        try {
+                            Thread.sleep(150);
+                        } catch (InterruptedException e) {
+                            sfl.write(Levels.ERROR, "Server.Thread.envoi : " + e.toString());
+                        }
                     }
                 }
             });
@@ -70,18 +78,21 @@ public class Client {
 
                             msg = in.readLine();
                         }
-                        System.out.println("Serveur déconecté");
+                        System.out.println("Serveur déconnecté. L'application va se fermer.");
                         out.close();
                         clientSocket.close();
+                        System.exit(0);
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        sfl.write(Levels.ERROR, "Server.Thread.recevoir : " + e.toString());
+                        System.out.println("Fermeture de l'application...");
+                        System.exit(0);
                     }
                 }
             });
             recevoir.start();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            sfl.write(Levels.ERROR, "Server.main() : " + e.toString());
         }
     }
 }
