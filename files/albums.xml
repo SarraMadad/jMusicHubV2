@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="11.0.10" class="java.beans.XMLDecoder">
+ <object class="musichub.business.AlbumList" id="AlbumList0">
+  <void property="list">
+   <void method="add">
+    <object class="musichub.business.Album" id="Album0">
+     <void property="artiste">
+      <string>Michael Jackson</string>
+     </void>
+     <void property="dateSortie">
+      <string>1982-11-30</string>
+     </void>
+     <void property="duree">
+      <int>615</int>
+     </void>
+     <void property="id">
+      <int>0</int>
+     </void>
+     <void property="songList">
+      <void method="add">
+       <object class="musichub.business.Chanson" id="Chanson0">
+        <void property="artiste">
+         <string>Michael Jackson</string>
+        </void>
+        <void property="contenu">
+         <string>thriller.mp3</string>
+        </void>
+        <void property="duree">
+         <int>357</int>
+        </void>
+        <void property="genre">
+         <object class="java.lang.Enum" id="Genres0" method="valueOf">
+          <class>musichub.business.Genres</class>
+          <string>POP</string>
+         </object>
+        </void>
+        <void property="id">
+         <int>0</int>
+        </void>
+        <void property="titre">
+         <string>Thriller</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="musichub.business.Chanson">
+        <void property="artiste">
+         <string>Michael Jackson</string>
+        </void>
+        <void property="contenu">
+         <string>beat_it.mp3</string>
+        </void>
+        <void property="duree">
+         <int>258</int>
+        </void>
+        <void property="genre">
+         <object idref="Genres0"/>
+        </void>
+        <void property="id">
+         <int>1</int>
+        </void>
+        <void property="titre">
+         <string>Beat It</string>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="titre">
+      <string>Thriller</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="musichub.business.Album" id="Album1">
+     <void property="artiste">
+      <string>The Rolling Stones</string>
+     </void>
+     <void property="dateSortie">
+      <string>1968-01-01</string>
+     </void>
+     <void property="duree">
+      <int>443</int>
+     </void>
+     <void property="id">
+      <int>1</int>
+     </void>
+     <void property="songList">
+      <void method="add">
+       <object class="musichub.business.Chanson">
+        <void property="artiste">
+         <string>The Rolling Stones</string>
+        </void>
+        <void property="contenu">
+         <string>bye_bye_johnny.mp3</string>
+        </void>
+        <void property="duree">
+         <int>130</int>
+        </void>
+        <void property="genre">
+         <object class="java.lang.Enum" id="Genres1" method="valueOf">
+          <class>musichub.business.Genres</class>
+          <string>ROCK</string>
+         </object>
+        </void>
+        <void property="id">
+         <int>2</int>
+        </void>
+        <void property="titre">
+         <string>Bye Bye Johnny</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="musichub.business.Chanson" id="Chanson1">
+        <void property="artiste">
+         <string>The Rolling Stones</string>
+        </void>
+        <void property="contenu">
+         <string>money.mp3</string>
+        </void>
+        <void property="duree">
+         <int>152</int>
+        </void>
+        <void property="genre">
+         <object idref="Genres1"/>
+        </void>
+        <void property="id">
+         <int>3</int>
+        </void>
+        <void property="titre">
+         <string>Money</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="musichub.business.Chanson">
+        <void property="artiste">
+         <string>The Rolling Stones</string>
+        </void>
+        <void property="contenu">
+         <string>you_better_move_on.mp3</string>
+        </void>
+        <void property="duree">
+         <int>161</int>
+        </void>
+        <void property="genre">
+         <object idref="Genres1"/>
+        </void>
+        <void property="id">
+         <int>4</int>
+        </void>
+        <void property="titre">
+         <string>You Better Move On</string>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="titre">
+      <string>The Rolling Stones 1963-1971</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="musichub.business.Album" id="Album2">
+     <void property="artiste">
+      <string>Me</string>
+     </void>
+     <void property="dateSortie">
+      <string>2021-01-01</string>
+     </void>
+     <void property="duree">
+      <int>3499</int>
+     </void>
+     <void property="id">
+      <int>6</int>
+     </void>
+     <void property="songList">
+      <void method="add">
+       <object idref="Chanson0"/>
+      </void>
+      <void method="add">
+       <object idref="Chanson1"/>
+      </void>
+      <void method="add">
+       <object class="musichub.business.Chanson">
+        <void property="artiste">
+         <string>Louis Prima</string>
+        </void>
+        <void property="contenu">
+         <string>just_a_gigolo.mp3</string>
+        </void>
+        <void property="duree">
+         <int>286</int>
+        </void>
+        <void property="genre">
+         <object class="java.lang.Enum" method="valueOf">
+          <class>musichub.business.Genres</class>
+          <string>JAZZ</string>
+         </object>
+        </void>
+        <void property="id">
+         <int>7</int>
+        </void>
+        <void property="titre">
+         <string>Just a Gigolo</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="musichub.business.Chanson">
+        <void property="artiste">
+         <string>Vivaldi</string>
+        </void>
+        <void property="contenu">
+         <string>4_saisons.wav</string>
+        </void>
+        <void property="duree">
+         <int>2418</int>
+        </void>
+        <void property="genre">
+         <object class="java.lang.Enum" method="valueOf">
+          <class>musichub.business.Genres</class>
+          <string>CLASSIQUE</string>
+         </object>
+        </void>
+        <void property="id">
+         <int>27</int>
+        </void>
+        <void property="titre">
+         <string>Les Quatre Saisons</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="musichub.business.Chanson">
+        <void property="artiste">
+         <string>Lo-Fi Beats</string>
+        </void>
+        <void property="contenu">
+         <string>sun_kiss.mp3</string>
+        </void>
+        <void property="duree">
+         <int>129</int>
+        </void>
+        <void property="genre">
+         <object class="java.lang.Enum" method="valueOf">
+          <class>musichub.business.Genres</class>
+          <string>HIP_HOP</string>
+         </object>
+        </void>
+        <void property="id">
+         <int>105</int>
+        </void>
+        <void property="titre">
+         <string>Sun Kiss (feat. Beats De Rap)</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="musichub.business.Chanson">
+        <void property="artiste">
+         <string>Ninho</string>
+        </void>
+        <void property="contenu">
+         <string>sans_peine.mp3</string>
+        </void>
+        <void property="duree">
+         <int>157</int>
+        </void>
+        <void property="genre">
+         <object class="java.lang.Enum" method="valueOf">
+          <class>musichub.business.Genres</class>
+          <string>RAP</string>
+         </object>
+        </void>
+        <void property="id">
+         <int>204</int>
+        </void>
+        <void property="titre">
+         <string>Sans peine</string>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="titre">
+      <string>Custom Album</string>
+     </void>
+    </object>
+   </void>
+  </void>
+ </object>
+</java>
