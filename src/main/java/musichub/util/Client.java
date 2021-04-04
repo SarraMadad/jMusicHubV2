@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Client {
 
-    public static void main(String[] args) {
+    public Client() {
         IntLogger sfl = SingletonFileLogger.getInstance();
 
         final Socket clientSocket;
@@ -42,7 +42,7 @@ public class Client {
                         msg = sc.nextLine();
 
                         if(msg.equals("q")) {
-                            System.out.println("Bye bye!");
+                            System.out.println("Bye bye !");
                             try {
                                 out.close();
                                 clientSocket.close();
@@ -94,5 +94,9 @@ public class Client {
         } catch (IOException e) {
             sfl.write(Levels.ERROR, "Server.main() : " + e.toString());
         }
+    }
+
+    public static void main(String[] args) {
+        new Client();
     }
 }

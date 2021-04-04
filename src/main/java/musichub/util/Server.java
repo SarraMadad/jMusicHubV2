@@ -16,24 +16,23 @@ import java.util.Scanner;
  */
 public class Server {
 
-    static String msgClient;
-    static String msgServer;
-    static MainClient mainClient = new MainClient();
-    static Boolean commandeClient = false;
-    static ServerSocket serveurSocket  ;
-    static Socket clientSocket ;
-    static BufferedReader in;
-    static PrintWriter out;
-    static Scanner sc=new Scanner(System.in);
+    String msgClient;
+    String msgServer;
+    MainClient mainClient = new MainClient();
+    Boolean commandeClient = false;
+    ServerSocket serveurSocket  ;
+    Socket clientSocket ;
+    BufferedReader in;
+    PrintWriter out;
 
-    public static void main(String[] test) {
+    public Server() {
         IntLogger sfl = SingletonFileLogger.getInstance();
 
         try {
             Thread main= new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    MainServer mainServer = new MainServer();
+                    new MainServer();
                 }
             });
             main.start();
@@ -80,7 +79,7 @@ public class Server {
                                 msgClient = in.readLine();
                             }
 
-                            //sortir de la boucle si le client a déconnecté
+                            //sortir de la boucle si le client est déconnecté
                             //System.out.println("Client déconnecté");
 
                             out.close();
@@ -108,5 +107,9 @@ public class Server {
         }catch (IOException e) {
             sfl.write(Levels.ERROR, "Server.main() : " + e.toString());
         }
+    }
+
+    public static void main(String[] test) {
+        new Server();
     }
 }
