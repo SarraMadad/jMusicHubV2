@@ -1,10 +1,9 @@
 package musichub.util;
 
+import musichub.business.UserObject;
 import org.junit.jupiter.api.Test;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -25,21 +24,23 @@ public class ServerTest {
 
 
             Socket clientSocket = new Socket("127.0.0.1", 5000);
-            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            PrintWriter out = new PrintWriter(clientSocket.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());
+            ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
 
-            String commande = "test";
-            out.println(commande);
+            UserObject us = new UserObject();
+            us.setCommand("test");
+
+            out.writeObject(us);
             out.flush();
 
             // Temps d'attente pour être sûr de recevoir une réponse
             Thread.sleep(500);
 
-            String reponse = in.readLine();
+            us = (UserObject) in.readObject();
 
             System.out.println("\n\nMessage attendu : Commande introuvable. Utilisez la commande h pour afficher les commandes disponibles.");
-            System.out.println("Message reçu : " + reponse);
-            assertEquals("Commande introuvable. Utilisez la commande h pour afficher les commandes disponibles.", reponse);
+            System.out.println("Message reçu : " + us.getResponse());
+            assertEquals("Commande introuvable. Utilisez la commande h pour afficher les commandes disponibles.", us.getResponse());
         } catch (Exception e) {
             e.printStackTrace();
         }

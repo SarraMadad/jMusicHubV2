@@ -1,116 +1,129 @@
 package musichub.main;
 
+import musichub.business.UserObject;
+import musichub.util.IntLogger;
+import musichub.util.Levels;
+import musichub.util.SingletonFileLogger;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
+
 public class MainClient extends MainNetwork {
 
     public MainClient() {
         actualisation();
     }
 
-    public String run(String commande) {
+    public UserObject run(UserObject us) {
 
         /* TODO("Finir les commandes") */
 
-        String message = "rien";
-
-        switch(commande) {
+        switch(us.getCommand()) {
 
             /* Affiche les chansons de la bibliothèque. */
             case "B":
-                //System.out.println(elements.listeChanson());
-                message = elements.listeChanson().toString();
+                us.setResponse(elements.listeChanson());
                 break;
 
             /* Affiche les livres audio. */
             case "L":
-                message = elements.listeLivreAudio().toString();
+                us.setResponse(elements.listeLivreAudio());
                 break;
 
             /* Affiche les albums. */
             case "A":
-                message = albums.toString();
+                us.setResponse(albums.toString());
                 break;
 
+            // C, G et GA ont la même commande de départ
             /* Affiche les chansons d'un album. */
             case "C":
-                /*
-                System.out.println(albums + "\nQuel album souhaitez-vous afficher ?");
-                userInput = userInputObj.nextLine();
-
-                albums.displaySongsOfAlbum(userInput);
-
-                 */
-                break;
-
             /* Affiche les chansons triées par genre d'un album. */
             case "G":
-                /*
-                System.out.println(albums + "\nQuel album souhaitez-vous afficher ?");
-                userInput = userInputObj.nextLine();
-
-                albums.displaySongsOfAlbumSorted(userInput);
-
-                 */
-                break;
-
             /* Affiche les chansons en ordre aléatoire. */
             case "GA":
-                /*
-                System.out.println(albums + "\nQuel album souhaitez-vous afficher ?");
-                userInput = userInputObj.nextLine();
-
-                albums.randomDisplaySongsOfAlbum(userInput);
-
-                 */
+                us.setResponse(albums + "\nQuel album souhaitez-vous afficher ?");
                 break;
 
             /* Affiche les playlists. */
             case "P":
-                message = playlists.toString();
+                us.setResponse(playlists.toString());
                 break;
 
+                // M et MA ont la même commande de départ
             /* Affiche les éléments d'une playlist. */
             case "M":
-                /*
-                System.out.println(playlists + "\nQuelle playlist souhaitez-vous afficher ?");
-                userInput = userInputObj.nextLine();
-
-                playlists.displaySongsOfPlaylist(userInput);
-
-                 */
-                break;
-
             /* Affiche les éléments en ordre aléatoire. */
             case "MA":
-                /*
-                System.out.println(playlists + "\nQuelle playlist souhaitez-vous afficher ?");
-                userInput = userInputObj.nextLine();
-
-                playlists.randomDisplaySongsOfPlaylist(userInput);
-
-                 */
+                us.setResponse(playlists + "\nQuelle playlist souhaitez-vous afficher ?");
                 break;
 
             /* Jouer une musique. */
             case "PLAY":
-                //TODO
+                us.setResponse(elements.listeChanson() + "\nQuelle musique souhaitez-vous écouter ?\nVeuillez entrer le nom du contenu.");
                 break;
 
             /* Actualise les listes d'éléments de la bibliothèque */
             case "r":
                 actualisation();
-                message = "Bibliothèque mise à jour.";
+                us.setResponse("Bibliothèque mise à jour.");
                 break;
 
             /* Menu d'aide aux commandes. */
             case "h":
-                message = help();
+                us.setResponse(help());
                 break;
 
             default:
-                message = "Commande introuvable. Utilisez la commande h pour afficher les commandes disponibles.";
+                switch (us.getLastCommand()) {
+                    /* Affiche les chansons d'un album. */
+                    case "C":
+                        us.setResponse(albums.displaySongsOfAlbum(us.getCommand()));
+                        break;
+
+                    /* Affiche les chansons triées par genre d'un album. */
+                    case "G":
+                        us.setResponse(albums.displaySongsOfAlbumSorted(us.getCommand()));
+                        break;
+
+                    /* Affiche les chansons en ordre aléatoire. */
+                    case "GA":
+                        us.setResponse(albums.randomDisplaySongsOfAlbum(us.getCommand()));
+                        break;
+
+                    /* Affiche les éléments d'une playlist. */
+                    case "M":
+                        us.setResponse(playlists.displaySongsOfPlaylist(us.getCommand()));
+                        break;
+
+                    /* Affiche les éléments en ordre aléatoire. */
+                    case "MA":
+                        us.setResponse(playlists.randomDisplaySongsOfPlaylist(us.getCommand()));
+                        break;
+
+                    /* Jouer une musique. */
+                    case "PLAY":
+                        File file = new File(".\\files\\library\\" + us.getCommand());
+                        try {
+                            AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+                            us.setMusic(audioStream);
+                        } catch (Exception e) {
+                            IntLogger sfl = SingletonFileLogger.getInstance();
+                            sfl.write(Levels.ERROR, "MainClient.run().PLAY : erreur à l'ouverture du fichier audio " + e.toString());
+                            us.setResponse("Une erreur est survenue à l'ouverture du fichier audio...");
+                        }
+                        break;
+
+                    default:
+                        us.setResponse("Commande introuvable. Utilisez la commande h pour afficher les commandes disponibles.");
+                        break;
+                }
                 break;
         }
-        return message;
+        us.setLastCommand(us.getCommand());
+        return us;
     }
 
     private String help() {
