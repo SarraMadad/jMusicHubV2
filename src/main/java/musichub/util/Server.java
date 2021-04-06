@@ -1,39 +1,39 @@
 package musichub.util;
 
+import musichub.business.UserObject;
 import musichub.main.MainClient;
 import musichub.main.MainServer;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Scanner;
 
 /*
  * www.projetSNIR_LOUATY.com
  */
 public class Server {
 
-    static String msgClient;
-    static String msgServer;
-    static MainClient mainClient = new MainClient();
-    static Boolean commandeClient = false;
-    static ServerSocket serveurSocket  ;
-    static Socket clientSocket ;
-    static BufferedReader in;
-    static PrintWriter out;
-    static Scanner sc=new Scanner(System.in);
+    String msgClient;
+    String msgServer;
+    MainClient mainClient = new MainClient();
+    Boolean commandeClient = false;
+    ServerSocket serveurSocket  ;
+    Socket clientSocket ;
+    //BufferedReader in;
+    ObjectInputStream in;
+    //PrintWriter out;
+    ObjectOutputStream out;
 
-    public static void main(String[] test) {
+    UserObject userObject = new UserObject();
+
+    public Server() {
         IntLogger sfl = SingletonFileLogger.getInstance();
 
         try {
             Thread main= new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    MainServer mainServer = new MainServer();
+                    new MainServer();
                 }
             });
             main.start();
@@ -42,8 +42,8 @@ public class Server {
             clientSocket = serveurSocket.accept();
             sfl.write(Levels.INFO, "Client connecté");
 
-            out = new PrintWriter(clientSocket.getOutputStream());
-            in = new BufferedReader (new InputStreamReader (clientSocket.getInputStream()));
+            out = new ObjectOutputStream(clientSocket.getOutputStream());
+            in = new ObjectInputStream(clientSocket.getInputStream());
 
             Thread envoi= new Thread(new Runnable() {
                 @Override
@@ -51,8 +51,8 @@ public class Server {
                     while(true){
                         try {
                             if (commandeClient) {
-                                msgServer = mainClient.run(msgClient);
-                                out.println(msgServer);
+                                userObject = mainClient.run(userObject);
+                                out.writeObject(userObject);
                                 out.flush();
                                 commandeClient = false;
                             } else {
@@ -71,16 +71,16 @@ public class Server {
                 public void run() {
                     while(true) {
                         try {
-                            msgClient = in.readLine();
+                            userObject = (UserObject) in.readObject();
                             //tant que le client est connecté
-                            while (msgClient != null) {
+                            while (userObject.getCommand() != null) {
                                 //System.out.println("Client : " + msgClient);
                                 commandeClient = true;
                                 Thread.sleep(150);
-                                msgClient = in.readLine();
+                                userObject = (UserObject) in.readObject();
                             }
 
-                            //sortir de la boucle si le client a déconnecté
+                            //sortir de la boucle si le client est déconnecté
                             //System.out.println("Client déconnecté");
 
                             out.close();
@@ -89,14 +89,20 @@ public class Server {
 
                             clientSocket = serveurSocket.accept();
                             sfl.write(Levels.INFO, "Client connecté");
-                            out = new PrintWriter(clientSocket.getOutputStream());
-                            in = new BufferedReader (new InputStreamReader (clientSocket.getInputStream()));
+                            out = new ObjectOutputStream(clientSocket.getOutputStream());
+                            in = new ObjectInputStream(clientSocket.getInputStream());
 
                             //fermer le flux et la session socket
                             //out.close();
                             //clientSocket.close();
                             //serveurSocket.close();
                             //System.exit(0);
+                        } catch (EOFException e) {
+                            try {
+                                Thread.sleep(10);
+                            } catch (InterruptedException interruptedException) {
+                                sfl.write(Levels.ERROR, "Server.Thread.recevoir : " + interruptedException.toString());
+                            }
                         } catch (Exception e) {
                             sfl.write(Levels.ERROR, "Server.Thread.recevoir : " + e.toString());
                         }

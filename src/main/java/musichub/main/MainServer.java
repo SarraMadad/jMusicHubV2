@@ -3,6 +3,11 @@ package musichub.main;
 import musichub.business.*;
 import musichub.util.*;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.LinkedList;
@@ -53,7 +58,7 @@ public class MainServer extends MainNetwork {
                     System.out.println(albums + "\nQuel album souhaitez-vous afficher ?");
                     userInput = userInputObj.nextLine();
 
-                    albums.displaySongsOfAlbum(userInput);
+                    System.out.println(albums.displaySongsOfAlbum(userInput));
                     break;
 
                 /* Affiche les chansons triées par genre d'un album. */
@@ -61,7 +66,7 @@ public class MainServer extends MainNetwork {
                     System.out.println(albums + "\nQuel album souhaitez-vous afficher ?");
                     userInput = userInputObj.nextLine();
 
-                    albums.displaySongsOfAlbumSorted(userInput);
+                    System.out.println(albums.displaySongsOfAlbumSorted(userInput));
                     break;
 
                 /* Affiche les chansons en ordre aléatoire. */
@@ -69,7 +74,7 @@ public class MainServer extends MainNetwork {
                     System.out.println(albums + "\nQuel album souhaitez-vous afficher ?");
                     userInput = userInputObj.nextLine();
 
-                    albums.randomDisplaySongsOfAlbum(userInput);
+                    System.out.println(albums.randomDisplaySongsOfAlbum(userInput));
                     break;
 
                 /* Affiche les playlists. */
@@ -82,7 +87,7 @@ public class MainServer extends MainNetwork {
                     System.out.println(playlists + "\nQuelle playlist souhaitez-vous afficher ?");
                     userInput = userInputObj.nextLine();
 
-                    playlists.displaySongsOfPlaylist(userInput);
+                    System.out.println(playlists.displaySongsOfPlaylist(userInput));
                     break;
 
                 /* Affiche les éléments en ordre aléatoire. */
@@ -90,12 +95,16 @@ public class MainServer extends MainNetwork {
                     System.out.println(playlists + "\nQuelle playlist souhaitez-vous afficher ?");
                     userInput = userInputObj.nextLine();
 
-                    playlists.randomDisplaySongsOfPlaylist(userInput);
+                    System.out.println(playlists.randomDisplaySongsOfPlaylist(userInput));
                     break;
 
                 /* Jouer une musique. */
                 case "PLAY":
-                    //TODO
+                    System.out.println(elements.listeChanson() + "\nQuelle musique souhaitez-vous écouter ?");
+                    System.out.println("Veuillez entrer le nom du contenu.");
+
+                    userInput = userInputObj.nextLine();
+                    playMusic(userInput);
                     break;
 
                 /* Nouvelle chanson. */
@@ -714,6 +723,46 @@ public class MainServer extends MainNetwork {
         }
     }
 
+    private void playMusic(String userInput) {
+        try {
+            //where is the repository
+            File file = new File(".\\files\\library\\" + userInput);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            //waiting for a response
+
+            while(!userInput.equals("Q")) { //loop for choice
+                System.out.println("P = play, S = Stop, R = Reset, Q = Quit");
+                System.out.println("Que souhaitez-vous faire ?");
+
+                userInput = userInputObj.nextLine().toUpperCase();
+
+                switch(userInput) { //different function of music
+                    case ("P"):
+                        clip.start();
+                        break;
+                    case ("S"):
+                        clip.stop();
+                        break;
+                    case ("R"):
+                        clip.setMicrosecondPosition(0);
+                        break;
+                    case ("Q"):
+                        clip.close();
+                        break;
+                    default:
+                        System.out.println("Veuillez entrer une commande valide.");
+                }
+            }
+
+        } catch (FileNotFoundException fnfe) {
+            sfl.write(Levels.WARNING, "MainServer.playMusic() : Fichier introuvable");
+        } catch (Exception e) {
+            sfl.write(Levels.ERROR, "MainServer.playMusic() : " + e.toString());
+        }
+    }
+
     /**
      * Displays the help menu for all commands.
      */
@@ -729,7 +778,7 @@ public class MainServer extends MainNetwork {
         System.out.println("	P    : affiche les playlists.");
         System.out.println("	M    : affiche les éléments d'une playlist.");
         System.out.println("	MA   : affiche les éléments en ordre aléatoire d'une playlist.");
-        System.out.println("    PLAY : jouer une musique de la bibliothèque.");
+        System.out.println("	PLAY : jouer une musique de la bibliothèque.");
 
         System.out.println("\n					Modification de la bibliothèque");
         System.out.println("	b    : rajout d'une nouvelle chanson.");
@@ -743,7 +792,7 @@ public class MainServer extends MainNetwork {
         System.out.println("	-a   : suppression d'un album.");
         System.out.println("	-c   : suppression d'une chanson d'un album.");
         System.out.println("	-p   : suppression d'une playlist.");
-        System.out.println("    -m   : suppression d'un élément d'une playlist.");
+        System.out.println("	-m   : suppression d'un élément d'une playlist.");
 
         System.out.println("\n						Utilitaires");
         System.out.println("	s    : sauvegarde des playlists, des albums, des chansons et des livres audio.");

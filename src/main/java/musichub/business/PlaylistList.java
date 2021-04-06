@@ -109,13 +109,14 @@ public class PlaylistList extends UserList {
 	 * 
 	 * @param playlistName user input
 	 */
-	public void displaySongsOfPlaylist(String playlistName)
-    {
+	public String displaySongsOfPlaylist(String playlistName) {
+		String list = "";
         for(Playlist p : getList()) {
             if(p.getNom().equals(playlistName)) {
-                System.out.println(p.getList());
+                list = p.getList();
             }
         }
+        return list;
     }
 
     /**
@@ -123,12 +124,14 @@ public class PlaylistList extends UserList {
 	 * 
 	 * @param playlistName user input
 	 */
-    public void randomDisplaySongsOfPlaylist(String playlistName){
+    public String randomDisplaySongsOfPlaylist(String playlistName) {
+    	String list = "";
         for(Playlist p : getList()) {
             if(p.getNom().equals(playlistName)) {
-                System.out.println(p.getList(p.aleatoire()));
+                list = p.getList(p.aleatoire());
             }
         }
+        return list;
     }
 
     /**
