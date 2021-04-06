@@ -17,21 +17,21 @@ import java.util.*;
  */
 public class Playlist {
 	/** ID counter for all playlists. */
-<span class="nc" id="L20">	private static int compteurId = 0;</span>
+<span class="fc" id="L20">	private static int compteurId = 0;</span>
 	/** ID of the playlist. */
 	private int id;
 	/** Name of the playlist. */
 	private String nom;
 	/** List of the elements in the playlist. */
-<span class="nc" id="L26">	private LinkedList&lt;Element&gt; elementList = new LinkedList&lt;Element&gt;();</span>
+<span class="pc" id="L26">	private LinkedList&lt;Element&gt; elementList = new LinkedList&lt;Element&gt;();</span>
 
 	/**
 	 * Sole constructor. (For invocation by subclass 
 	 * constructors, typically implicit.)
 	 */
-<span class="nc" id="L32">	public Playlist() {</span>
-<span class="nc" id="L33">		this.id = compteurId++;</span>
-<span class="nc" id="L34">	}</span>
+<span class="fc" id="L32">	public Playlist() {</span>
+<span class="fc" id="L33">		this.id = compteurId++;</span>
+<span class="fc" id="L34">	}</span>
 
 	/**
 	 * Complete constructor for a playlist.
@@ -70,8 +70,8 @@ public class Playlist {
 	 * @param id the ID number of this serialized object
 	 */
 	public void setId(int id) {
-<span class="nc" id="L73">		this.id = id;</span>
-<span class="nc" id="L74">	}</span>
+<span class="fc" id="L73">		this.id = id;</span>
+<span class="fc" id="L74">	}</span>
 
 	/** 
 	 * Returns the name of this playlist.
@@ -91,8 +91,8 @@ public class Playlist {
 	 * @param nom the name of this serialized object
 	 */
 	public void setNom(String nom) {
-<span class="nc" id="L94">		this.nom = nom;</span>
-<span class="nc" id="L95">	}</span>
+<span class="fc" id="L94">		this.nom = nom;</span>
+<span class="fc" id="L95">	}</span>
 
 	/** 
 	 * Returns the elements list of this playlist.
@@ -101,7 +101,7 @@ public class Playlist {
 	 * @see Element
 	 */
 	public LinkedList&lt;Element&gt; getElementList() {
-<span class="nc" id="L104">		return elementList;</span>
+<span class="fc" id="L104">		return elementList;</span>
 	}
 
 	/** 

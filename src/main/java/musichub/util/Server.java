@@ -1,51 +1,65 @@
 package musichub.util;
+
+import musichub.business.UserObject;
+import musichub.main.MainClient;
 import musichub.main.MainServer;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Scanner;
+
 /*
  * www.projetSNIR_LOUATY.com
  */
 public class Server {
 
-    static String msgClient;
-    static String msgServer;
-    static MainServer mainServer = new MainServer();
-    static Boolean tmp = false;
-    static String tmp2;
-    static ServerSocket serveurSocket  ;
-    static Socket clientSocket ;
-    static BufferedReader in;
-    static PrintWriter out;
-    static Scanner sc=new Scanner(System.in);
+    String msgClient;
+    String msgServer;
+    MainClient mainClient = new MainClient();
+    Boolean commandeClient = false;
+    ServerSocket serveurSocket  ;
+    Socket clientSocket ;
+    //BufferedReader in;
+    ObjectInputStream in;
+    //PrintWriter out;
+    ObjectOutputStream out;
 
-    public static void main(String[] test) {
+    UserObject userObject = new UserObject();
+
+    public Server() {
+        IntLogger sfl = SingletonFileLogger.getInstance();
 
         try {
-            serveurSocket = new ServerSocket(9090);
+            Thread main= new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    new MainServer();
+                }
+            });
+            main.start();
+
+            serveurSocket = new ServerSocket(5000);
             clientSocket = serveurSocket.accept();
-            out = new PrintWriter(clientSocket.getOutputStream());
-            in = new BufferedReader (new InputStreamReader (clientSocket.getInputStream()));
+            sfl.write(Levels.INFO, "Client connecté");
+
+            out = new ObjectOutputStream(clientSocket.getOutputStream());
+            in = new ObjectInputStream(clientSocket.getInputStream());
+
             Thread envoi= new Thread(new Runnable() {
                 @Override
                 public void run() {
                     while(true){
-                        if(tmp) {
-                            msgServer = mainServer.runClient(tmp2);
-                            out.println(msgServer);
-                            out.flush();
-                            tmp = false;
-                        } else {
-                            try {
+                        try {
+                            if (commandeClient) {
+                                userObject = mainClient.run(userObject);
+                                out.writeObject(userObject);
+                                out.flush();
+                                commandeClient = false;
+                            } else {
                                 Thread.sleep(100);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
                             }
+                        } catch (Exception e) {
+                            sfl.write(Levels.ERROR, "Server.Thread.envoi : " + e.toString());
                         }
                     }
                 }
@@ -55,45 +69,50 @@ public class Server {
             Thread recevoir= new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    try {
-                        msgClient = in.readLine();
-                        //tant que le client est connecté
-                        while(msgClient!=null) {
-                            System.out.println("Client : "+msgClient);
-                            tmp2 = msgClient;
-                            tmp = true;
-                            msgClient = in.readLine();
+                    while(true) {
+                        try {
+                            userObject = (UserObject) in.readObject();
+                            //tant que le client est connecté
+                            while (userObject.getCommand() != null) {
+                                //System.out.println("Client : " + msgClient);
+                                commandeClient = true;
+                                Thread.sleep(150);
+                                userObject = (UserObject) in.readObject();
+                            }
+
+                            //sortir de la boucle si le client est déconnecté
+                            //System.out.println("Client déconnecté");
+
+                            out.close();
+                            clientSocket.close();
+                            sfl.write(Levels.INFO, "Client déconnecté");
+
+                            clientSocket = serveurSocket.accept();
+                            sfl.write(Levels.INFO, "Client connecté");
+                            out = new ObjectOutputStream(clientSocket.getOutputStream());
+                            in = new ObjectInputStream(clientSocket.getInputStream());
+
+                            //fermer le flux et la session socket
+                            //out.close();
+                            //clientSocket.close();
+                            //serveurSocket.close();
+                            //System.exit(0);
+                        } catch (EOFException e) {
+                            try {
+                                Thread.sleep(10);
+                            } catch (InterruptedException interruptedException) {
+                                sfl.write(Levels.ERROR, "Server.Thread.recevoir : " + interruptedException.toString());
+                            }
+                        } catch (Exception e) {
+                            sfl.write(Levels.ERROR, "Server.Thread.recevoir : " + e.toString());
                         }
-                        //sortir de la boucle si le client a déconnecté
-                        System.out.println("Client déconnecté");
-                        //fermer le flux et la session socket
-                        out.close();
-                        clientSocket.close();
-                        serveurSocket.close();
-                    } catch (Exception e) {
-                        e.printStackTrace();
                     }
                 }
             });
             recevoir.start();
 
-            Thread main= new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        mainServer.MAINTMP();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-            main.start();
         }catch (IOException e) {
-            e.printStackTrace();
+            sfl.write(Levels.ERROR, "Server.main() : " + e.toString());
         }
-    }
-
-    public static void envoiClient(String msg) {
-
     }
 }

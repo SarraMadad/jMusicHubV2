@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="15.0.1" class="java.beans.XMLDecoder">
+<java version="11.0.10" class="java.beans.XMLDecoder">
  <object class="musichub.business.ElementList" id="ElementList0">
   <void property="list">
    <void method="add">
@@ -8,7 +8,7 @@
       <string>Michael Jackson</string>
      </void>
      <void property="contenu">
-      <string>thriller.mp3</string>
+      <string>thriller.wav</string>
      </void>
      <void property="duree">
       <int>357</int>
@@ -33,7 +33,7 @@
       <string>Michael Jackson</string>
      </void>
      <void property="contenu">
-      <string>beat_it.mp3</string>
+      <string>beat_it.wav</string>
      </void>
      <void property="duree">
       <int>258</int>
@@ -55,7 +55,7 @@
       <string>The Rolling Stones</string>
      </void>
      <void property="contenu">
-      <string>bye_bye_johnny.mp3</string>
+      <string>bye_bye_johnny.wav</string>
      </void>
      <void property="duree">
       <int>130</int>
@@ -80,7 +80,7 @@
       <string>The Rolling Stones</string>
      </void>
      <void property="contenu">
-      <string>money.mp3</string>
+      <string>money.wav</string>
      </void>
      <void property="duree">
       <int>152</int>
@@ -102,7 +102,7 @@
       <string>The Rolling Stones</string>
      </void>
      <void property="contenu">
-      <string>you_better_move_on.mp3</string>
+      <string>you_better_move_on.wav</string>
      </void>
      <void property="duree">
       <int>161</int>
@@ -124,7 +124,7 @@
       <string>Ray Charles</string>
      </void>
      <void property="contenu">
-      <string>hit_the_road_jack.mp3</string>
+      <string>hit_the_road_jack.wav</string>
      </void>
      <void property="duree">
       <int>118</int>
@@ -149,7 +149,7 @@
       <string>Frank Sinatra</string>
      </void>
      <void property="contenu">
-      <string>sinatra_jazz.wav</string>
+      <string>bruh.wav</string>
      </void>
      <void property="duree">
       <int>227</int>
@@ -171,7 +171,7 @@
       <string>Louis Prima</string>
      </void>
      <void property="contenu">
-      <string>just_a_gigolo.mp3</string>
+      <string>just_a_gigolo.wav</string>
      </void>
      <void property="duree">
       <int>286</int>
@@ -193,7 +193,7 @@
       <string>Dean Martin</string>
      </void>
      <void property="contenu">
-      <string>sway.mp3</string>
+      <string>sway.wav</string>
      </void>
      <void property="duree">
       <int>164</int>
@@ -215,13 +215,13 @@
       <string>Vivaldi</string>
      </void>
      <void property="contenu">
-      <string>4_saisons.wav</string>
+      <string>bruh.wav</string>
      </void>
      <void property="duree">
       <int>2418</int>
      </void>
      <void property="genre">
-      <object class="java.lang.Enum" method="valueOf">
+      <object class="java.lang.Enum" id="Genres3" method="valueOf">
        <class>musichub.business.Genres</class>
        <string>CLASSIQUE</string>
       </object>
@@ -321,13 +321,13 @@
       <string>Lo-Fi Beats</string>
      </void>
      <void property="contenu">
-      <string>chill_space.mp3</string>
+      <string>bruh.wav</string>
      </void>
      <void property="duree">
       <int>126</int>
      </void>
      <void property="genre">
-      <object class="java.lang.Enum" id="Genres3" method="valueOf">
+      <object class="java.lang.Enum" id="Genres4" method="valueOf">
        <class>musichub.business.Genres</class>
        <string>HIP_HOP</string>
       </object>
@@ -346,13 +346,13 @@
       <string>Lo-Fi Beats</string>
      </void>
      <void property="contenu">
-      <string>sun_kiss.mp3</string>
+      <string>sun_kiss.wav</string>
      </void>
      <void property="duree">
       <int>129</int>
      </void>
      <void property="genre">
-      <object idref="Genres3"/>
+      <object idref="Genres4"/>
      </void>
      <void property="id">
       <int>105</int>
@@ -368,13 +368,13 @@
       <string>Lo-Fi Beats</string>
      </void>
      <void property="contenu">
-      <string>godly_dreams.mp3</string>
+      <string>bruh.wav</string>
      </void>
      <void property="duree">
       <int>165</int>
      </void>
      <void property="genre">
-      <object idref="Genres3"/>
+      <object idref="Genres4"/>
      </void>
      <void property="id">
       <int>106</int>
@@ -390,7 +390,7 @@
       <string>Elvis Presley</string>
      </void>
      <void property="contenu">
-      <string>jailhouse_rock.mp3</string>
+      <string>jailhouse_rock.wav</string>
      </void>
      <void property="duree">
       <int>155</int>
@@ -412,7 +412,7 @@
       <string>Elvis Presley</string>
      </void>
      <void property="contenu">
-      <string>dont.mp3</string>
+      <string>dont.wav</string>
      </void>
      <void property="duree">
       <int>168</int>
@@ -434,13 +434,13 @@
       <string>Ninho</string>
      </void>
      <void property="contenu">
-      <string>sans_peine.mp3</string>
+      <string>sans_peine.wav</string>
      </void>
      <void property="duree">
       <int>157</int>
      </void>
      <void property="genre">
-      <object class="java.lang.Enum" id="Genres4" method="valueOf">
+      <object class="java.lang.Enum" id="Genres5" method="valueOf">
        <class>musichub.business.Genres</class>
        <string>RAP</string>
       </object>
@@ -459,13 +459,13 @@
       <string>Ninho</string>
      </void>
      <void property="contenu">
-      <string>la_vie_qu_on_mene.mp3</string>
+      <string>la_vie_qu_on_mene.wav</string>
      </void>
      <void property="duree">
       <int>193</int>
      </void>
      <void property="genre">
-      <object idref="Genres4"/>
+      <object idref="Genres5"/>
      </void>
      <void property="id">
       <int>205</int>
@@ -481,19 +481,85 @@
       <string>Ninho</string>
      </void>
      <void property="contenu">
-      <string>goutte_d_eau.mp3</string>
+      <string>goutte_d_eau.wav</string>
      </void>
      <void property="duree">
       <int>157</int>
      </void>
      <void property="genre">
-      <object idref="Genres4"/>
+      <object idref="Genres5"/>
      </void>
      <void property="id">
       <int>206</int>
      </void>
      <void property="titre">
       <string>Goutte d&apos;eau</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="musichub.business.Chanson">
+     <void property="artiste">
+      <string>C418</string>
+     </void>
+     <void property="contenu">
+      <string>Haggstrom.wav</string>
+     </void>
+     <void property="duree">
+      <int>204</int>
+     </void>
+     <void property="genre">
+      <object idref="Genres3"/>
+     </void>
+     <void property="id">
+      <int>74</int>
+     </void>
+     <void property="titre">
+      <string>Haggstrom</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="musichub.business.Chanson">
+     <void property="artiste">
+      <string>C418</string>
+     </void>
+     <void property="contenu">
+      <string>Sweden.wav</string>
+     </void>
+     <void property="duree">
+      <int>215</int>
+     </void>
+     <void property="genre">
+      <object idref="Genres3"/>
+     </void>
+     <void property="id">
+      <int>75</int>
+     </void>
+     <void property="titre">
+      <string>Sweden</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="musichub.business.Chanson">
+     <void property="artiste">
+      <string>C418</string>
+     </void>
+     <void property="contenu">
+      <string>Aria_Math.wav</string>
+     </void>
+     <void property="duree">
+      <int>310</int>
+     </void>
+     <void property="genre">
+      <object idref="Genres3"/>
+     </void>
+     <void property="id">
+      <int>76</int>
+     </void>
+     <void property="titre">
+      <string>Aria Math</string>
      </void>
     </object>
    </void>

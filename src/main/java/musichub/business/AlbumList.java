@@ -113,12 +113,14 @@ public class AlbumList extends UserList {
 	 * 
 	 * @param albumName user input
 	 */
-	public void displaySongsOfAlbum(String albumName) {
+	public String displaySongsOfAlbum(String albumName) {
+		String list = "";
 		for(Album a : getList()) {
 			if(a.getTitre().equals(albumName)) {
-				System.out.println(a.getList());
+				list = a.getList();
 			}
 		}
+		return list;
 	}
 
 	/**
@@ -126,8 +128,8 @@ public class AlbumList extends UserList {
 	 * 
 	 * @param albumName user input
 	 */
-	public void displaySongsOfAlbumSorted (String albumName)
-    {
+	public String displaySongsOfAlbumSorted (String albumName) {
+		String list = "";
         for(Album a : getList()) {
             if(a.getTitre().equals(albumName)) {
 
@@ -147,9 +149,10 @@ public class AlbumList extends UserList {
                         }
                     }
                 });
-                System.out.println(a.getList(sortedList));
+                list = a.getList(sortedList);
             }
         }
+        return list;
     }
 
     /**
@@ -157,12 +160,14 @@ public class AlbumList extends UserList {
 	 * 
 	 * @param albumName user input
 	 */
-    public void randomDisplaySongsOfAlbum (String albumName){
+    public String randomDisplaySongsOfAlbum (String albumName) {
+    	String list = "";
         for(Album a : getList()) {
             if(a.getTitre().equals(albumName)) {
-                System.out.println(a.getList(a.aleatoire()));
+                list = a.getList(a.aleatoire());
             }
         }
+        return list;
     }
 
     /**
