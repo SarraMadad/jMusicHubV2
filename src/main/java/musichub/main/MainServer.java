@@ -733,7 +733,7 @@ public class MainServer extends MainNetwork {
             //waiting for a response
 
             while(!userInput.equals("Q")) { //loop for choice
-                System.out.println("P = play, S = Stop, R = Reset, Q = Quit");
+                System.out.println("P = play, S = Stop, R = Reset, QUIT = Quit");
                 System.out.println("Que souhaitez-vous faire ?");
 
                 userInput = userInputObj.nextLine().toUpperCase();
@@ -748,7 +748,7 @@ public class MainServer extends MainNetwork {
                     case ("R"):
                         clip.setMicrosecondPosition(0);
                         break;
-                    case ("Q"):
+                    case ("QUIT"):
                         clip.close();
                         break;
                     default:

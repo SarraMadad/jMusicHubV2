@@ -13,8 +13,6 @@ import java.net.Socket;
  */
 public class Server {
 
-    String msgClient;
-    String msgServer;
     MainClient mainClient = new MainClient();
     Boolean commandeClient = false;
     ServerSocket serveurSocket  ;
@@ -105,6 +103,11 @@ public class Server {
                             }
                         } catch (Exception e) {
                             sfl.write(Levels.ERROR, "Server.Thread.recevoir : " + e.toString());
+                            try {
+                                Thread.sleep(150);
+                            } catch (InterruptedException interruptedException) {
+                                sfl.write(Levels.ERROR, "Server.Thread.recevoir : " + interruptedException.toString());
+                            }
                         }
                     }
                 }
@@ -112,7 +115,7 @@ public class Server {
             recevoir.start();
 
         }catch (IOException e) {
-            sfl.write(Levels.ERROR, "Server.main() : " + e.toString());
+            sfl.write(Levels.ERROR, "Server() : " + e.toString());
         }
     }
 }
