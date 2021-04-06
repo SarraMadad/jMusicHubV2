@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="15.0.1" class="java.beans.XMLDecoder">
+<java version="11.0.10" class="java.beans.XMLDecoder">
  <object class="musichub.business.PlaylistList" id="PlaylistList0">
   <void property="list">
    <void method="add">
@@ -11,7 +11,7 @@
          <string>Ray Charles</string>
         </void>
         <void property="contenu">
-         <string>hit_the_road_jack.mp3</string>
+         <string>hit_the_road_jack.wav</string>
         </void>
         <void property="duree">
          <int>118</int>
@@ -36,7 +36,7 @@
          <string>Frank Sinatra</string>
         </void>
         <void property="contenu">
-         <string>sinatra_jazz.wav</string>
+         <string>bruh.wav</string>
         </void>
         <void property="duree">
          <int>227</int>
@@ -58,7 +58,7 @@
          <string>Louis Prima</string>
         </void>
         <void property="contenu">
-         <string>just_a_gigolo.mp3</string>
+         <string>just_a_gigolo.wav</string>
         </void>
         <void property="duree">
          <int>286</int>
@@ -80,7 +80,7 @@
          <string>Dean Martin</string>
         </void>
         <void property="contenu">
-         <string>sway.mp3</string>
+         <string>sway.wav</string>
         </void>
         <void property="duree">
          <int>164</int>
