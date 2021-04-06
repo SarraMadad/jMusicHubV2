@@ -46,14 +46,14 @@ public class Client {
                     System.out.println("Entrez la commande h si vous avez besoin d'aide sur les commandes disponibles.");
 
                     while(true) {
-                        if (!musicPlaying) {
-                            try {
-                                String lastC = userObject.getLastCommand();
-                                if (!lastC.equals("C") && !lastC.equals("G") && !lastC.equals("GA") && !lastC.equals("M") && !lastC.equals("MA") && !lastC.equals("PLAY")) {
-                                    System.out.println("\nQue souhaitez-vous faire ?\n");
-                                }
-                                userObject.setCommand(sc.nextLine());
+                        try {
+                            String lastC = userObject.getLastCommand();
+                            if (!lastC.equals("C") && !lastC.equals("G") && !lastC.equals("GA") && !lastC.equals("M") && !lastC.equals("MA") && !lastC.equals("PLAY")) {
+                                System.out.println("\nQue souhaitez-vous faire ?\n");
+                            }
+                            userObject.setCommand(sc.nextLine());
 
+                            if(!musicPlaying) {
                                 if (userObject.getCommand().equals("q")) {
                                     System.out.println("Bye bye !");
                                     try {
@@ -67,12 +67,12 @@ public class Client {
 
                                 out.writeObject(userObject);
                                 out.flush();
-
-                                Thread.sleep(150);
-
-                            } catch(Exception e){
-                                sfl.write(Levels.ERROR, "Server.Thread.envoi : " + e.toString());
                             }
+
+                            Thread.sleep(150);
+
+                        } catch(Exception e){
+                            sfl.write(Levels.ERROR, "Server.Thread.envoi : " + e.toString());
                         }
                     }
                 }
@@ -86,38 +86,22 @@ public class Client {
                         userObject = (UserObject) in.readObject();
                         while(userObject.getCommand()!=null){
 
-                            if(!userObject.getCommand().equals("PLAY") &&userObject.getLastCommand().equals("PLAY") && !userObject.getResponse().equals("Une erreur est survenue à l'ouverture du fichier audio...")) {
+                            if(!userObject.getCommand().equals("PLAY") && userObject.getLastCommand().equals("PLAY")) {
                                 musicPlaying = true;
-                                Clip clip = AudioSystem.getClip();
-                                clip.open(userObject.getMusic());
-
-                                String response = "";
-                                while(!response.equals("Q")) { //loop for choice
-                                    System.out.println("P = play, S = Stop, R = Reset, Q = Quit");
-                                    System.out.print("Que souhaitez-vous faire ?");
-
-                                    response = sc.nextLine().toUpperCase();
-
-                                    switch(response) { //different function of music
-                                        case ("P"):
-                                            clip.start();
-                                            break;
-                                        case ("S"):
-                                            clip.stop();
-                                            break;
-                                        case ("R"):
-                                            clip.setMicrosecondPosition(0);
-                                            break;
-                                        case ("Q"):
-                                            clip.close();
-                                            musicPlaying = false;
-                                            break;
-                                        default: System.out.println("Veuillez entrer une commande valide.");
-                                    }
-                                }
+                                userObject.playMusic(userObject.getMusic());
+                                userObject.setLastCommand("");
+                                userObject.setResponse("Fin de la lecture.");
+                                musicPlaying = false;
+                                Thread.sleep(150);
                             } else {
                                 System.out.println(userObject.getResponse());
                             }
+                            /* Donnée de debug
+                            System.out.println("commande : " + userObject.getCommand());
+                            System.out.println("lastC : " + userObject.getLastCommand());
+                            System.out.println("réponse : " + userObject.getResponse());
+                             */
+
                             userObject = (UserObject) in.readObject();
                         }
                         System.out.println("Serveur déconnecté. L'application va se fermer.");
@@ -136,9 +120,5 @@ public class Client {
         } catch (IOException e) {
             sfl.write(Levels.ERROR, "Server.main() : " + e.toString());
         }
-    }
-
-    public static void main(String[] args) {
-        new Client();
     }
 }

@@ -104,40 +104,7 @@ public class MainServer extends MainNetwork {
                     System.out.println("Veuillez entrer le nom du contenu.");
 
                     userInput = userInputObj.nextLine();
-
-                    try {
-                        //where is the repository
-                        File file = new File(".\\files\\library\\" + userInput);
-                        AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
-                        Clip clip = AudioSystem.getClip();
-                        clip.open(audioStream);
-                        //waiting for a response
-
-                        while(!userInput.equals("Q")) { //loop for choice
-                            System.out.println("P = play, S = Stop, R = Reset, Q = Quit");
-                            System.out.print("Enter your choice: ");
-
-                            userInput = userInputObj.nextLine().toUpperCase();
-
-                            switch(userInput) { //different function of music
-                                case ("P"): clip.start();
-                                    break;
-                                case ("S"): clip.stop();
-                                    break;
-                                case ("R"): clip.setMicrosecondPosition(0);
-                                    break;
-                                case ("Q"): clip.close();
-                                    break;
-                                default: System.out.println("Not a valid response");
-                            }
-                        }
-
-                    } catch (FileNotFoundException fnfe) {
-                        sfl.write(Levels.WARNING, "MainServer.PLAY : Fichier introuvable");
-                    } catch (Exception e) {
-                        sfl.write(Levels.ERROR, "MainServer.PLAY : " + e.toString());
-                    }
-
+                    playMusic(userInput);
                     break;
 
                 /* Nouvelle chanson. */
@@ -756,6 +723,46 @@ public class MainServer extends MainNetwork {
         }
     }
 
+    private void playMusic(String userInput) {
+        try {
+            //where is the repository
+            File file = new File(".\\files\\library\\" + userInput);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            //waiting for a response
+
+            while(!userInput.equals("Q")) { //loop for choice
+                System.out.println("P = play, S = Stop, R = Reset, Q = Quit");
+                System.out.println("Que souhaitez-vous faire ?");
+
+                userInput = userInputObj.nextLine().toUpperCase();
+
+                switch(userInput) { //different function of music
+                    case ("P"):
+                        clip.start();
+                        break;
+                    case ("S"):
+                        clip.stop();
+                        break;
+                    case ("R"):
+                        clip.setMicrosecondPosition(0);
+                        break;
+                    case ("Q"):
+                        clip.close();
+                        break;
+                    default:
+                        System.out.println("Veuillez entrer une commande valide.");
+                }
+            }
+
+        } catch (FileNotFoundException fnfe) {
+            sfl.write(Levels.WARNING, "MainServer.playMusic() : Fichier introuvable");
+        } catch (Exception e) {
+            sfl.write(Levels.ERROR, "MainServer.playMusic() : " + e.toString());
+        }
+    }
+
     /**
      * Displays the help menu for all commands.
      */
@@ -771,7 +778,7 @@ public class MainServer extends MainNetwork {
         System.out.println("	P    : affiche les playlists.");
         System.out.println("	M    : affiche les éléments d'une playlist.");
         System.out.println("	MA   : affiche les éléments en ordre aléatoire d'une playlist.");
-        System.out.println("    PLAY : jouer une musique de la bibliothèque.");
+        System.out.println("	PLAY : jouer une musique de la bibliothèque.");
 
         System.out.println("\n					Modification de la bibliothèque");
         System.out.println("	b    : rajout d'une nouvelle chanson.");
@@ -785,7 +792,7 @@ public class MainServer extends MainNetwork {
         System.out.println("	-a   : suppression d'un album.");
         System.out.println("	-c   : suppression d'une chanson d'un album.");
         System.out.println("	-p   : suppression d'une playlist.");
-        System.out.println("    -m   : suppression d'un élément d'une playlist.");
+        System.out.println("	-m   : suppression d'un élément d'une playlist.");
 
         System.out.println("\n						Utilitaires");
         System.out.println("	s    : sauvegarde des playlists, des albums, des chansons et des livres audio.");

@@ -7,7 +7,6 @@ import musichub.main.MainServer;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Scanner;
 
 /*
  * www.projetSNIR_LOUATY.com
@@ -115,9 +114,5 @@ public class Server {
         }catch (IOException e) {
             sfl.write(Levels.ERROR, "Server.main() : " + e.toString());
         }
-    }
-
-    public static void main(String[] test) {
-        new Server();
     }
 }

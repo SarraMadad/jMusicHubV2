@@ -2,9 +2,9 @@ package musichub.main;
 
 //import musichub.util.*;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
+import javax.sound.sampled.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
@@ -81,6 +81,7 @@ public class Tmp {
 
  */
 
+        /*
         Scanner scanner = new Scanner(System.in);
         try {
             //where is the repository
@@ -116,5 +117,107 @@ public class Tmp {
             e.printStackTrace();
         }
         System.out.println("Bye!");
+
+         */
+
+        SourceDataLine sLine = null;
+        AudioFormat audioFormat;
+        AudioInputStream audioInputStream = null;
+        AudioInputStream audioInputStream2;
+        ByteArrayOutputStream byteArrayOutputStream= new ByteArrayOutputStream();
+        File file = new File (".\\files\\library\\bruh.wav");
+                /*
+                 * The aim of this code is to test the possibility or creating a mixing console in JAVA like the physical mixing consoles
+                 * First step : Create an inputstream from a file, a microphone or anything else
+                 * This is like plugging a source to a line-in of a stripe of a mixing console
+                 * Second : Reading this input stream and create a byte array
+                 * This byte array will be sent to the "master output" of the mixing console
+                 * Question to answer later : how to create a byte array that will act like a buffer for the next steps...
+                 * Third : Using this byte array to create an audioInputStream
+                 * This step is like having the "master volume" getting what is sent by the stripe.
+                 * Fourth : reading this audioInputStream
+                 * The sound should flow out to the speaker
+                 */
+
+                //1st step
+                try {
+                    audioInputStream=AudioSystem.getAudioInputStream(file);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+                AudioFileFormat.Type targetType = AudioFileFormat.Type.WAVE;
+
+                //2nd step
+                try {
+                    AudioSystem.write(audioInputStream, targetType, byteArrayOutputStream);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    System.out.println("Finally...");
+                    //tLine.close();
+                    System.out.println("Line closed");
+                    try {
+                        audioInputStream.close();
+                        System.out.println("Stream closed.");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+
+                /////////////////////////////////////////////////////////////
+
+                //3rd step
+                System.out.println("Size of the outputStream : "+byteArrayOutputStream.size());
+                byte[] byteArray = byteArrayOutputStream.toByteArray();
+                System.out.println("Size of byte array : "+byteArray.length);
+                ByteArrayInputStream bis = new ByteArrayInputStream(byteArray);
+
+                audioFormat = new AudioFormat(44100, 16, 2, true, false);
+                audioInputStream2=new AudioInputStream(bis, audioFormat, byteArray.length);
+
+                DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat);
+                try  {
+                    //System.out.println(info);
+                    sLine=(SourceDataLine) AudioSystem.getLine(info);
+                    System.out.println(sLine.getLineInfo());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                try {
+                    sLine.open(audioFormat);
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+                sLine.start();
+                System.out.println("Line Started");
+
+
+                //4th step
+                try {
+                    byte[] bytes =  new byte[1024];
+                    int bytesRead=0;
+                    int loop=0;
+                    while ((bytesRead=audioInputStream2.read(bytes, 0, bytes.length))!= -1) {
+                        //getVolumeLevel(bytes);
+                        try {
+                            sLine.write(bytes, 0, bytesRead);
+                            System.out.println(loop);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        loop+=1;
+                    }
+                    System.out.println("No bytes anymore !");
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                System.out.println("Line stopped");
     }
 }
