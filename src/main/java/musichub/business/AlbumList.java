@@ -8,8 +8,8 @@ import java.util.*;
  * There is only one AlbumList object with all albums informations.
  * <p>
  * Albums can be added or removed from the list.
- * 
- * @author FERNANDES Mickael and LECLERC Maxence
+ *
+ * @author Sylvain BUI, Maxence LECLERC, Nour-El-Houda LOUATY, Sarra MADAD
  * @version 1.0
  * @see Album
  */

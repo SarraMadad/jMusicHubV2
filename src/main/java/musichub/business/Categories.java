@@ -2,8 +2,8 @@ package musichub.business;
 
 /**
  * Categorie is an enum used to attribute a category to an audio book.
- * 
- * @author FERNANDES Mickael and LECLERC Maxence
+ *
+ * @author Sylvain BUI, Maxence LECLERC, Nour-El-Houda LOUATY, Sarra MADAD
  * @version 1.0
  * @see LivreAudio
  */

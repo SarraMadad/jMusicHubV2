@@ -11,6 +11,14 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.Scanner;
 
+/**
+
+ *
+ * @author Sylvain BUI, Maxence LECLERC, Nour-El-Houda LOUATY, Sarra MADAD
+ * @version 1.0
+
+ */
+
 public class Music implements Serializable {
     private byte[] data;
 

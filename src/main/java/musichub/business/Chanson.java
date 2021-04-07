@@ -5,8 +5,8 @@ package musichub.business;
  * <p>
  * A song can be added and removed from the librairy,
  * an Album or a Playlist object.
- * 
- * @author FERNANDES Mickael and LECLERC Maxence
+ *
+ * @author Sylvain BUI, Maxence LECLERC, Nour-El-Houda LOUATY, Sarra MADAD
  * @version 1.0
  * @see Element
  * @see ElementList

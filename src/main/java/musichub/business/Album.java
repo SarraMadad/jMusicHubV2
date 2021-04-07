@@ -7,8 +7,8 @@ import java.util.*;
  * <p>
  * An album can be added and removed from the librairy,
  * and can be edited to add or remove songs from its list.
- * 
- * @author FERNANDES Mickael and LECLERC Maxence
+ *
+ * @author Sylvain BUI, Maxence LECLERC, Nour-El-Houda LOUATY, Sarra MADAD
  * @version 1.0
  * @see AlbumList
  * @see Element
