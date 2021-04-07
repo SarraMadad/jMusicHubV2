@@ -1,7 +1,6 @@
 package musichub.main;
 
-import musichub.business.Music;
-import musichub.business.UserObject;
+import musichub.business.*;
 import musichub.util.IntLogger;
 import musichub.util.Levels;
 import musichub.util.SingletonFileLogger;
@@ -13,6 +12,19 @@ import javax.sound.sampled.Clip;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 
+/**
+ * MainClient contains the main methods for Client program.
+ * <p>
+ * It contains the UserObject and Music are used
+ * to display songs.
+ *
+ * @author Sylvain BUI, Maxence LECLERC, Nour-El-Houda LOUATY, Sarra MADAD
+ * @version 1.0
+ * @see UserObject
+ * @see Music
+ */
+
+
 public class MainClient extends MainNetwork {
 
     public MainClient() {
@@ -23,64 +35,64 @@ public class MainClient extends MainNetwork {
 
         switch(us.getCommand()) {
 
-            /* Affiche les chansons de la bibliothèque. */
+            /** Displays the songs in the library. */
             case "B":
                 us.setResponse(elements.listeChanson() + "\nQue souhaitez-vous faire ?\n");
                 us.setLastCommand("");
                 break;
 
-            /* Affiche les livres audio. */
+            /** Displays audio books. */
             case "L":
                 us.setResponse(elements.listeLivreAudio() + "\nQue souhaitez-vous faire ?\n");
                 us.setLastCommand("");
                 break;
 
-            /* Affiche les albums. */
+            /** Displays albums. */
             case "A":
                 us.setResponse(albums.toString() + "\nQue souhaitez-vous faire ?\n");
                 us.setLastCommand("");
                 break;
 
             // C, G et GA ont la même commande de départ
-            /* Affiche les chansons d'un album. */
+            /** Displays the songs from album. */
             case "C":
-            /* Affiche les chansons triées par genre d'un album. */
+            /** Displays the songs selected by type from album. */
             case "G":
-            /* Affiche les chansons en ordre aléatoire. */
+            /** Displays the songs in random order. */
             case "GA":
                 us.setResponse(albums + "\nQuel album souhaitez-vous afficher ?");
                 us.setLastCommand(us.getCommand());
                 break;
 
-            /* Affiche les playlists. */
+            /** Displays playlists. */
             case "P":
                 us.setResponse(playlists.toString() + "\nQue souhaitez-vous faire ?\n");
                 us.setLastCommand("");
                 break;
 
                 // M et MA ont la même commande de départ
-            /* Affiche les éléments d'une playlist. */
+            /** Displays the items in a playlist. */
             case "M":
-            /* Affiche les éléments en ordre aléatoire. */
+            /** Displays the elements in random order. */
             case "MA":
                 us.setResponse(playlists + "\nQuelle playlist souhaitez-vous afficher ?");
                 us.setLastCommand(us.getCommand());
                 break;
 
-            /* Jouer une musique. */
+            /** Palay music */
             case "PLAY":
                 us.setResponse(elements.listeChanson() + "\nQuelle musique souhaitez-vous écouter ?\nVeuillez entrer le nom du contenu.");
                 us.setLastCommand(us.getCommand());
                 break;
 
-            /* Actualise les listes d'éléments de la bibliothèque */
+            /** Refreshes the lists of items in library */
             case "r":
                 actualisation();
                 us.setResponse("Bibliothèque mise à jour." + "\nQue souhaitez-vous faire ?\n");
                 us.setLastCommand("");
                 break;
 
-            /* Menu d'aide aux commandes. */
+            /** Command help menu. */
             case "h":
                 us.setResponse(help());
                 us.setLastCommand("");
@@ -88,32 +100,32 @@ public class MainClient extends MainNetwork {
 
             default:
                 switch (us.getLastCommand()) {
-                    /* Affiche les chansons d'un album. */
+                    /** Displays the songs of an album.*/
                     case "C":
                         us.setResponse(albums.displaySongsOfAlbum(us.getCommand()) + "\nQue souhaitez-vous faire ?\n");
                         break;
 
-                    /* Affiche les chansons triées par genre d'un album. */
+                    /** Displays the songs selected by type from album. */
                     case "G":
                         us.setResponse(albums.displaySongsOfAlbumSorted(us.getCommand()) + "\nQue souhaitez-vous faire ?\n");
                         break;
 
-                    /* Affiche les chansons en ordre aléatoire. */
+                    /** Displays the songs in random order. */
                     case "GA":
                         us.setResponse(albums.randomDisplaySongsOfAlbum(us.getCommand()) + "\nQue souhaitez-vous faire ?\n");
                         break;
 
-                    /* Affiche les éléments d'une playlist. */
+                    /** Displays the items in a playlist. */
                     case "M":
                         us.setResponse(playlists.displaySongsOfPlaylist(us.getCommand()) + "\nQue souhaitez-vous faire ?\n");
                         break;
 
-                    /* Affiche les éléments en ordre aléatoire. */
+                    /** Displays items in random order */
                     case "MA":
                         us.setResponse(playlists.randomDisplaySongsOfPlaylist(us.getCommand()) + "\nQue souhaitez-vous faire ?\n");
                         break;
 
-                    /* Jouer une musique. */
+                    /** Play musique. */
                     case "PLAY":
                         Music musique = new Music();
                         musique.setData(musique.convertMusic(us.getCommand()));
@@ -141,7 +153,7 @@ public class MainClient extends MainNetwork {
         }
         return us;
     }
-
+    /** Client request  */
     private String help() {
         return "L'application jMusicHub accepte les commandes suivantes :"
                 + "\n\n					Contenu de la bibliothèque"

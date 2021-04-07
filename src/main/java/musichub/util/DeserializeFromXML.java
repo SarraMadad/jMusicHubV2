@@ -9,8 +9,8 @@ import java.io.*;
  * DeserializeFromXML allow the deserialization of all objects of the library.
  * <p>
  * The objects to deserialize are ElementList, AlbumList and PlaylistList.
- * 
- * @author FERNANDES Mickael and LECLERC Maxence
+ *
+ * @author Sylvain BUI, Maxence LECLERC, Nour-El-Houda LOUATY, Sarra MADAD
  * @version 1.0
  * @see ElementList
  * @see AlbumList

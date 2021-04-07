@@ -6,8 +6,8 @@ import musichub.business.*;
  * interfaceJmusicHub contains the prototypes of the methods 
  * for the creation of new songs, audio books, albums and
  * playists in jMusicHub.
- * 
- * @author FERNANDES Mickael and LECLERC Maxence
+ *
+ * @author Sylvain BUI, Maxence LECLERC, Nour-El-Houda LOUATY, Sarra MADAD
  * @version 1.0
  * @see jMusicHub
  */
