@@ -1,5 +1,6 @@
 package musichub.main;
 
+import musichub.business.Music;
 import musichub.business.UserObject;
 import musichub.util.IntLogger;
 import musichub.util.Levels;
@@ -24,19 +25,19 @@ public class MainClient extends MainNetwork {
 
             /* Affiche les chansons de la bibliothèque. */
             case "B":
-                us.setResponse(elements.listeChanson());
+                us.setResponse(elements.listeChanson() + "\nQue souhaitez-vous faire ?\n");
                 us.setLastCommand("");
                 break;
 
             /* Affiche les livres audio. */
             case "L":
-                us.setResponse(elements.listeLivreAudio());
+                us.setResponse(elements.listeLivreAudio() + "\nQue souhaitez-vous faire ?\n");
                 us.setLastCommand("");
                 break;
 
             /* Affiche les albums. */
             case "A":
-                us.setResponse(albums.toString());
+                us.setResponse(albums.toString() + "\nQue souhaitez-vous faire ?\n");
                 us.setLastCommand("");
                 break;
 
@@ -53,7 +54,7 @@ public class MainClient extends MainNetwork {
 
             /* Affiche les playlists. */
             case "P":
-                us.setResponse(playlists.toString());
+                us.setResponse(playlists.toString() + "\nQue souhaitez-vous faire ?\n");
                 us.setLastCommand("");
                 break;
 
@@ -75,7 +76,7 @@ public class MainClient extends MainNetwork {
             /* Actualise les listes d'éléments de la bibliothèque */
             case "r":
                 actualisation();
-                us.setResponse("Bibliothèque mise à jour.");
+                us.setResponse("Bibliothèque mise à jour." + "\nQue souhaitez-vous faire ?\n");
                 us.setLastCommand("");
                 break;
 
@@ -89,32 +90,34 @@ public class MainClient extends MainNetwork {
                 switch (us.getLastCommand()) {
                     /* Affiche les chansons d'un album. */
                     case "C":
-                        us.setResponse(albums.displaySongsOfAlbum(us.getCommand()));
+                        us.setResponse(albums.displaySongsOfAlbum(us.getCommand()) + "\nQue souhaitez-vous faire ?\n");
                         break;
 
                     /* Affiche les chansons triées par genre d'un album. */
                     case "G":
-                        us.setResponse(albums.displaySongsOfAlbumSorted(us.getCommand()));
+                        us.setResponse(albums.displaySongsOfAlbumSorted(us.getCommand()) + "\nQue souhaitez-vous faire ?\n");
                         break;
 
                     /* Affiche les chansons en ordre aléatoire. */
                     case "GA":
-                        us.setResponse(albums.randomDisplaySongsOfAlbum(us.getCommand()));
+                        us.setResponse(albums.randomDisplaySongsOfAlbum(us.getCommand()) + "\nQue souhaitez-vous faire ?\n");
                         break;
 
                     /* Affiche les éléments d'une playlist. */
                     case "M":
-                        us.setResponse(playlists.displaySongsOfPlaylist(us.getCommand()));
+                        us.setResponse(playlists.displaySongsOfPlaylist(us.getCommand()) + "\nQue souhaitez-vous faire ?\n");
                         break;
 
                     /* Affiche les éléments en ordre aléatoire. */
                     case "MA":
-                        us.setResponse(playlists.randomDisplaySongsOfPlaylist(us.getCommand()));
+                        us.setResponse(playlists.randomDisplaySongsOfPlaylist(us.getCommand()) + "\nQue souhaitez-vous faire ?\n");
                         break;
 
                     /* Jouer une musique. */
                     case "PLAY":
-                        us.setMusic(convertMusic(us.getCommand()));
+                        Music musique = new Music();
+                        musique.setData(musique.convertMusic(us.getCommand()));
+                        us.setMusic(musique);
                         us.setResponse("Traitement en cours...");
                         /*
                         File file = new File(".\\files\\library\\" + us.getCommand());
@@ -154,45 +157,7 @@ public class MainClient extends MainNetwork {
                 + "\n	PLAY : jouer une musique de la bibliothèque."
                 + "\n\n						Utilitaires"
                 + "\n	r    : actualise la liste des éléments de la bibliothèque."
-                + "\n	q    : quitter l'application.";
-    }
-
-    private byte[] convertMusic(String fileName) {
-        AudioInputStream audioInputStream = null;
-        ByteArrayOutputStream byteArrayOutputStream= new ByteArrayOutputStream();
-        File file = new File (".\\files\\library\\" + fileName);
-
-        //1st step
-        try {
-            audioInputStream=AudioSystem.getAudioInputStream(file);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        AudioFileFormat.Type targetType = AudioFileFormat.Type.WAVE;
-
-        //2nd step
-        try {
-            AudioSystem.write(audioInputStream, targetType, byteArrayOutputStream);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            //System.out.println("Finally...");
-            //tLine.close();
-            //System.out.println("Line closed");
-            try {
-                audioInputStream.close();
-                //System.out.println("Stream closed.");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        //3rd step
-        //System.out.println("Size of the outputStream : "+byteArrayOutputStream.size());
-
-        return byteArrayOutputStream.toByteArray();
+                + "\n	q    : quitter l'application."
+                + "\n\nQue souhaitez-vous faire ?\n";
     }
 }

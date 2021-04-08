@@ -1,21 +1,19 @@
 package musichub.util;
 
+import musichub.business.Music;
 import musichub.business.UserObject;
 
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import java.io.*;
 import java.net.Socket;
-import java.nio.charset.StandardCharsets;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Client {
     UserObject userObject = new UserObject();
-    boolean musicPlaying = false;
+    boolean musicNotPlaying;
 
     public Client() {
         IntLogger sfl = SingletonFileLogger.getInstance();
+        musicNotPlaying = true;
 
         final Socket clientSocket;
         //final BufferedReader in;
@@ -47,16 +45,25 @@ public class Client {
 
                     while(true) {
                         try {
-                            String lastC = userObject.getLastCommand();
-                            if (!lastC.equals("C") && !lastC.equals("G") && !lastC.equals("GA") && !lastC.equals("M") && !lastC.equals("MA") && !lastC.equals("PLAY")) {
-                                System.out.println("\nQue souhaitez-vous faire ?\n");
-                            }
-                            userObject.setCommand(sc.nextLine());
+                            String input = sc.nextLine();
+                            //System.out.println(c);
+                            userObject.setCommand(input);
 
-                            if(!musicPlaying) {
+                            if(musicNotPlaying) {
+                                /*
+                                String lastC = userObject.getLastCommand();
+                                if (!lastC.equals("C") && !lastC.equals("G") && !lastC.equals("GA") && !lastC.equals("M") && !lastC.equals("MA") && !lastC.equals("PLAY")) {
+                                    System.out.println("\nIF\n");
+                                }
+
+                                 */
+
                                 if (userObject.getCommand().equals("q")) {
                                     System.out.println("Bye bye !");
                                     try {
+                                        userObject.setCommand(null);
+                                        out.writeObject(userObject);
+                                        out.flush();
                                         out.close();
                                         clientSocket.close();
                                     } catch (IOException e) {
@@ -69,10 +76,10 @@ public class Client {
                                 out.flush();
                             }
 
-                            Thread.sleep(150);
+                            Thread.sleep(300);
 
                         } catch(Exception e){
-                            sfl.write(Levels.ERROR, "Server.Thread.envoi : " + e.toString());
+                            sfl.write(Levels.ERROR, "Client.Thread.envoi : " + e.toString());
                         }
                     }
                 }
@@ -86,21 +93,31 @@ public class Client {
                         userObject = (UserObject) in.readObject();
                         while(userObject.getCommand()!=null){
 
-                            if(!userObject.getCommand().equals("PLAY") && userObject.getLastCommand().equals("PLAY")) {
-                                musicPlaying = true;
-                                userObject.playMusic(userObject.getMusic());
+                            if(!userObject.getCommand().equals("PLAY") && userObject.getLastCommand().equals("PLAY")) { // && userObject.getMusic().getData() != null) {
+                                musicNotPlaying = false;
+                                Music musique;
+
+                                musique = userObject.getMusic();
                                 userObject.setLastCommand("");
+                                userObject.setCommand("");
+                                //userObject.delMusic();
+
+                                musique.playMusic();
+
+                                //userObject = new UserObject();
                                 userObject.setResponse("Fin de la lecture.");
-                                musicPlaying = false;
-                                Thread.sleep(150);
+                                //out.flush();
+                                musicNotPlaying = true;
                             } else {
                                 System.out.println(userObject.getResponse());
                             }
-                            /* Donnée de debug
+
+                            /* Donnée de debug */
                             System.out.println("commande : " + userObject.getCommand());
                             System.out.println("lastC : " + userObject.getLastCommand());
                             System.out.println("réponse : " + userObject.getResponse());
-                             */
+
+                            Thread.sleep(150);
 
                             userObject = (UserObject) in.readObject();
                         }
@@ -109,7 +126,7 @@ public class Client {
                         clientSocket.close();
                         System.exit(0);
                     } catch (Exception e) {
-                        sfl.write(Levels.ERROR, "Server.Thread.recevoir : " + e.toString());
+                        sfl.write(Levels.ERROR, "Client.Thread.recevoir : " + e.toString());
                         System.out.println("Fermeture de l'application...");
                         System.exit(0);
                     }
@@ -118,7 +135,7 @@ public class Client {
             recevoir.start();
 
         } catch (IOException e) {
-            sfl.write(Levels.ERROR, "Server.main() : " + e.toString());
+            sfl.write(Levels.ERROR, "Client() : " + e.toString());
         }
     }
 }
