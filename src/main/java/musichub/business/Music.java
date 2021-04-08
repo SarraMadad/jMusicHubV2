@@ -19,12 +19,17 @@ import java.util.Scanner;
 
  */
 
+
 public class Music implements Serializable {
     private byte[] data;
 
     public Music() {
     }
 
+    /**
+     *
+     * @return
+     */
     public byte[] getData() {
         return data;
     }
@@ -33,6 +38,11 @@ public class Music implements Serializable {
         this.data = data;
     }
 
+    /**
+     * convert the music into a byte
+     * @param fileName directory of our folder
+     * @return return the byte
+     */
     public byte[] convertMusic(String fileName) {
         AudioInputStream audioInputStream = null;
         ByteArrayOutputStream byteArrayOutputStream= new ByteArrayOutputStream();
@@ -71,7 +81,12 @@ public class Music implements Serializable {
         return musicData;
     }
 
+    /**
+     * function that play the music
+     * different function like play, pause, reset
+     */
     public void playMusic() {
+
         Scanner sc = new Scanner(System.in);
         ByteArrayInputStream bis = new ByteArrayInputStream(data);
 

@@ -20,6 +20,10 @@ public class Client {
     UserObject userObject = new UserObject();
     boolean musicNotPlaying;
 
+    /**
+     * The client is a desktop computer or workstation
+     * that is capable of obtaining information and applications from a server.
+     */
     public Client() {
         IntLogger sfl = SingletonFileLogger.getInstance();
         musicNotPlaying = true;
@@ -98,6 +102,9 @@ public class Client {
 
             Thread recevoir = new Thread(new Runnable() {
                 @Override
+                /**
+                 * Socket that can communicate between client/server
+                 */
                 public void run() {
                     try {
                         userObject = (UserObject) in.readObject();

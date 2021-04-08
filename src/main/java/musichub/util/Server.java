@@ -30,6 +30,9 @@ public class Server {
 
     UserObject userObject = new UserObject();
 
+    /**
+     * Constructor of the server
+     */
     public Server() {
         IntLogger sfl = SingletonFileLogger.getInstance();
 
@@ -55,6 +58,9 @@ public class Server {
 
             Thread envoi= new Thread(new Runnable() {
                 @Override
+                /**
+                 *
+                 */
                 public void run() {
                     while(true){
                         try {
@@ -76,6 +82,9 @@ public class Server {
 
             Thread recevoir= new Thread(new Runnable() {
                 @Override
+                /**
+                 *
+                 */
                 public void run() {
                     while(true) {
                         try {

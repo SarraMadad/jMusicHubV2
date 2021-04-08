@@ -79,7 +79,7 @@ public class MainClient extends MainNetwork {
                 us.setLastCommand(us.getCommand());
                 break;
 
-            /** Palay music */
+            /** Play music */
             case "PLAY":
                 us.setResponse(elements.listeChanson() + "\nQuelle musique souhaitez-vous écouter ?\nVeuillez entrer le nom du contenu.");
                 us.setLastCommand(us.getCommand());

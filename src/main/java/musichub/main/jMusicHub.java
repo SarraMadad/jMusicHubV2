@@ -52,22 +52,22 @@ public class jMusicHub implements interfaceJmusicHub {
 			userInput = userInputObj.nextLine();
 			switch(userInput) {
 
-				/* Affiche les chansons de la bibliothèque. */
+				/** Displays the songs in the library. */
 				case "B":
 					System.out.println(elements.listeChanson());
 					break;
 
-				/* Affiche les livres audio. */
+				/** Displays audio books. */
 				case "L":
 					System.out.println(elements.listeLivreAudio());
 					break;
 
-				/* Affiche les albums. */
+				/** Displays albums. */
 				case "A":
 					System.out.println(albums);
 					break;
 
-				/* Affiche les chansons d'un album. */
+				/** Displays the songs from album. */
 				case "C":
 			        System.out.println(albums + "\nQuel album souhaitez-vous afficher ?");
 			        userInput = userInputObj.nextLine();
@@ -75,7 +75,7 @@ public class jMusicHub implements interfaceJmusicHub {
 			        albums.displaySongsOfAlbum(userInput);
 					break;
 
-				/* Affiche les chansons triées par genre d'un album. */
+				/** Displays the songs selected by type from album. */
 				case "G":
 					System.out.println(albums + "\nQuel album souhaitez-vous afficher ?");
 			        userInput = userInputObj.nextLine();
@@ -83,7 +83,7 @@ public class jMusicHub implements interfaceJmusicHub {
 					albums.displaySongsOfAlbumSorted(userInput);
 					break;
 
-				/* Affiche les chansons en ordre aléatoire. */
+				/** Displays the songs in random order. */
 				case "GA":
 					System.out.println(albums + "\nQuel album souhaitez-vous afficher ?");
 			        userInput = userInputObj.nextLine();
@@ -91,12 +91,12 @@ public class jMusicHub implements interfaceJmusicHub {
 					albums.randomDisplaySongsOfAlbum(userInput);
 					break;
 
-				/* Affiche les playlists. */
+				/** Displays playlists. */
 				case "P":
 					System.out.println(playlists);
 					break;
 
-				/* Affiche les éléments d'une playlist. */
+				/** Displays the items in a playlist. */
 				case "M":
 					System.out.println(playlists + "\nQuelle playlist souhaitez-vous afficher ?");
 			        userInput = userInputObj.nextLine();
@@ -104,7 +104,7 @@ public class jMusicHub implements interfaceJmusicHub {
 					playlists.displaySongsOfPlaylist(userInput);
 					break;
 
-				/* Affiche les éléments en ordre aléatoire. */
+				/** Displays the elements in random order. */
 				case "MA":
 					System.out.println(playlists + "\nQuelle playlist souhaitez-vous afficher ?");
 			        userInput = userInputObj.nextLine();
@@ -112,22 +112,22 @@ public class jMusicHub implements interfaceJmusicHub {
 					playlists.randomDisplaySongsOfPlaylist(userInput);
 					break;
 
-				/* Nouvelle chanson. */
+				/** New songs */
 				case "b":
 					addMusic(elements);
 					break;
 
-				/* Nouveau livre audio. */
+				/** New Audio books */
 				case "l":
 					addLivre(elements);
 					break;
 
-				/* Nouvel album. */
+				/** New albums */
 				case "a":
 					addAlbum(albums);
 					break;
 
-				/* Rajout d'une chanson existante à un album. */
+				/** Addition of a song that already exist in a album */
 				case "c":
                     System.out.println(albums + "\nQuel album souhaitez-vous modifier ?");
                     String albumName = userInputObj.nextLine();
@@ -136,12 +136,12 @@ public class jMusicHub implements interfaceJmusicHub {
                     albums.addMusic(albumName, musicName, elements);
                     break;
 
-                  /* Nouvelle playlist. */
+                /** New playlist */
 				case "p":
 					addPlaylist(playlists);
 					break;
 
-				/* Rajout d'un élément existant à une playlist. */
+				/** Addition of a element that already exist in a album */
 				case "m":
 			        System.out.println(playlists + "\nQuelle playlist souhaitez-vous modifier ?");
                     String playlistName = userInputObj.nextLine();
@@ -151,22 +151,22 @@ public class jMusicHub implements interfaceJmusicHub {
                     playlists.addElement(playlistName, elementName, elements);
 					break;
 
-				/* Supprimer une chanson. */
+				/** delete a song */
 				case "-b":
 					delMusic(elements, albums, playlists);
 					break;
 
-				/* Supprimer un livre audio. */
+				/** Delete a audio book */
 				case "-l":
 					delLivre(elements, playlists);
 					break;
 
-				/* Supprimer un album. */
+				/** Delete a playlist */
 				case "-a":
 					delAlbum(albums);
 					break;
 
-				/* Supprimer une chanson d'un album. */
+				/** Delete a song from a album */
 				case "-c":
 			        System.out.println(albums + "\nQuel album souhaitez-vous modifier ?");
                     albumName = userInputObj.nextLine();
@@ -177,12 +177,12 @@ public class jMusicHub implements interfaceJmusicHub {
                     albums.delSongOfAlbum(albumName, musicName, elements);
                     break;
 
-				/* Supprimer une playlist. */
+				/** Delete a playlist */
 				case "-p":
 					delPlaylist(playlists);
 					break;
 
-				/* Supprimer un élément d'une playlist. */
+				/** delete a element from a playlist */
 				case "-m":
 			        System.out.println(playlists + "\nQuelle playlist souhaitez-vous modifier ?");
                     playlistName = userInputObj.nextLine();
@@ -192,7 +192,7 @@ public class jMusicHub implements interfaceJmusicHub {
                     playlists.delSongOfPlaylist(playlistName,elementName,elements);
                     break;
 
-				/* Ecriture dans les fichiers XML. */
+				/** Writting in the xml file */
 				case "s":
 					System.out.println("Sauvegarde de la bibliothèque musicale...");
 					new SerializeToXML("elements", elements);
@@ -201,12 +201,12 @@ public class jMusicHub implements interfaceJmusicHub {
 					System.out.println("Sauvegarde terminée.");
 					break;
 
-				/* Menu d'aide aux commandes. */
+				/** Help menu */
 				case "h":
 					help();
 					break;
 
-				/* Quitter. */
+				/** quit */
 				case "q":
 					run = quit();
 					break;
