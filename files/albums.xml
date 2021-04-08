@@ -374,6 +374,93 @@
      </void>
     </object>
    </void>
+   <void method="add">
+    <object class="musichub.business.Album" id="Album3">
+     <void property="artiste">
+      <string>C418</string>
+     </void>
+     <void property="dateSortie">
+      <string>2013-11-12</string>
+     </void>
+     <void property="duree">
+      <int>729</int>
+     </void>
+     <void property="id">
+      <int>9</int>
+     </void>
+     <void property="songList">
+      <void method="add">
+       <object class="musichub.business.Chanson">
+        <void property="artiste">
+         <string>C418</string>
+        </void>
+        <void property="contenu">
+         <string>Haggstrom.wav</string>
+        </void>
+        <void property="duree">
+         <int>204</int>
+        </void>
+        <void property="genre">
+         <object idref="Genres2"/>
+        </void>
+        <void property="id">
+         <int>74</int>
+        </void>
+        <void property="titre">
+         <string>Haggstrom</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="musichub.business.Chanson">
+        <void property="artiste">
+         <string>C418</string>
+        </void>
+        <void property="contenu">
+         <string>Sweden.wav</string>
+        </void>
+        <void property="duree">
+         <int>215</int>
+        </void>
+        <void property="genre">
+         <object idref="Genres2"/>
+        </void>
+        <void property="id">
+         <int>75</int>
+        </void>
+        <void property="titre">
+         <string>Sweden</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="musichub.business.Chanson">
+        <void property="artiste">
+         <string>C418</string>
+        </void>
+        <void property="contenu">
+         <string>Aria_Math.wav</string>
+        </void>
+        <void property="duree">
+         <int>310</int>
+        </void>
+        <void property="genre">
+         <object idref="Genres2"/>
+        </void>
+        <void property="id">
+         <int>76</int>
+        </void>
+        <void property="titre">
+         <string>Aria Math</string>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="titre">
+      <string>Minecraft</string>
+     </void>
+    </object>
+   </void>
   </void>
  </object>
 </java>

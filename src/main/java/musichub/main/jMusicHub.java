@@ -4,8 +4,16 @@ import java.util.Scanner;
 
 /**
  * jMusicHub contains the main method for the program.
+ *
+ * @author Sylvain BUI, Maxence LECLERC, Nour-El-Houda LOUATY, Sarra MADAD
+ * @version 1.0
+ * @see StartServer
+ * @see StartClient
  */
 public class jMusicHub {
+	/**
+	 * Default constructor. The user decides to launch or not the server
+	 */
 	public jMusicHub() {
 		System.out.println("\nBienvenue dans jMusicHub !");
 		System.out.println("\nSouhaitez-vous démarrer le serveur ? [O/N]");
@@ -28,6 +36,10 @@ public class jMusicHub {
 		}
 	}
 
+	/**
+	 * Main entry of the program.
+	 * @param args command arguments
+	 */
 	public static void main(String[] args) {
 		new jMusicHub();
 	}

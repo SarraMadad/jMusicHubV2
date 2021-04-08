@@ -8,8 +8,8 @@ import java.util.*;
  * There is only one PlaylistList object with all playlists informations.
  * <p>
  * Playlists can be added or removed from the list.
- * 
- * @author FERNANDES Mickael and LECLERC Maxence
+ *
+ * @author Sylvain BUI, Maxence LECLERC, Nour-El-Houda LOUATY, Sarra MADAD
  * @version 1.0
  * @see Playlist
  */
@@ -108,6 +108,7 @@ public class PlaylistList extends UserList {
 	 * Displays the elements in a playlist.
 	 * 
 	 * @param playlistName user input
+	 * @return the songs in the album as a String
 	 */
 	public String displaySongsOfPlaylist(String playlistName) {
 		String list = "";
@@ -117,12 +118,13 @@ public class PlaylistList extends UserList {
             }
         }
         return list;
-    }
+	}
 
-    /**
+	/**
 	 * Displays the elements in a random order in a playlist.
-	 * 
+	 *
 	 * @param playlistName user input
+	 * @return the songs in the album as a String
 	 */
     public String randomDisplaySongsOfPlaylist(String playlistName) {
     	String list = "";
