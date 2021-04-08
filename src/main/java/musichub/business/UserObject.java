@@ -3,19 +3,26 @@ package musichub.business;
 import java.io.Serializable;
 
 /**
- *
+ * UserObject is a class that contain several information about the user command
  * @author Sylvain BUI, Maxence LECLERC, Nour-El-Houda LOUATY, Sarra MADAD
  * @version 1.0
  */
 
 
 public class UserObject implements Serializable {
+    /** User command */
     private String command;
+    /** Last user command */
     private String lastCommand;
+    /** Server response */
     private String response;
+    /** Music data */
     private Music music = new Music();
 
-
+    /**
+     * Default constructor
+     * Initializes attributes
+     */
     public UserObject() {
         command = "";
         lastCommand = "";
