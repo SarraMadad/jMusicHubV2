@@ -2,8 +2,8 @@ package musichub.business;
 
 /**
  * Genres is an enum used to attribute a type to a song.
- * 
- * @author FERNANDES Mickael and LECLERC Maxence
+ *
+ * @author Sylvain BUI, Maxence LECLERC, Nour-El-Houda LOUATY, Sarra MADAD
  * @version 1.0
  * @see Chanson
  */

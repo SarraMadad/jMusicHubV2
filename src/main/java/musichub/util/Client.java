@@ -7,6 +7,15 @@ import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 
+/**
+ * Client socket to exchange with server.
+ *
+ * @author Sylvain BUI, Maxence LECLERC, Nour-El-Houda LOUATY, Sarra MADAD
+ * @version 1.0
+ * @see UserObject
+ * @see IntLogger
+ */
+
 public class Client {
     UserObject userObject = new UserObject();
     boolean musicNotPlaying;
@@ -23,14 +32,15 @@ public class Client {
         final Scanner sc = new Scanner(System.in);//pour lire à partir du clavier
 
         try {
-            /*
-             * les informations du serveur ( port et adresse IP ou nom d'hote
-             * 127.0.0.1 est l'adresse local de la machine
+            /**
+             * Connect to the server
+             * Port and IP address of server: 9090, localhost 127.0.0.1
              */
-            clientSocket = new Socket("127.0.0.1",5000);
+            clientSocket = new Socket("127.0.0.1",9090);
 
             //flux pour envoyer
             //out = new PrintWriter(clientSocket.getOutputStream());
+            /** Create input and output to exchange with server. */
             out = new ObjectOutputStream(clientSocket.getOutputStream());
             //flux pour recevoir
             //in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream(), StandardCharsets.UTF_8));

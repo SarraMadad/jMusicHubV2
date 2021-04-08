@@ -5,8 +5,8 @@ import java.lang.Exception;
 /**
  * WrongEnumValue is an exception created when the value entered by the
  * user is not in the enum list.
- * 
- * @author FERNANDES Mickael and LECLERC Maxence
+ *
+ * @author Sylvain BUI, Maxence LECLERC, Nour-El-Houda LOUATY, Sarra MADAD
  * @version 1.0
  * @see Genres
  * @see Langues

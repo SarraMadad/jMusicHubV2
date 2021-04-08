@@ -9,8 +9,8 @@ import java.io.*;
  * SerializeToXML allow the serialization of all objects of the librairy.
  * <p>
  * The objects to serialize are ElementList, AlbumList and PlaylistList.
- * 
- * @author FERNANDES Mickael and LECLERC Maxence
+ *
+ * @author Sylvain BUI, Maxence LECLERC, Nour-El-Houda LOUATY, Sarra MADAD
  * @version 1.0
  * @see ElementList
  * @see AlbumList

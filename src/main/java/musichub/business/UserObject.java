@@ -2,6 +2,14 @@ package musichub.business;
 
 import java.io.Serializable;
 
+/**
+
+ *
+ * @author Sylvain BUI, Maxence LECLERC, Nour-El-Houda LOUATY, Sarra MADAD
+ * @version 1.0
+
+ */
+
 public class UserObject implements Serializable {
     private String command;
     private String lastCommand;

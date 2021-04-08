@@ -7,8 +7,8 @@ import java.io.*;
  * Element is the base class for Chanson and LivreAudio.
  * <p>
  * It contains all attributes and methodes commons to those classes.
- * 
- * @author FERNANDES Mickael and LECLERC Maxence
+ *
+ * @author Sylvain BUI, Maxence LECLERC, Nour-El-Houda LOUATY, Sarra MADAD
  * @version 1.0
  * @see ElementList
  * @see Chanson

@@ -8,9 +8,15 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-/*
- * www.projetSNIR_LOUATY.com
+
+/**
+ * Server socket to exchange with Client.
+ *
+ * @author Sylvain BUI, Maxence LECLERC, Nour-El-Houda LOUATY, Sarra MADAD
+ * @version 1.0
+ * @see IntLogger
  */
+
 public class Server {
 
     MainClient mainClient = new MainClient();
@@ -35,13 +41,17 @@ public class Server {
                 }
             });
             main.start();
-
+            //create the socket server object
             serveurSocket = new ServerSocket(5000);
+            //creating socket and waiting for client connection
             clientSocket = serveurSocket.accept();
-            sfl.write(Levels.INFO, "Client connecté");
+
+           sfl.write(Levels.INFO, "Client connecté");
 
             out = new ObjectOutputStream(clientSocket.getOutputStream());
             in = new ObjectInputStream(clientSocket.getInputStream());
+
+            /** read data from client and send data to client.*/
 
             Thread envoi= new Thread(new Runnable() {
                 @Override
