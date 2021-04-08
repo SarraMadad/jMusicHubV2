@@ -13,10 +13,18 @@ import musichub.util.Levels;
  */
 
 public class StartClient {
+    /**
+     * default constructor
+     * start a client console
+     */
     public StartClient() {
         new Client();
     }
 
+    /**
+     * main entry for the client to program
+     * @param args command arguments
+     */
     public static void main(String[] args) {
         new StartClient();
     }

@@ -164,7 +164,6 @@ public class PlaylistList extends UserList {
                    }
             }
         }
-        return list;
     }
 
     /**

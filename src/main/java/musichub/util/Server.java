@@ -1,8 +1,8 @@
 package musichub.util;
 
 import musichub.business.UserObject;
-import musichub.main.MainClient;
-import musichub.main.MainServer;
+import musichub.business.MainClient;
+import musichub.business.MainServer;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -19,15 +19,19 @@ import java.net.Socket;
 
 public class Server {
 
+    /** Launch MainClient program */
     MainClient mainClient = new MainClient();
+    /** Boolean to know when a client's command is running */
     Boolean commandeClient = false;
+    /** Server's socket */
     ServerSocket serveurSocket  ;
+    /** Client's socket */
     Socket clientSocket ;
-    //BufferedReader in;
+    /** Input stream */
     ObjectInputStream in;
-    //PrintWriter out;
+    /** Output stream */
     ObjectOutputStream out;
-
+    /** User command */
     UserObject userObject = new UserObject();
 
     /**
@@ -54,11 +58,11 @@ public class Server {
             out = new ObjectOutputStream(clientSocket.getOutputStream());
             in = new ObjectInputStream(clientSocket.getInputStream());
 
-            /** read data from client and send data to client.*/
+            /* read data from client and send data to client.*/
 
             Thread envoi= new Thread(new Runnable() {
                 @Override
-                /**
+                /*
                  *
                  */
                 public void run() {
@@ -82,23 +86,16 @@ public class Server {
 
             Thread recevoir= new Thread(new Runnable() {
                 @Override
-                /**
-                 *
-                 */
                 public void run() {
                     while(true) {
                         try {
                             userObject = (UserObject) in.readObject();
-                            //tant que le client est connecté
+                            //while the client is connected
                             while (userObject.getCommand() != null) {
-                                //System.out.println("Client : " + msgClient);
                                 commandeClient = true;
                                 Thread.sleep(150);
                                 userObject = (UserObject) in.readObject();
                             }
-
-                            //sortir de la boucle si le client est déconnecté
-                            //System.out.println("Client déconnecté");
 
                             out.close();
                             clientSocket.close();
@@ -109,11 +106,6 @@ public class Server {
                             out = new ObjectOutputStream(clientSocket.getOutputStream());
                             in = new ObjectInputStream(clientSocket.getInputStream());
 
-                            //fermer le flux et la session socket
-                            //out.close();
-                            //clientSocket.close();
-                            //serveurSocket.close();
-                            //System.exit(0);
                         } catch (EOFException e) {
                             try {
                                 Thread.sleep(10);

@@ -12,10 +12,18 @@ import musichub.util.Server;
  */
 
 public class StartServer {
+    /**
+     * default constructor
+     * start a server console
+     */
     public StartServer() {
         new Server();
     }
 
+    /**
+     * main entry for the server to program
+     * @param args command arguments
+     */
     public static void main(String[] args) {
         new StartServer();
     }

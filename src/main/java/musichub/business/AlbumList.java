@@ -192,7 +192,6 @@ public class AlbumList extends UserList {
                   }
             }
         }
-        return list;
     }
 
     /**

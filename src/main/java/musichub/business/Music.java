@@ -12,34 +12,44 @@ import java.io.Serializable;
 import java.util.Scanner;
 
 /**
-
- *
+ * Object to store the music data to send
  * @author Sylvain BUI, Maxence LECLERC, Nour-El-Houda LOUATY, Sarra MADAD
  * @version 1.0
-
+ * @see UserObject
+ *
  */
 
 
 public class Music implements Serializable {
+    /**
+     * Music stored as a byte array
+     */
     private byte[] data;
 
+    /**
+     * default constructor Music
+     */
     public Music() {
     }
 
     /**
-     *
-     * @return
+     * get the music as a byte array
+     * @return byte array
      */
     public byte[] getData() {
         return data;
     }
 
+    /**
+     * set the music as a byte array
+     * @param data byte array
+     */
     public void setData(byte[] data) {
         this.data = data;
     }
 
     /**
-     * convert the music into a byte
+     * convert the music into a byte array
      * @param fileName directory of our folder
      * @return return the byte
      */
@@ -52,7 +62,7 @@ public class Music implements Serializable {
         }
         File file = new File (".\\files\\library\\" + fileName);
 
-        //1st step
+
         try {
             audioInputStream=AudioSystem.getAudioInputStream(file);
             AudioFileFormat.Type targetType = AudioFileFormat.Type.WAVE;
@@ -61,22 +71,15 @@ public class Music implements Serializable {
             IntLogger sfl = SingletonFileLogger.getInstance();
             sfl.write(Levels.ERROR, "UserObject.convertMusic() : " + e.toString());
         } finally {
-            //System.out.println("Finally...");
-            //tLine.close();
-            //System.out.println("Line closed");
             try {
                 audioInputStream.close();
                 musicData = byteArrayOutputStream.toByteArray();
-                //System.out.println("Stream closed.");
             } catch (Exception e) {
                 IntLogger sfl = SingletonFileLogger.getInstance();
                 sfl.write(Levels.ERROR, "UserObject.convertMusic() : " + e.toString());
                 musicData = null;
             }
         }
-
-        //3rd step
-        //System.out.println("Size of the outputStream : "+byteArrayOutputStream.size());
 
         return musicData;
     }
@@ -130,26 +133,5 @@ public class Music implements Serializable {
         }
 
         System.out.println("Arrêt de la lecture de la musique." + "\nQue souhaitez-vous faire ?\n");
-        //System.out.println("\nQue souhaitez-vous faire ?\n");
-
-        /*
-        DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat);
-        try  {
-            //System.out.println(info);
-            sLine=(SourceDataLine) AudioSystem.getLine(info);
-            System.out.println(sLine.getLineInfo());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        try {
-            sLine.open(audioFormat);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-        sLine.start();
-        System.out.println("Line Started");
-
-         */
     }
 }

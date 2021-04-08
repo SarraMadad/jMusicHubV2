@@ -1,4 +1,4 @@
-package musichub.main;
+package musichub.business;
 
 import musichub.business.*;
 import musichub.util.DeserializeFromXML;
@@ -23,6 +23,9 @@ public abstract class MainNetwork {
     /** List of all the playlists. */
     PlaylistList playlists = null;
 
+    /**
+     * load the data from XML
+     */
     protected void actualisation() {
         elements = new DeserializeFromXML("elements").decodeElements();
         albums = new DeserializeFromXML("albums").decodeAlbums();

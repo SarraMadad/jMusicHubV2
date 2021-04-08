@@ -3,11 +3,9 @@ package musichub.business;
 import java.io.Serializable;
 
 /**
-
  *
  * @author Sylvain BUI, Maxence LECLERC, Nour-El-Houda LOUATY, Sarra MADAD
  * @version 1.0
-
  */
 
 
@@ -25,6 +23,7 @@ public class UserObject implements Serializable {
     }
 
     /**
+     * get the user command
      *
      * @return retrieve the command
      */
@@ -33,6 +32,8 @@ public class UserObject implements Serializable {
     }
 
     /**
+     * set the user command
+     *
      * @param command set a assigning command
      */
     public void setCommand(String command) {
@@ -40,6 +41,8 @@ public class UserObject implements Serializable {
     }
 
     /**
+     * get the user last command
+     *
      * @return retrive the last command
      */
     public String getLastCommand() {
@@ -47,6 +50,8 @@ public class UserObject implements Serializable {
     }
 
     /**
+     * set the last command
+     *
      * @param lastCommand set the last assigning command
      */
     public void setLastCommand(String lastCommand) {
@@ -54,6 +59,8 @@ public class UserObject implements Serializable {
     }
 
     /**
+     * get the server response
+     *
      * @return retrive the response
      */
     public String getResponse() {
@@ -61,6 +68,7 @@ public class UserObject implements Serializable {
     }
 
     /**
+     * set the server response
      *
      * @param response set a assigning response
      */
@@ -69,6 +77,7 @@ public class UserObject implements Serializable {
     }
 
     /**
+     * get the music
      *
      * @return retrieve a Music
      */
@@ -77,17 +86,11 @@ public class UserObject implements Serializable {
     }
 
     /**
+     * set the music
      *
      * @param music set a assigning music
      */
     public void setMusic(Music music) {
         this.music = music;
-    }
-
-    /**
-     * Delete the music
-     */
-    public void delMusic() {
-        this.music.setData(null);
     }
 }
