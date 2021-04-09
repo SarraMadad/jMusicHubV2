@@ -1,6 +1,5 @@
-package musichub.main;
+package musichub.business;
 
-import musichub.business.*;
 import musichub.util.*;
 
 import javax.sound.sampled.AudioInputStream;
@@ -41,7 +40,7 @@ public class MainServer extends MainNetwork {
      * Default constructor. Initializes the lists and contains the main while.
      */
     public MainServer() {
-        /** Reading XML files. */
+        /* Reading XML files. */
         actualisation();
 
         Boolean run = true;
@@ -54,22 +53,22 @@ public class MainServer extends MainNetwork {
             userInput = userInputObj.nextLine();
             switch(userInput) {
 
-                /** Displays songs in the library. */
+                /* Displays songs in the library. */
                 case "B":
                     System.out.println(elements.listeChanson());
                     break;
 
-                /** Displays audio books. */
+                /* Displays audio books. */
                 case "L":
                     System.out.println(elements.listeLivreAudio());
                     break;
 
-                /** Displays the albums. */
+                /* Displays the albums. */
                 case "A":
                     System.out.println(albums);
                     break;
 
-                /** Displays the songs of album. */
+                /* Displays the songs of album. */
                 case "C":
                     System.out.println(albums + "\nQuel album souhaitez-vous afficher ?");
                     userInput = userInputObj.nextLine();
@@ -77,7 +76,7 @@ public class MainServer extends MainNetwork {
                     System.out.println(albums.displaySongsOfAlbum(userInput));
                     break;
 
-                /** Displays the songs sorted by genre of an album. */
+                /* Displays the songs sorted by genre of an album. */
                 case "G":
                     System.out.println(albums + "\nQuel album souhaitez-vous afficher ?");
                     userInput = userInputObj.nextLine();
@@ -85,7 +84,7 @@ public class MainServer extends MainNetwork {
                     System.out.println(albums.displaySongsOfAlbumSorted(userInput));
                     break;
 
-                /** Displays the songs in random order. */
+                /* Displays the songs in random order. */
                 case "GA":
                     System.out.println(albums + "\nQuel album souhaitez-vous afficher ?");
                     userInput = userInputObj.nextLine();
@@ -93,12 +92,12 @@ public class MainServer extends MainNetwork {
                     System.out.println(albums.randomDisplaySongsOfAlbum(userInput));
                     break;
 
-                /** Displays playlists. */
+                /* Displays playlists. */
                 case "P":
                     System.out.println(playlists);
                     break;
 
-                /** Displays the items in a playlist. */
+                /* Displays the items in a playlist. */
                 case "M":
                     System.out.println(playlists + "\nQuelle playlist souhaitez-vous afficher ?");
                     userInput = userInputObj.nextLine();
@@ -106,7 +105,7 @@ public class MainServer extends MainNetwork {
                     System.out.println(playlists.displaySongsOfPlaylist(userInput));
                     break;
 
-                /** Displays the elements in random order. */
+                /* Displays the elements in random order. */
                 case "MA":
                     System.out.println(playlists + "\nQuelle playlist souhaitez-vous afficher ?");
                     userInput = userInputObj.nextLine();
@@ -114,7 +113,7 @@ public class MainServer extends MainNetwork {
                     System.out.println(playlists.randomDisplaySongsOfPlaylist(userInput));
                     break;
 
-                /** Play music */
+                /* Play music */
                 case "PLAY":
                     System.out.println(elements.listeChanson() + "\nQuelle musique souhaitez-vous écouter ?");
                     System.out.println("Veuillez entrer le nom du contenu.");
@@ -123,22 +122,22 @@ public class MainServer extends MainNetwork {
                     playMusic(userInput);
                     break;
 
-                /** New song */
+                /* New song */
                 case "b":
                     addMusic(elements);
                     break;
 
-                /** New audio book. */
+                /* New audio book. */
                 case "l":
                     addLivre(elements);
                     break;
 
-                /** New album. */
+                /* New album. */
                 case "a":
                     addAlbum(albums);
                     break;
 
-                /** Add an existing song to an album. */
+                /* Add an existing song to an album. */
                 case "c":
                     System.out.println(albums + "\nQuel album souhaitez-vous modifier ?");
                     String albumName = userInputObj.nextLine();
@@ -147,12 +146,12 @@ public class MainServer extends MainNetwork {
                     albums.addMusic(albumName, musicName, elements);
                     break;
 
-                /** New playlist. */
+                /* New playlist. */
                 case "p":
                     addPlaylist(playlists);
                     break;
 
-                /** Add an existing item to playlist. */
+                /* Add an existing item to playlist. */
                 case "m":
                     System.out.println(playlists + "\nQuelle playlist souhaitez-vous modifier ?");
                     String playlistName = userInputObj.nextLine();
@@ -162,22 +161,22 @@ public class MainServer extends MainNetwork {
                     playlists.addElement(playlistName, elementName, elements);
                     break;
 
-                /** Delete a song. */
+                /* Delete a song. */
                 case "-b":
                     delMusic(elements, albums, playlists);
                     break;
 
-                /** Delete audio book */
+                /* Delete audio book */
                 case "-l":
                     delLivre(elements, playlists);
                     break;
 
-                /** Delete album. */
+                /* Delete album. */
                 case "-a":
                     delAlbum(albums);
                     break;
 
-                /** Delete song from album. */
+                /* Delete song from album. */
                 case "-c":
                     System.out.println(albums + "\nQuel album souhaitez-vous modifier ?");
                     albumName = userInputObj.nextLine();
@@ -188,12 +187,12 @@ public class MainServer extends MainNetwork {
                     albums.delSongOfAlbum(albumName, musicName, elements);
                     break;
 
-                /** Delete playlist. */
+                /* Delete playlist. */
                 case "-p":
                     delPlaylist(playlists);
                     break;
 
-                /** Delete item from playlist. */
+                /* Delete item from playlist. */
                 case "-m":
                     System.out.println(playlists + "\nQuelle playlist souhaitez-vous modifier ?");
                     playlistName = userInputObj.nextLine();
@@ -203,7 +202,7 @@ public class MainServer extends MainNetwork {
                     playlists.delSongOfPlaylist(playlistName,elementName,elements);
                     break;
 
-                /** Write in XML files. */
+                /* Write in XML files. */
                 case "s":
                     System.out.println("Sauvegarde de la bibliothèque musicale...");
                     new SerializeToXML("elements", elements);
@@ -212,12 +211,12 @@ public class MainServer extends MainNetwork {
                     System.out.println("Sauvegarde terminée.");
                     break;
 
-                /** Command help menu. */
+                /* Command help menu. */
                 case "h":
                     help();
                     break;
 
-                /** Quit */
+                /* Quit */
                 case "q":
                     run = quit();
                     break;
@@ -228,21 +227,9 @@ public class MainServer extends MainNetwork {
             }
         }
 
-        /** The user is out of the loop and has left the application. */
+        /* The user is out of the loop and has left the application. */
         System.exit(0);
     }
-
-    /**
-     * Main entry for the program.
-     *
-     * @param args user arguments. Not used.
-     */
-    /*
-    public static void main(String[] args) {
-        new jMusicHub();
-    }
-
-     */
 
     /**
      * Returns the title entered by the user.
@@ -267,7 +254,6 @@ public class MainServer extends MainNetwork {
 
     /**
      * Returns the artist entered by the user.
-     *
      * @return the artist as a String
      */
     public String newArtiste(){
@@ -277,7 +263,6 @@ public class MainServer extends MainNetwork {
 
     /**
      * Returns the writer entered by the user.
-     *
      * @return the writer as a String
      */
     public String newAuteur(){
@@ -287,7 +272,6 @@ public class MainServer extends MainNetwork {
 
     /**
      * Returns the length entered by the user. Checks if the value is a number.
-     *
      * @return the length as an int
      */
     public int newDuree(){
@@ -307,7 +291,6 @@ public class MainServer extends MainNetwork {
 
     /**
      * Returns the location entered by the user.
-     *
      * @return the location as a String
      */
     public String newContenu(){
@@ -318,7 +301,6 @@ public class MainServer extends MainNetwork {
     /**
      * Returns the category entered by the user. Checks if the value is in
      * the enum.
-     *
      * @return the category as a String
      * @throws WrongEnumValue if an input exception occurred
      * @see musichub.business.WrongEnumValue
@@ -340,7 +322,6 @@ public class MainServer extends MainNetwork {
 
     /**
      * Returns the date entered by the user.
-     *
      * @return the date as a String
      */
     public String newDate(){
@@ -374,7 +355,6 @@ public class MainServer extends MainNetwork {
     /**
      * Returns the language entered by the user. Checks if the value is in
      * the enum.
-     *
      * @return the language as a String
      * @throws WrongEnumValue if an input exception occurred
      * @see musichub.business.WrongEnumValue
@@ -398,7 +378,6 @@ public class MainServer extends MainNetwork {
     /**
      * Returns the type entered by the user. Checks if the value is in
      * the enum.
-     *
      * @return the type as a String
      * @throws WrongEnumValue if an input exception occurred
      * @see musichub.business.WrongEnumValue
@@ -423,7 +402,6 @@ public class MainServer extends MainNetwork {
     /**
      * Checks the value entered by the user to abort the creation of the
      * new element.
-     *
      * @param valeur user value to check
      * @return 0 (continue) or 1 (abort)
      */
@@ -437,7 +415,6 @@ public class MainServer extends MainNetwork {
 
     /**
      * Adds a song to the ElementList and displays it.
-     *
      * @param elements the ElementList to modify
      */
     public void addMusic(ElementList elements){
@@ -550,7 +527,6 @@ public class MainServer extends MainNetwork {
 
     /**
      * Adds an audio book to the ElementList and displays it.
-     *
      * @param elements the ElementList to modify
      */
     public void addLivre(ElementList elements){
@@ -755,7 +731,7 @@ public class MainServer extends MainNetwork {
             //waiting for a response
 
             while(!userInput.equals("Q")) { //loop for choice
-                System.out.println("P = play, S = Stop, R = Reset, QUIT = Quit");
+                System.out.println("P = play, S = Stop, R = Reset, Q = Quit");
                 System.out.println("Que souhaitez-vous faire ?");
 
                 userInput = userInputObj.nextLine().toUpperCase();
@@ -770,7 +746,8 @@ public class MainServer extends MainNetwork {
                     case ("R"):
                         clip.setMicrosecondPosition(0);
                         break;
-                    case ("QUIT"):
+                    case ("Q"):
+                        clip.stop();
                         clip.close();
                         break;
                     default:

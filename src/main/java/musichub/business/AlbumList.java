@@ -112,6 +112,7 @@ public class AlbumList extends UserList {
 	 * Displays the musics in an album.
 	 * 
 	 * @param albumName user input
+	 * @return the songs in the album as a String
 	 */
 	public String displaySongsOfAlbum(String albumName) {
 		String list = "";
@@ -127,6 +128,7 @@ public class AlbumList extends UserList {
 	 * Displays the musics sorted by type in an album.
 	 * 
 	 * @param albumName user input
+	 * @return the songs in the album as a String
 	 */
 	public String displaySongsOfAlbumSorted (String albumName) {
 		String list = "";
@@ -159,6 +161,7 @@ public class AlbumList extends UserList {
 	 * Displays the musics in a random order in an album.
 	 * 
 	 * @param albumName user input
+	 * @return the songs in the album as a String
 	 */
     public String randomDisplaySongsOfAlbum (String albumName) {
     	String list = "";
@@ -192,7 +195,6 @@ public class AlbumList extends UserList {
                   }
             }
         }
-        return list;
     }
 
     /**

@@ -17,9 +17,15 @@ import java.util.Scanner;
  */
 
 public class Client {
+    /** UserObject that contains the command */
     UserObject userObject = new UserObject();
+    /** Local attribute to know when a music is playing */
     boolean musicNotPlaying;
 
+    /**
+     * The client is a desktop computer or workstation
+     * that is capable of obtaining information and applications from a server.
+     */
     public Client() {
         IntLogger sfl = SingletonFileLogger.getInstance();
         musicNotPlaying = true;
@@ -32,7 +38,7 @@ public class Client {
         final Scanner sc = new Scanner(System.in);//pour lire à partir du clavier
 
         try {
-            /**
+            /*
              * Connect to the server
              * Port and IP address of server: 9090, localhost 127.0.0.1
              */
@@ -40,7 +46,7 @@ public class Client {
 
             //flux pour envoyer
             //out = new PrintWriter(clientSocket.getOutputStream());
-            /** Create input and output to exchange with server. */
+            /* Create input and output to exchange with server. */
             out = new ObjectOutputStream(clientSocket.getOutputStream());
             //flux pour recevoir
             //in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream(), StandardCharsets.UTF_8));
@@ -56,17 +62,9 @@ public class Client {
                     while(true) {
                         try {
                             String input = sc.nextLine();
-                            //System.out.println(c);
                             userObject.setCommand(input);
 
                             if(musicNotPlaying) {
-                                /*
-                                String lastC = userObject.getLastCommand();
-                                if (!lastC.equals("C") && !lastC.equals("G") && !lastC.equals("GA") && !lastC.equals("M") && !lastC.equals("MA") && !lastC.equals("PLAY")) {
-                                    System.out.println("\nIF\n");
-                                }
-
-                                 */
 
                                 if (userObject.getCommand().equals("q")) {
                                     System.out.println("Bye bye !");
@@ -98,6 +96,9 @@ public class Client {
 
             Thread recevoir = new Thread(new Runnable() {
                 @Override
+                /*
+                 * Socket that can communicate between client/server
+                 */
                 public void run() {
                     try {
                         userObject = (UserObject) in.readObject();
@@ -110,22 +111,14 @@ public class Client {
                                 musique = userObject.getMusic();
                                 userObject.setLastCommand("");
                                 userObject.setCommand("");
-                                //userObject.delMusic();
 
                                 musique.playMusic();
 
-                                //userObject = new UserObject();
                                 userObject.setResponse("Fin de la lecture.");
-                                //out.flush();
                                 musicNotPlaying = true;
                             } else {
                                 System.out.println(userObject.getResponse());
                             }
-
-                            /* Donnée de debug */
-                            System.out.println("commande : " + userObject.getCommand());
-                            System.out.println("lastC : " + userObject.getLastCommand());
-                            System.out.println("réponse : " + userObject.getResponse());
 
                             Thread.sleep(150);
 

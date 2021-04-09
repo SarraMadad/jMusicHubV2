@@ -108,6 +108,7 @@ public class PlaylistList extends UserList {
 	 * Displays the elements in a playlist.
 	 * 
 	 * @param playlistName user input
+	 * @return the songs in the album as a String
 	 */
 	public String displaySongsOfPlaylist(String playlistName) {
 		String list = "";
@@ -117,12 +118,13 @@ public class PlaylistList extends UserList {
             }
         }
         return list;
-    }
+	}
 
-    /**
+	/**
 	 * Displays the elements in a random order in a playlist.
-	 * 
+	 *
 	 * @param playlistName user input
+	 * @return the songs in the album as a String
 	 */
     public String randomDisplaySongsOfPlaylist(String playlistName) {
     	String list = "";
@@ -164,7 +166,6 @@ public class PlaylistList extends UserList {
                    }
             }
         }
-        return list;
     }
 
     /**
