@@ -40,9 +40,9 @@ public class Client {
         try {
             /*
              * Connect to the server
-             * Port and IP address of server: 9090, localhost 127.0.0.1
+             * Port and IP address of server: 5000, localhost 127.0.0.1
              */
-            clientSocket = new Socket("127.0.0.1",9090);
+            clientSocket = new Socket("127.0.0.1",5000);
 
             //flux pour envoyer
             //out = new PrintWriter(clientSocket.getOutputStream());

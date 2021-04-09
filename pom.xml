@@ -11,6 +11,7 @@
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <build>
@@ -52,6 +53,15 @@
                     <show>private</show>
                     <nohelp>true</nohelp>
                 </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>javadoc</goal>
+                        </goals>
+                        <id>execution1</id>
+                        <phase>package</phase>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
