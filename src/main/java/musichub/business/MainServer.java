@@ -28,7 +28,7 @@ import java.util.Scanner;
  */
 
 
-public class MainServer extends MainNetwork {
+public class MainServer extends MainNetwork implements IntAddAttribute {
     /** Retrieve user input. */
     Scanner userInputObj = new Scanner(System.in);
     /** Save user input. */

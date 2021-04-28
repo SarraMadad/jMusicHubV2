@@ -63,3 +63,13 @@
 [2021-04-09 17:31:39.035] - ERROR - UserObject.convertMusic() : java.io.FileNotFoundException: .\files\library\fff.wav (Le fichier sp√©cifi√© est introuvable)
 [2021-04-09 17:31:39.036] - ERROR - UserObject.convertMusic() : java.lang.NullPointerException
 [2021-04-09 17:33:00.434] - INFO - Client d√©connect√©
+[2021-04-27 16:35:54.502] - INFO - Client connectÈ
+[2021-04-27 16:35:55.069] - WARNING - Valeur inattendue dans SingletonTest ! 
+[2021-04-27 16:35:55.07] - ERROR - SingletonTest.main() : Impossible de convertir le String en Integer
+[2021-04-28 17:58:48.032] - INFO - Client connectÈ
+[2021-04-28 17:58:48.643] - WARNING - Valeur inattendue dans SingletonTest ! 
+[2021-04-28 17:58:48.645] - ERROR - SingletonTest.main() : Impossible de convertir le String en Integer
+[2021-04-28 18:51:01.281] - INFO - Client connectÈ
+[2021-04-28 18:51:01.872] - WARNING - Valeur inattendue dans SingletonTest ! 
+[2021-04-28 18:51:01.874] - ERROR - SingletonTest.main() : Impossible de convertir le String en Integer
+[2021-04-28 19:00:22.34] - ERROR - Client() : java.net.ConnectException: Connection refused: connect
