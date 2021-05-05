@@ -1,17 +1,15 @@
-package musichub.main;
-
-import musichub.business.*;
+package musichub.business;
 
 /**
- * interfaceJmusicHub contains the prototypes of the methods 
+ * IntAddAttribute contains the prototypes of the methods
  * for the creation of new songs, audio books, albums and
- * playists in jMusicHub.
+ * playists in MainServer.
  *
  * @author Sylvain BUI, Maxence LECLERC, Nour-El-Houda LOUATY, Sarra MADAD
  * @version 1.0
- * @see jMusicHub
+ * @see MainServer
  */
-public interface interfaceJmusicHub {
+public interface IntAddAttribute {
 
 	/**
 	 * Returns the title entered by the user.

@@ -28,7 +28,7 @@ import java.util.Scanner;
  */
 
 
-public class MainServer extends MainNetwork {
+public class MainServer extends MainNetwork implements IntAddAttribute {
     /** Retrieve user input. */
     Scanner userInputObj = new Scanner(System.in);
     /** Save user input. */
@@ -238,8 +238,7 @@ public class MainServer extends MainNetwork {
      */
     public String newTitre() {
         System.out.print("\nTitre : ");
-        String titre = userInputObj.nextLine();
-        return titre;
+        return userInputObj.nextLine();
     }
 
     /**
@@ -275,7 +274,7 @@ public class MainServer extends MainNetwork {
      * @return the length as an int
      */
     public int newDuree(){
-        String duree = null;
+        String duree;
         while(true) {
             System.out.print("\nDurée (en secondes) : ");
             duree = userInputObj.nextLine();
@@ -554,7 +553,7 @@ public class MainServer extends MainNetwork {
         }
 
         String langue = null;
-        Boolean wrongValue = true;
+        boolean wrongValue = true;
         while(wrongValue) {
             try {
                 langue = newLangue();
@@ -724,15 +723,18 @@ public class MainServer extends MainNetwork {
     private void playMusic(String userInput) {
         try {
             //where is the repository
+            if(!userInput.contains(".wav")) {
+                userInput += ".wav";
+            }
             File file = new File(".\\files\\library\\" + userInput);
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
             Clip clip = AudioSystem.getClip();
             clip.open(audioStream);
             //waiting for a response
 
-            while(!userInput.equals("Q")) { //loop for choice
-                System.out.println("P = play, S = Stop, R = Reset, Q = Quit");
-                System.out.println("Que souhaitez-vous faire ?");
+            while(!userInput.equals("QUIT")) { //loop for choice
+                System.out.println("P = play, S = Stop, R = Reset, QUIT = Quit");
+                System.out.println("Que souhaitez-vous faire avec votre musique ?");
 
                 userInput = userInputObj.nextLine().toUpperCase();
 
@@ -746,8 +748,8 @@ public class MainServer extends MainNetwork {
                     case ("R"):
                         clip.setMicrosecondPosition(0);
                         break;
-                    case ("Q"):
-                        clip.stop();
+                    case ("QUIT"):
+                        System.out.println("Arrêt de la lecture de la musique.");
                         clip.close();
                         break;
                     default:
@@ -756,8 +758,10 @@ public class MainServer extends MainNetwork {
             }
 
         } catch (FileNotFoundException fnfe) {
+            System.out.println("Fichier non trouvé.");
             sfl.write(Levels.WARNING, "MainServer.playMusic() : Fichier introuvable");
         } catch (Exception e) {
+            System.out.println("Une erreur est survenue.");
             sfl.write(Levels.ERROR, "MainServer.playMusic() : " + e.toString());
         }
     }
@@ -806,7 +810,7 @@ public class MainServer extends MainNetwork {
     public Boolean quit() {
         System.out.println("Souhaitez-vous quitter l'application ? [O/N]");
         userInput = userInputObj.nextLine().toLowerCase();
-        Boolean run = true;
+        boolean run = true;
 
         if(userInput.equals("o") || userInput.equals("oui") || userInput.equals("y") || userInput.equals("yes")) {
             run = false;

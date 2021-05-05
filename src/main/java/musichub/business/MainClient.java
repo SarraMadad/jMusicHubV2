@@ -126,8 +126,14 @@ public class MainClient extends MainNetwork {
                     case "PLAY":
                         Music musique = new Music();
                         musique.setData(musique.convertMusic(us.getCommand()));
-                        us.setMusic(musique);
-                        us.setResponse("Traitement en cours...");
+
+                        if(musique.getData() == null) {
+                            us.setLastCommand("");
+                            us.setResponse("Impossible de lire cette musique.\nQue souhaitez-vous faire ?\n");
+                        } else {
+                            us.setMusic(musique);
+                        }
+
                         break;
 
                     default:
